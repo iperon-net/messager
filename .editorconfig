@@ -14,6 +14,3 @@ indent_size = 2
 [*.{yaml,yml}]
 indent_style = space
 indent_size = 2
-
-[LICENSE]
-insert_final_newline = false
