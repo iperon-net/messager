@@ -1,6 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:messenger/logger.dart';
+import 'package:messenger/settings.dart';
 
-void main() {
+import 'injection.dart';
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // Configure injection
+  configureDependencies();
+
+  await getIt.allReady();
+
   runApp(const MyApp());
 }
 
@@ -10,6 +21,10 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+
+    Logger logger = getIt.get<Logger>();
+    logger.debug("e");
+
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
