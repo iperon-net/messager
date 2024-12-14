@@ -14,7 +14,7 @@ class AuthScreen extends StatelessWidget {
     ]);
 
     final focusNodeEmail = FocusNode();
-    final focusNodePassword = FocusNode();
+    // final focusNodePassword = FocusNode();
 
     return Scaffold(
       body: Form(
