@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:messenger/logger.dart';
-import 'package:messenger/settings.dart';
 
 import 'injection.dart';
 

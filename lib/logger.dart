@@ -1,5 +1,4 @@
 import 'package:injectable/injectable.dart';
-import 'package:messenger/injection.dart';
 import 'package:messenger/settings.dart';
 import 'package:talker/talker.dart';
 
