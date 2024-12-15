@@ -19,11 +19,5 @@ class Utils {
     throw Exception("Not found platform");
   }
 
-  bool get isDebug {
-    if (kDebugMode) {
-      return true;
-    }
-    return false;
-  }
-
+  bool get isDebug => kDebugMode ? true : false;
 }
