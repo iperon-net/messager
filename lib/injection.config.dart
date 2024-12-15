@@ -10,6 +10,7 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
+import 'package:messenger/db/db.dart' as _i170;
 import 'package:messenger/logger.dart' as _i155;
 import 'package:messenger/settings.dart' as _i590;
 import 'package:messenger/utils.dart' as _i701;
@@ -30,6 +31,7 @@ _i174.GetIt init(
     final i = _i155.Logger();
     return i.init().then((_) => i);
   });
+  gh.singletonAsync<_i170.DB>(() => _i170.DB.create());
   gh.singletonAsync<_i590.Settings>(() => _i590.Settings.create());
   return getIt;
 }

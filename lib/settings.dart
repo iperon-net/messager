@@ -19,6 +19,10 @@ class Settings {
     return dotenv.getBool("IS_DELETE_DATABASE", fallback: false);
   }
 
+  int get databaseVersion {
+    return dotenv.getInt("DATABASE_VERSION", fallback: 1);
+  }
+
   int get loggerMaxHistoryItems {
     return dotenv.getInt("LOGGER_MAX_HISTORY_ITEMS", fallback: 1000);
   }
