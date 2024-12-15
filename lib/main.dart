@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:messenger/logger.dart';
 import 'package:messenger/utils.dart';
-import 'package:sqflite/sqflite.dart';
 
 import 'cubit/counter_cubit.dart';
 import 'db/db.dart';
