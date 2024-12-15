@@ -8,16 +8,15 @@ import 'package:messenger/utils.dart';
 import 'package:sqflite/sqflite.dart';
 import "package:path/path.dart" as p;
 import 'package:sqflite_sqlcipher/sqflite.dart' as sqflite_sqlcipher;
+import 'models_db.dart' as models_db;
 
-part 'account_db.dart';
+part 'version_db.dart';
 
 
 @singleton
 class DB {
-  late Database db;
-  // final Account account = Account();
+  late Database database;
 
-  @factoryMethod
   static Future<String> getOrCreatePassword() async {
     FlutterSecureStorage storage = const FlutterSecureStorage(
       aOptions: AndroidOptions(encryptedSharedPreferences: true),
@@ -85,7 +84,14 @@ class DB {
     int dbVersion = await database.getVersion();
     logger.info("DB Version: $dbVersion");
 
+    // logger.info("DB isOpen: ${database.isOpen}");
+    // var res = await database.rawQuery("SELECT sqlite_version() as version;");
+    // logger.info("DB isOpen: ${res.first}");
     return DB(database);
   }
-  DB(Database database);
+
+  DB(Database db) {
+    database = db;
+  }
+
 }

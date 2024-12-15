@@ -15,164 +15,128 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$Person {
-  String get firstName => throw _privateConstructorUsedError;
-  String get lastName => throw _privateConstructorUsedError;
-  int get age => throw _privateConstructorUsedError;
+mixin _$VersionDB {
+  String get version => throw _privateConstructorUsedError;
 
-  /// Create a copy of Person
+  /// Create a copy of VersionDB
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $PersonCopyWith<Person> get copyWith => throw _privateConstructorUsedError;
+  $VersionDBCopyWith<VersionDB> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $PersonCopyWith<$Res> {
-  factory $PersonCopyWith(Person value, $Res Function(Person) then) =
-      _$PersonCopyWithImpl<$Res, Person>;
+abstract class $VersionDBCopyWith<$Res> {
+  factory $VersionDBCopyWith(VersionDB value, $Res Function(VersionDB) then) =
+      _$VersionDBCopyWithImpl<$Res, VersionDB>;
   @useResult
-  $Res call({String firstName, String lastName, int age});
+  $Res call({String version});
 }
 
 /// @nodoc
-class _$PersonCopyWithImpl<$Res, $Val extends Person>
-    implements $PersonCopyWith<$Res> {
-  _$PersonCopyWithImpl(this._value, this._then);
+class _$VersionDBCopyWithImpl<$Res, $Val extends VersionDB>
+    implements $VersionDBCopyWith<$Res> {
+  _$VersionDBCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of Person
+  /// Create a copy of VersionDB
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? firstName = null,
-    Object? lastName = null,
-    Object? age = null,
+    Object? version = null,
   }) {
     return _then(_value.copyWith(
-      firstName: null == firstName
-          ? _value.firstName
-          : firstName // ignore: cast_nullable_to_non_nullable
+      version: null == version
+          ? _value.version
+          : version // ignore: cast_nullable_to_non_nullable
               as String,
-      lastName: null == lastName
-          ? _value.lastName
-          : lastName // ignore: cast_nullable_to_non_nullable
-              as String,
-      age: null == age
-          ? _value.age
-          : age // ignore: cast_nullable_to_non_nullable
-              as int,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$PersonImplCopyWith<$Res> implements $PersonCopyWith<$Res> {
-  factory _$$PersonImplCopyWith(
-          _$PersonImpl value, $Res Function(_$PersonImpl) then) =
-      __$$PersonImplCopyWithImpl<$Res>;
+abstract class _$$VersionDBImplCopyWith<$Res>
+    implements $VersionDBCopyWith<$Res> {
+  factory _$$VersionDBImplCopyWith(
+          _$VersionDBImpl value, $Res Function(_$VersionDBImpl) then) =
+      __$$VersionDBImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String firstName, String lastName, int age});
+  $Res call({String version});
 }
 
 /// @nodoc
-class __$$PersonImplCopyWithImpl<$Res>
-    extends _$PersonCopyWithImpl<$Res, _$PersonImpl>
-    implements _$$PersonImplCopyWith<$Res> {
-  __$$PersonImplCopyWithImpl(
-      _$PersonImpl _value, $Res Function(_$PersonImpl) _then)
+class __$$VersionDBImplCopyWithImpl<$Res>
+    extends _$VersionDBCopyWithImpl<$Res, _$VersionDBImpl>
+    implements _$$VersionDBImplCopyWith<$Res> {
+  __$$VersionDBImplCopyWithImpl(
+      _$VersionDBImpl _value, $Res Function(_$VersionDBImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of Person
+  /// Create a copy of VersionDB
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? firstName = null,
-    Object? lastName = null,
-    Object? age = null,
+    Object? version = null,
   }) {
-    return _then(_$PersonImpl(
-      firstName: null == firstName
-          ? _value.firstName
-          : firstName // ignore: cast_nullable_to_non_nullable
+    return _then(_$VersionDBImpl(
+      version: null == version
+          ? _value.version
+          : version // ignore: cast_nullable_to_non_nullable
               as String,
-      lastName: null == lastName
-          ? _value.lastName
-          : lastName // ignore: cast_nullable_to_non_nullable
-              as String,
-      age: null == age
-          ? _value.age
-          : age // ignore: cast_nullable_to_non_nullable
-              as int,
     ));
   }
 }
 
 /// @nodoc
 
-class _$PersonImpl implements _Person {
-  const _$PersonImpl(
-      {required this.firstName, required this.lastName, required this.age});
+class _$VersionDBImpl implements _VersionDB {
+  const _$VersionDBImpl({required this.version});
 
   @override
-  final String firstName;
-  @override
-  final String lastName;
-  @override
-  final int age;
+  final String version;
 
   @override
   String toString() {
-    return 'Person(firstName: $firstName, lastName: $lastName, age: $age)';
+    return 'VersionDB(version: $version)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$PersonImpl &&
-            (identical(other.firstName, firstName) ||
-                other.firstName == firstName) &&
-            (identical(other.lastName, lastName) ||
-                other.lastName == lastName) &&
-            (identical(other.age, age) || other.age == age));
+            other is _$VersionDBImpl &&
+            (identical(other.version, version) || other.version == version));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, firstName, lastName, age);
+  int get hashCode => Object.hash(runtimeType, version);
 
-  /// Create a copy of Person
+  /// Create a copy of VersionDB
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$PersonImplCopyWith<_$PersonImpl> get copyWith =>
-      __$$PersonImplCopyWithImpl<_$PersonImpl>(this, _$identity);
+  _$$VersionDBImplCopyWith<_$VersionDBImpl> get copyWith =>
+      __$$VersionDBImplCopyWithImpl<_$VersionDBImpl>(this, _$identity);
 }
 
-abstract class _Person implements Person {
-  const factory _Person(
-      {required final String firstName,
-      required final String lastName,
-      required final int age}) = _$PersonImpl;
+abstract class _VersionDB implements VersionDB {
+  const factory _VersionDB({required final String version}) = _$VersionDBImpl;
 
   @override
-  String get firstName;
-  @override
-  String get lastName;
-  @override
-  int get age;
+  String get version;
 
-  /// Create a copy of Person
+  /// Create a copy of VersionDB
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$PersonImplCopyWith<_$PersonImpl> get copyWith =>
+  _$$VersionDBImplCopyWith<_$VersionDBImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

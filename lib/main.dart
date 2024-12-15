@@ -2,9 +2,13 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:messenger/logger.dart';
 import 'package:messenger/utils.dart';
+import 'package:sqflite/sqflite.dart';
 
 import 'cubit/counter_cubit.dart';
+import 'db/db.dart';
+import 'db/models_db.dart' as models_db;
 import 'injection.dart';
 import 'routers.dart';
 
@@ -16,6 +20,13 @@ Future<void> main() async {
   configureDependencies();
 
   await getIt.allReady();
+
+  Logger logger = getIt.get<Logger>();
+
+  VersionDB db = getIt.get<VersionDB>();
+  models_db.VersionDB response = await db.version();
+  logger.debug("sqlite version:${response.version}");
+
 
   // Run app
   runApp(
