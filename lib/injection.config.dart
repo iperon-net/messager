@@ -12,6 +12,7 @@ import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 import 'package:messenger/logger.dart' as _i155;
 import 'package:messenger/settings.dart' as _i590;
+import 'package:messenger/utils.dart' as _i701;
 
 // initializes the registration of main-scope dependencies inside of GetIt
 _i174.GetIt init(
@@ -24,6 +25,7 @@ _i174.GetIt init(
     environment,
     environmentFilter,
   );
+  gh.singleton<_i701.Utils>(() => _i701.Utils());
   gh.singletonAsync<_i155.Logger>(() {
     final i = _i155.Logger();
     return i.init().then((_) => i);

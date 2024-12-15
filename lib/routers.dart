@@ -11,7 +11,9 @@ GoRouter get router {
 
   return GoRouter(
     initialLocation: '/',
-    observers: [TalkerRouteObserver(logger.logger)],
+    observers: [
+      TalkerRouteObserver(logger.logger)
+    ],
     routes: <RouteBase>[
       GoRoute(
         path: '/',
