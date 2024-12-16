@@ -12,5 +12,6 @@ class UsersDB {
       await txn.insert("users", {...user.toJson()});
     });
     return user;
+
   }
 }
