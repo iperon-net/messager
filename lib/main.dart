@@ -99,6 +99,7 @@ Widget getAppAndroid(BuildContext context) {
     supportedLocales: context.supportedLocales,
     locale: context.locale,
     routerConfig: router,
+    themeMode: ThemeMode.light,
     theme: ThemeData(
       useMaterial3: true,
       appBarTheme: const AppBarTheme(
