@@ -3,10 +3,8 @@ import 'dart:io' show Platform;
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:messenger/injection.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
-import 'logger.dart';
 
 part 'utils.freezed.dart';
 
