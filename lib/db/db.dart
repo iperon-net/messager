@@ -49,11 +49,18 @@ class DB {
       await deleteDatabase(path);
     }
 
+    // onConfigure
+    Future<void> onConfigure(Database db) async {
+      await db.execute('PRAGMA foreign_keys = ON');
+    }
+
     // Migrations
-    onCreate(Database db, int version) async {
+    Future<void> onCreate(Database db, int version) async {
       logger.info("Creating the database");
 
-      await db.execute("""
+      Batch batch = db.batch();
+
+      batch.execute("""
         CREATE TABLE accounts (
           account_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
           username TEXT,
@@ -62,6 +69,11 @@ class DB {
           expiration_time INTEGER
         )
       """);
+
+      await batch.commit();
+    }
+
+    Future<void> onUpgrade(Database db, int oldVersion, int newVersion) async {
     }
 
     // Database
@@ -70,20 +82,24 @@ class DB {
       database = await openDatabase(
         path,
         version: settings.databaseVersion,
+        onConfigure: onConfigure,
         onCreate: onCreate,
+        onUpgrade: onUpgrade,
       );
       logger.warning("The database is not encrypted");
     } else {
       database = await sqflite_sqlcipher.openDatabase(
         path,
         version: settings.databaseVersion,
-        onCreate: onCreate,
         password: dbPassword,
+        onConfigure: onConfigure,
+        onCreate: onCreate,
+        onUpgrade: onUpgrade,
       );
     }
 
     int dbVersion = await database.getVersion();
-    logger.info("DB Version: $dbVersion");
+    logger.info("Current DB version: $dbVersion");
     return DB(database);
   }
 
