@@ -24,10 +24,12 @@ class DB {
       iOptions: IOSOptions(),
     );
 
-    String? dbPassword = await storage.read(key: "db_password");
+    Settings settings = getIt.get<Settings>();
+    String? dbPassword = await storage.read(key: settings.databaseStorageKeyPassword);
+
     if(dbPassword == null) {
       String dbPassword = StringUtils.generateRandomString(50, special: false);
-      await storage.write(key: "db_password", value: dbPassword);
+      await storage.write(key: settings.databaseStorageKeyPassword, value: dbPassword);
       return dbPassword;
     }
     return dbPassword.toString();
@@ -36,9 +38,10 @@ class DB {
   @factoryMethod
   static Future<DB> create() async {
     String databasesPath = await getDatabasesPath();
-    String path = p.join(databasesPath, 'iperon.db');
-
     Settings settings = getIt.get<Settings>();
+
+    String path = p.join(databasesPath, settings.databaseName);
+
     Logger logger = getIt.get<Logger>();
     Utils utils = getIt.get<Utils>();
 

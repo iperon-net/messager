@@ -19,6 +19,14 @@ class Settings {
     return dotenv.getBool("IS_DELETE_DATABASE", fallback: false);
   }
 
+  String get databaseStorageKeyPassword {
+    return dotenv.get("DATABASE_STORAGE_KEY_PASSWORD", fallback: "db_password");
+  }
+
+  String get databaseName {
+    return dotenv.get("DATABASE_NAME", fallback: "iperon.db");
+  }
+
   int get databaseVersion {
     return dotenv.getInt("DATABASE_VERSION", fallback: 1);
   }
