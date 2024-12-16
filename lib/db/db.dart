@@ -83,10 +83,6 @@ class DB {
 
     int dbVersion = await database.getVersion();
     logger.info("DB Version: $dbVersion");
-
-    // logger.info("DB isOpen: ${database.isOpen}");
-    // var res = await database.rawQuery("SELECT sqlite_version() as version;");
-    // logger.info("DB isOpen: ${res.first}");
     return DB(database);
   }
 
