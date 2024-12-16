@@ -9,6 +9,7 @@ import 'screens/auth_screen.dart';
 
 GoRouter get router {
   Logger logger = getIt.get<Logger>();
+  TalkerScreen talkerScreen = TalkerScreen(talker: logger.logger, appBarTitle: "Logger");
 
   return GoRouter(
     initialLocation: '/',
@@ -21,27 +22,14 @@ GoRouter get router {
         builder: (BuildContext context, GoRouterState state) {
           return AuthScreen();
         },
+        routes: <RouteBase>[
+          GoRoute(
+            path: "/logger_monitor",
+            name: "logger_monitor",
+            builder: (BuildContext context, GoRouterState state) => talkerScreen,
+          ),
+        ],
       ),
-      GoRoute(
-        path: "/logger_monitor",
-        name: "logger_monitor",
-        builder: (BuildContext context, GoRouterState state) {
-
-          return TalkerScreen(
-            talker: getIt.get<Logger>().logger,
-            appBarTitle: "Logger",
-            // theme: TalkerScreenTheme(
-            //   cardColor: Colors.grey[700]!,
-            //   backgroundColor: Colors.grey[800]!,
-            //   textColor: Colors.white,
-            //   logColors: {
-            //     /// Your logs colors...
-            //   },
-            // ),
-          );
-        },
-      ),
-
     ],
   );
 

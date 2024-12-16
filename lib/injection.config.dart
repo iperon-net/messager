@@ -10,6 +10,7 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
+import 'package:messenger/cubit/debug_cubit.dart' as _i1010;
 import 'package:messenger/db/db.dart' as _i170;
 import 'package:messenger/logger.dart' as _i155;
 import 'package:messenger/settings.dart' as _i590;
@@ -27,6 +28,7 @@ _i174.GetIt init(
     environmentFilter,
   );
   gh.factory<_i170.UsersDB>(() => _i170.UsersDB());
+  gh.factory<_i1010.DebugCubit>(() => _i1010.DebugCubit());
   gh.singleton<_i701.Utils>(() => _i701.Utils());
   gh.singletonAsync<_i155.Logger>(() {
     final i = _i155.Logger();

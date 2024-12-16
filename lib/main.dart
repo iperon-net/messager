@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:messenger/utils.dart';
 
-import 'cubit/counter_cubit.dart';
+import 'constants.dart';
+import 'cubit/debug_cubit.dart';
 import 'injection.dart';
 import 'routers.dart';
 
@@ -50,7 +51,7 @@ class IperonApp extends StatelessWidget {
   Widget build(BuildContext context) => MultiBlocProvider(
     providers: [
       BlocProvider(
-        create: (_) => getIt.get<CounterCubit>(),
+        create: (_) => getIt.get<DebugCubit>(),
       ),
     ],
     child: getAppPlatform(context),
@@ -81,6 +82,9 @@ Widget getAppIos(BuildContext context) {
     supportedLocales: context.supportedLocales,
     locale: context.locale,
     routerConfig: router,
+    theme: const CupertinoThemeData(
+      primaryColor: Color(0xFF715D00),
+    ),
   );
 }
 
@@ -95,5 +99,59 @@ Widget getAppAndroid(BuildContext context) {
     supportedLocales: context.supportedLocales,
     locale: context.locale,
     routerConfig: router,
+    theme: ThemeData(
+      useMaterial3: true,
+      appBarTheme: const AppBarTheme(
+        backgroundColor: AppColors.appBarBackgroundColor,
+        foregroundColor: AppColors.appBarForegroundColor,
+      ),
+      scaffoldBackgroundColor: Colors.white,
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          foregroundColor: Colors.white,
+          backgroundColor: AppColors.primaryColor,
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(10)),
+          ),
+        ),
+      ),
+      inputDecorationTheme: const InputDecorationTheme(
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(10.0)),
+          borderSide: BorderSide(width: 1, color: AppColors.primaryColor),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(10.0)),
+          borderSide: BorderSide(width: 1, color: AppColors.primaryColor),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(10.0)),
+          borderSide: BorderSide(width: 1, color: AppColors.primaryColor),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(10.0)),
+          borderSide: BorderSide(width: 1, color: AppColors.primaryColor),
+        ),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.all(
+            Radius.circular(10.0),
+          ),
+        ),
+        labelStyle: TextStyle(
+          color: AppColors.primaryColor,
+        ),
+        // isDense: true,
+        contentPadding: EdgeInsets.all(12),
+      ),
+      bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+        selectedItemColor: AppColors.primaryColor,
+        unselectedItemColor: AppColors.primaryColor,
+        selectedLabelStyle: TextStyle(fontSize: 12),
+        unselectedLabelStyle: TextStyle(fontSize: 12),
+      ),
+      listTileTheme: const ListTileThemeData(
+        selectedColor: AppColors.primaryColor,
+      ),
+    ),
   );
 }
