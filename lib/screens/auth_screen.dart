@@ -2,7 +2,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:injectable/injectable.dart';
 import 'package:messenger/cubit/debug_cubit.dart';
 import 'package:messenger/injection.dart';
 import 'package:messenger/screens/common_screen.dart';
