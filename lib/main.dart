@@ -26,7 +26,7 @@ Future<void> main() async {
   //       expirationTime: 1234567890,
   //   )
   // );
-  PackageInformation packageInformation = await getIt.get<Utils>().packageInformation();
+  // PackageInformation packageInformation = await getIt.get<Utils>().packageInformation();
 
   // Run app
   runApp(
