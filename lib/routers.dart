@@ -26,9 +26,9 @@ GoRouter get router {
         path: "/logger_monitor",
         name: "logger_monitor",
         builder: (BuildContext context, GoRouterState state) {
-          Logger logger = getIt.get<Logger>();
+
           return TalkerScreen(
-            talker: logger.logger,
+            talker: getIt.get<Logger>().logger,
             appBarTitle: "Logger",
             // theme: TalkerScreenTheme(
             //   cardColor: Colors.grey[700]!,
