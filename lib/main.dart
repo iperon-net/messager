@@ -19,15 +19,16 @@ Future<void> main() async {
 
   await getIt.allReady();
 
-  await getIt.get<UsersDB>().createOrUpdate(
-      user: const modeldb.Users(
-        userId: "123456",
-        email: "user@yandex.ru",
-        accessToken: "accessToken",
-        refreshToken: "refreshToken",
-        expirationTime: 1234567890,
-    )
-  );
+  // await getIt.get<UsersDB>().createOrUpdate(
+  //     user: const modeldb.Users(
+  //       userId: "123456",
+  //       email: "user@yandex.ru",
+  //       accessToken: "accessToken",
+  //       refreshToken: "refreshToken",
+  //       expirationTime: 1234567890,
+  //   )
+  // );
+  PackageInformation packageInformation = await getIt.get<Utils>().packageInformation();
 
   // Run app
   runApp(
