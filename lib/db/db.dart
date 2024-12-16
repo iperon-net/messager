@@ -57,7 +57,8 @@ class DB {
         CREATE TABLE accounts (
           account_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
           username TEXT,
-          password TEXT,
+          access_token TEXT,
+          refresh_token TEXT,
           expiration_time INTEGER
         )
       """);

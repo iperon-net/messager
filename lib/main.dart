@@ -20,13 +20,6 @@ Future<void> main() async {
 
   await getIt.allReady();
 
-  Logger logger = getIt.get<Logger>();
-
-  VersionDB db = getIt.get<VersionDB>();
-  models_db.VersionDB response = await db.version();
-  logger.debug("sqlite version:${response.version}");
-
-
   // Run app
   runApp(
     EasyLocalization(
