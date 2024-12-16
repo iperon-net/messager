@@ -20,7 +20,7 @@ GoRouter get router {
       GoRoute(
         path: '/',
         builder: (BuildContext context, GoRouterState state) {
-          return AuthScreen();
+          return const AuthScreen();
         },
         routes: <RouteBase>[
           GoRoute(

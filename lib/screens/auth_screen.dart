@@ -2,12 +2,15 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
 import 'package:messenger/cubit/debug_cubit.dart';
+import 'package:messenger/injection.dart';
+import 'package:messenger/screens/common_screen.dart';
+
+import '../utils.dart';
 
 class AuthScreen extends StatelessWidget {
-  AuthScreen({super.key});
-
-  final GlobalKey<FormState> _formKeyAuth = GlobalKey<FormState>();
+  const AuthScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,11 +18,28 @@ class AuthScreen extends StatelessWidget {
       DeviceOrientation.portraitUp,
     ]);
 
-    final focusNodeEmail = FocusNode();
+    Auth auth = Auth(context);
 
+    Utils utils = getIt.get<Utils>();
+    if (utils.getPlatform == SystemPlatform.android) {
+      return auth.android();
+    }
+    return auth.notImplemented();
+  }
+}
+
+class Auth extends CommonScreen {
+  late BuildContext context;
+  final GlobalKey<FormState> formKeyAuth  = GlobalKey<FormState>();
+  final FocusNode focusNodeEmail = FocusNode();
+
+  Auth(this.context);
+
+  // Android
+  Widget android() {
     return Scaffold(
       body: Form(
-        key: _formKeyAuth,
+        key: formKeyAuth,
         child: SafeArea(
           child: Container(
             padding: const EdgeInsets.fromLTRB(25, 0, 25, 0),
@@ -77,4 +97,7 @@ class AuthScreen extends StatelessWidget {
       ),
     );
   }
+
+
 }
+
