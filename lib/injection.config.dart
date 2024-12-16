@@ -26,7 +26,7 @@ _i174.GetIt init(
     environment,
     environmentFilter,
   );
-  gh.factory<_i170.VersionDB>(() => _i170.VersionDB());
+  gh.factory<_i170.UsersDB>(() => _i170.UsersDB());
   gh.singleton<_i701.Utils>(() => _i701.Utils());
   gh.singletonAsync<_i155.Logger>(() {
     final i = _i155.Logger();

@@ -8,15 +8,16 @@ import 'package:messenger/utils.dart';
 import 'package:sqflite/sqflite.dart';
 import "package:path/path.dart" as p;
 import 'package:sqflite_sqlcipher/sqflite.dart' as sqflite_sqlcipher;
-import 'models_db.dart' as models_db;
+import 'models.dart' as modeldb;
 
-part 'version_db.dart';
+part 'users.dart';
 
 
 @singleton
 class DB {
   late Database database;
 
+  // Create or update user
   static Future<String> getOrCreatePassword() async {
     FlutterSecureStorage storage = const FlutterSecureStorage(
       aOptions: AndroidOptions(encryptedSharedPreferences: true),
@@ -61,9 +62,9 @@ class DB {
       Batch batch = db.batch();
 
       batch.execute("""
-        CREATE TABLE accounts (
-          account_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-          username TEXT,
+        CREATE TABLE users (
+          user_id TEXT,
+          email TEXT,
           access_token TEXT,
           refresh_token TEXT,
           expiration_time INTEGER

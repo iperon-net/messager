@@ -2,6 +2,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:messenger/db/db.dart';
+import 'package:messenger/db/models.dart' as modeldb;
 import 'package:messenger/utils.dart';
 
 import 'cubit/counter_cubit.dart';
@@ -16,6 +18,16 @@ Future<void> main() async {
   configureDependencies();
 
   await getIt.allReady();
+
+  await getIt.get<UsersDB>().createOrUpdate(
+      user: const modeldb.Users(
+        userId: "123456",
+        email: "user@yandex.ru",
+        accessToken: "accessToken",
+        refreshToken: "refreshToken",
+        expirationTime: 1234567890,
+    )
+  );
 
   // Run app
   runApp(
