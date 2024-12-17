@@ -2,10 +2,12 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:messenger/cubit/auth_cubit.dart';
 import 'package:messenger/cubit/debug_cubit.dart';
 import 'package:messenger/injection.dart';
 import 'package:messenger/screens/common_screen.dart';
 
+import '../constants.dart';
 import '../utils.dart';
 
 class AuthScreen extends StatelessWidget {
@@ -31,11 +33,15 @@ class Auth extends CommonScreen {
   late BuildContext context;
   final GlobalKey<FormState> formKeyAuth  = GlobalKey<FormState>();
   final FocusNode focusNodeEmail = FocusNode();
+  final textControllerEmail = TextEditingController();
+  Utils utils = getIt.get<Utils>();
 
   Auth(this.context);
 
   // Android
   Widget android() {
+    if(utils.isDebug) textControllerEmail.text = "user@exmaple.com";
+
     return Scaffold(
       body: Form(
         key: formKeyAuth,
@@ -57,10 +63,10 @@ class Auth extends CommonScreen {
                 TextFormField(
                   onTap: () => ScaffoldMessenger.of(context).clearSnackBars(),
                   focusNode: focusNodeEmail,
-                  controller: null,
-                  // cursorColor: AppColors.primaryColor,
-                  // cursorErrorColor: AppColors.primaryColor,
-                  validator: (value) => null,
+                  controller: textControllerEmail,
+                  cursorColor: AppColors.primaryColor,
+                  cursorErrorColor: AppColors.primaryColor,
+                  validator: (value) => context.read<AuthCubit>().validationEmail(context, value),
                   style: const TextStyle(fontSize:15),
                   keyboardType: TextInputType.emailAddress,
                   decoration: InputDecoration(
@@ -76,7 +82,7 @@ class Auth extends CommonScreen {
                       focusNodeEmail.unfocus();
                       ScaffoldMessenger.of(context).clearSnackBars();
 
-                      // await context.read<AuthCubit>().validator(_formKeyAuth);
+                      await context.read<AuthCubit>().validator(context, formKeyAuth, textControllerEmail);
 
                       // if(context.mounted && context.read<AuthCubit>().state.error.isNotEmpty){
                       //   ScaffoldMessenger.of(context).showSnackBar(

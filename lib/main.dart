@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:messenger/cubit/auth_cubit.dart';
 import 'package:messenger/utils.dart';
 
 import 'constants.dart';
@@ -52,6 +53,9 @@ class IperonApp extends StatelessWidget {
     providers: [
       BlocProvider(
         create: (_) => getIt.get<DebugCubit>(),
+      ),
+      BlocProvider(
+        create: (_) => getIt.get<AuthCubit>(),
       ),
     ],
     child: getAppPlatform(context),

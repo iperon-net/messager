@@ -1,5 +1,7 @@
 {
   "emailAddress": "Email address",
   "signIn": "Sign in",
-  "continue": "Continue"
+  "continue": "Continue",
+  "enter_valid_email": "Enter valid email address",
+  "invalid_email_address": "Invalid email address"
 }
