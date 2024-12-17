@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:messenger/cubit/auth_cubit.dart';
+import 'package:messenger/cubit/common_cubit.dart';
 import 'package:messenger/cubit/debug_cubit.dart';
 import 'package:messenger/injection.dart';
 import 'package:messenger/screens/common_screen.dart';
@@ -95,6 +96,7 @@ class Auth extends CommonScreen {
                     },
                   ),
                 ),
+                Text(context.watch<CommonCubit>().state.connectivity.toString()),
               ],
             ),
           ),

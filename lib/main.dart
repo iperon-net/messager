@@ -6,6 +6,7 @@ import 'package:messenger/cubit/auth_cubit.dart';
 import 'package:messenger/utils.dart';
 
 import 'constants.dart';
+import 'cubit/common_cubit.dart';
 import 'cubit/debug_cubit.dart';
 import 'injection.dart';
 import 'routers.dart';
@@ -56,6 +57,9 @@ class IperonApp extends StatelessWidget {
       ),
       BlocProvider(
         create: (_) => getIt.get<AuthCubit>(),
+      ),
+      BlocProvider(
+        create: (_) => getIt.get<CommonCubit>(),
       ),
     ],
     child: getAppPlatform(context),
