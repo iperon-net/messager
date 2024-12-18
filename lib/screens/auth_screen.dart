@@ -43,10 +43,10 @@ class Auth extends CommonScreen {
   Widget android() {
     if(utils.isDebug) textControllerEmail.text = "user@exmaple.com";
 
-    return Scaffold(
-      body: Form(
-        key: formKeyAuth,
-        child: SafeArea(
+    return SafeArea(
+      child: Scaffold(
+        body: Form(
+          key: formKeyAuth,
           child: Container(
             padding: const EdgeInsets.fromLTRB(25, 0, 25, 0),
             child: Column(
@@ -71,7 +71,7 @@ class Auth extends CommonScreen {
                   style: const TextStyle(fontSize:15),
                   keyboardType: TextInputType.emailAddress,
                   decoration: InputDecoration(
-                    labelText: context.tr("emailAddress"),
+                    labelText: context.tr("email_address"),
                   ),
                 ),
                 const SizedBox(height: 20),
@@ -83,20 +83,35 @@ class Auth extends CommonScreen {
                       focusNodeEmail.unfocus();
                       ScaffoldMessenger.of(context).clearSnackBars();
 
+                      if(!context.read<CommonCubit>().state.connectivity) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            backgroundColor: AppColors.snackBarBackgroundColor,
+                            content: Text(context.tr('not_internet_connection')),
+                          ),
+                        );
+                        return;
+                      }
+
                       await context.read<AuthCubit>().validator(context, formKeyAuth, textControllerEmail);
 
-                      // if(context.mounted && context.read<AuthCubit>().state.error.isNotEmpty){
-                      //   ScaffoldMessenger.of(context).showSnackBar(
-                      //     SnackBar(
-                      //       backgroundColor: AppColors.snackBarBackgroundColor,
-                      //       content: Text(context.tr(context.read<AuthCubit>().state.error.toString())),
-                      //     ),
-                      //   );
-                      // }
+                      if(context.mounted && context.read<AuthCubit>().state.error.isNotEmpty) {
+                        final error = context.read<AuthCubit>().state.error;
+
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            showCloseIcon: true,
+                            backgroundColor: AppColors.snackBarBackgroundColor,
+                            content: Text(context.tr(error.toString())),
+                          ),
+                        );
+                        return;
+                      }
+
                     },
                   ),
                 ),
-                Text(context.watch<CommonCubit>().state.connectivity.toString()),
+                // Text(context.watch<AuthCubit>().state.loading.toString()),
               ],
             ),
           ),

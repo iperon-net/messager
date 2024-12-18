@@ -37,9 +37,15 @@ class AuthCubit extends Cubit<AuthState> {
     ) async {
 
     if (!formKeyAuth.currentState!.validate()) return;
-    logger.debug(textControllerEmail.text.toString());
 
     if(!utils.isDebug) textControllerEmail.clear();
+
+    //
+    emit(const AuthState.initial(loading: true));
+    await Future.delayed(const Duration(seconds: 5));
+    emit(const AuthState.initial(error: "test_error"));
+
+    logger.debug(textControllerEmail.text.toString());
 
   }
 

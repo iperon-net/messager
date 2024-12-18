@@ -10,6 +10,7 @@ class AppColors {
   static const Color disableColor = Color(0xff72538d);
   static const Color appBarBackgroundColor = Color(0xff72538d);
   static const Color appBarForegroundColor = Color(0xff72538d);
+  static const Color snackBarBackgroundColor = Color(0xffa60909);
 }
 
 class AppStyle {
