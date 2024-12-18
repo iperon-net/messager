@@ -6,6 +6,7 @@ import 'package:messenger/injection.dart';
 import 'package:messenger/logger.dart';
 import 'package:talker_flutter/talker_flutter.dart';
 
+import 'cubit/auth_cubit.dart';
 import 'cubit/common_cubit.dart';
 import 'screens/auth_screen.dart';
 
@@ -31,7 +32,11 @@ GoRouter get router {
       GoRoute(
         path: '/',
         builder: (BuildContext context, GoRouterState state) {
-          return const AuthScreen();
+          return BlocProvider(
+            lazy: true,
+            create: (context) => AuthCubit(),
+            child: const AuthScreen(),
+          );
         },
         routes: <RouteBase>[
           GoRoute(

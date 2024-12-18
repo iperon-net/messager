@@ -56,9 +56,6 @@ class IperonApp extends StatelessWidget {
         create: (_) => getIt.get<DebugCubit>(),
       ),
       BlocProvider(
-        create: (_) => getIt.get<AuthCubit>(),
-      ),
-      BlocProvider(
         create: (_) => getIt.get<CommonCubit>(),
       ),
     ],
