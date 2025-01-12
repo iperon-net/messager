@@ -1,0 +1,9 @@
+{
+  "email_address": "Email address",
+  "sign_in": "Sign in",
+  "continue": "Continue",
+  "enter_valid_email": "Enter valid email address",
+  "invalid_email_address": "Invalid email address",
+  "not_internet_connection": "Not internet connection",
+  "test_error": "Test error"
+}

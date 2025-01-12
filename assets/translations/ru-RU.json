@@ -1,0 +1,9 @@
+{
+  "email_address": "Адрес электронной почты",
+  "sign_in": "Войти",
+  "continue": "Продолжить",
+  "enter_valid_email": "Введите адрес электронной почты",
+  "invalid_email_address": "Неверный адрес электронной почты",
+  "not_internet_connection": "Нет подключения к интернету",
+  "test_error": "Тестовая ошибка"
+}
