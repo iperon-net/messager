@@ -1,0 +1,35 @@
+{
+  "project_info": {
+    "project_number": "434986283436",
+    "firebase_url": "https://iperon.firebaseio.com",
+    "project_id": "iperon",
+    "storage_bucket": "iperon.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:434986283436:android:4f866c85c25982c9950a09",
+        "android_client_info": {
+          "package_name": "net.iperon.messenger"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDXCMUFg8izJOYlKijsE728LX9dNldNn04"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "434986283436-c05muu2rtdknok5id42melqtvu56lb03.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

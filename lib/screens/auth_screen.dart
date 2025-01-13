@@ -80,6 +80,8 @@ class Auth extends CommonScreen {
                   child: ElevatedButton(
                     child: Text(context.tr("continue")),
                     onPressed: () async {
+                      // throw Exception();
+
                       focusNodeEmail.unfocus();
                       ScaffoldMessenger.of(context).clearSnackBars();
 
