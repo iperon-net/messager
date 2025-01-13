@@ -1,9 +1,12 @@
 {
-  "email_address": "Email address",
-  "sign_in": "Sign in",
+  "emailAddress": "Email address",
+  "signIn": "Sign in",
   "continue": "Continue",
-  "enter_valid_email": "Enter valid email address",
-  "invalid_email_address": "Invalid email address",
-  "not_internet_connection": "Not internet connection",
-  "test_error": "Test error"
+  "enterValidEmail": "Enter valid email address",
+  "invalidEmailAddress": "Invalid email address",
+  "notInternetConnection": "Not internet connection",
+  "test_error": "Test error",
+  "internalServerError": "Internal Server Error",
+  "errorConnecting": "Error connecting",
+  "incorrectEmailAddress": "Incorrect email address"
 }

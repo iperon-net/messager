@@ -3,8 +3,10 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:messenger/protobuf/protos/auth.pb.dart';
 import 'package:messenger/utils.dart';
 
+import 'api/api.dart';
 import 'constants.dart';
 import 'cubit/common_cubit.dart';
 import 'cubit/debug_cubit.dart';
@@ -18,16 +20,16 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
 
-  // Configure injection
-  configureDependencies();
-
-  await getIt.allReady();
-
-  //
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
   FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
+
+
+  // Configure injection
+  configureDependencies();
+
+  await getIt.allReady();
 
 
   // await getIt.get<UsersDB>().createOrUpdate(

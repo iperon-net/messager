@@ -35,7 +35,6 @@ class Auth extends CommonScreen {
   final GlobalKey<FormState> formKeyAuth  = GlobalKey<FormState>();
   final FocusNode focusNodeEmail = FocusNode();
   final textControllerEmail = TextEditingController();
-  Utils utils = getIt.get<Utils>();
 
   Auth(this.context);
 
@@ -71,7 +70,7 @@ class Auth extends CommonScreen {
                   style: const TextStyle(fontSize:15),
                   keyboardType: TextInputType.emailAddress,
                   decoration: InputDecoration(
-                    labelText: context.tr("email_address"),
+                    labelText: context.tr("emailAddress"),
                   ),
                 ),
                 const SizedBox(height: 20),
@@ -89,7 +88,7 @@ class Auth extends CommonScreen {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             backgroundColor: AppColors.snackBarBackgroundColor,
-                            content: Text(context.tr('not_internet_connection')),
+                            content: Text(context.tr('notInternetConnection')),
                           ),
                         );
                         return;
