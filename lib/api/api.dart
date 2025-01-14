@@ -3,7 +3,6 @@ import 'package:grpc/grpc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:messenger/protobuf/protos/server.pbgrpc.dart';
 
-import '../db/db.dart';
 import '../injection.dart';
 import '../logger.dart';
 import '../protobuf/protos/auth.pbgrpc.dart';
