@@ -59,6 +59,12 @@ dependencies:
   firebase_crashlytics: ^4.3.0
   firebase_analytics: ^11.4.0
   firebase_core: ^3.10.0
+  grpc: ^4.0.1
+  protobuf: ^3.1.0
+  appmetrica_plugin: ^3.1.0
+
+#  grpc: ^4.0.0
+#  protobuf: ^3.1.0
 
 dev_dependencies:
   flutter_test:

@@ -18,19 +18,21 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$AuthState {
   bool get loading => throw _privateConstructorUsedError;
   String get error => throw _privateConstructorUsedError;
+  String get signInToken => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(bool loading, String error) initial,
+    required TResult Function(bool loading, String error, String signInToken)
+        initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(bool loading, String error)? initial,
+    TResult? Function(bool loading, String error, String signInToken)? initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(bool loading, String error)? initial,
+    TResult Function(bool loading, String error, String signInToken)? initial,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -63,7 +65,7 @@ abstract class $AuthStateCopyWith<$Res> {
   factory $AuthStateCopyWith(AuthState value, $Res Function(AuthState) then) =
       _$AuthStateCopyWithImpl<$Res, AuthState>;
   @useResult
-  $Res call({bool loading, String error});
+  $Res call({bool loading, String error, String signInToken});
 }
 
 /// @nodoc
@@ -83,6 +85,7 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
   $Res call({
     Object? loading = null,
     Object? error = null,
+    Object? signInToken = null,
   }) {
     return _then(_value.copyWith(
       loading: null == loading
@@ -92,6 +95,10 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
       error: null == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
+              as String,
+      signInToken: null == signInToken
+          ? _value.signInToken
+          : signInToken // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -105,7 +112,7 @@ abstract class _$$InitialImplCopyWith<$Res>
       __$$InitialImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool loading, String error});
+  $Res call({bool loading, String error, String signInToken});
 }
 
 /// @nodoc
@@ -123,6 +130,7 @@ class __$$InitialImplCopyWithImpl<$Res>
   $Res call({
     Object? loading = null,
     Object? error = null,
+    Object? signInToken = null,
   }) {
     return _then(_$InitialImpl(
       loading: null == loading
@@ -133,6 +141,10 @@ class __$$InitialImplCopyWithImpl<$Res>
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as String,
+      signInToken: null == signInToken
+          ? _value.signInToken
+          : signInToken // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -140,7 +152,9 @@ class __$$InitialImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$InitialImpl extends _Initial {
-  const _$InitialImpl({this.loading = false, this.error = ""}) : super._();
+  const _$InitialImpl(
+      {this.loading = false, this.error = "", this.signInToken = ""})
+      : super._();
 
   @override
   @JsonKey()
@@ -148,10 +162,13 @@ class _$InitialImpl extends _Initial {
   @override
   @JsonKey()
   final String error;
+  @override
+  @JsonKey()
+  final String signInToken;
 
   @override
   String toString() {
-    return 'AuthState.initial(loading: $loading, error: $error)';
+    return 'AuthState.initial(loading: $loading, error: $error, signInToken: $signInToken)';
   }
 
   @override
@@ -160,11 +177,13 @@ class _$InitialImpl extends _Initial {
         (other.runtimeType == runtimeType &&
             other is _$InitialImpl &&
             (identical(other.loading, loading) || other.loading == loading) &&
-            (identical(other.error, error) || other.error == error));
+            (identical(other.error, error) || other.error == error) &&
+            (identical(other.signInToken, signInToken) ||
+                other.signInToken == signInToken));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, loading, error);
+  int get hashCode => Object.hash(runtimeType, loading, error, signInToken);
 
   /// Create a copy of AuthState
   /// with the given fields replaced by the non-null parameter values.
@@ -177,27 +196,28 @@ class _$InitialImpl extends _Initial {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(bool loading, String error) initial,
+    required TResult Function(bool loading, String error, String signInToken)
+        initial,
   }) {
-    return initial(loading, error);
+    return initial(loading, error, signInToken);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(bool loading, String error)? initial,
+    TResult? Function(bool loading, String error, String signInToken)? initial,
   }) {
-    return initial?.call(loading, error);
+    return initial?.call(loading, error, signInToken);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(bool loading, String error)? initial,
+    TResult Function(bool loading, String error, String signInToken)? initial,
     required TResult orElse(),
   }) {
     if (initial != null) {
-      return initial(loading, error);
+      return initial(loading, error, signInToken);
     }
     return orElse();
   }
@@ -232,14 +252,18 @@ class _$InitialImpl extends _Initial {
 }
 
 abstract class _Initial extends AuthState {
-  const factory _Initial({final bool loading, final String error}) =
-      _$InitialImpl;
+  const factory _Initial(
+      {final bool loading,
+      final String error,
+      final String signInToken}) = _$InitialImpl;
   const _Initial._() : super._();
 
   @override
   bool get loading;
   @override
   String get error;
+  @override
+  String get signInToken;
 
   /// Create a copy of AuthState
   /// with the given fields replaced by the non-null parameter values.

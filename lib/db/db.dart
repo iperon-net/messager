@@ -75,6 +75,10 @@ class DB {
       """);
 
       await batch.commit();
+
+      // await db.transaction((txn) async {
+      // });
+
     }
 
     Future<void> onUpgrade(Database db, int oldVersion, int newVersion) async {

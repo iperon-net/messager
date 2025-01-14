@@ -1,34 +1,49 @@
+import 'dart:ui';
+
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:messenger/utils.dart';
 
+import 'analytics.dart';
 import 'constants.dart';
+import 'cubit/auth_cubit.dart';
 import 'cubit/common_cubit.dart';
 import 'cubit/debug_cubit.dart';
+import 'firebase_options.dart';
 import 'injection.dart';
 import 'routers.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
 
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
 
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  FlutterError.onError = (errorDetails) {
+    FirebaseCrashlytics.instance.recordFlutterFatalError(errorDetails);
+  };
+
+  // Pass all uncaught asynchronous errors that aren't handled by the Flutter framework to Crashlytics
+  PlatformDispatcher.instance.onError = (error, stack) {
+    FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
+    return true;
+  };
+
   // Configure injection
   configureDependencies();
 
   await getIt.allReady();
 
-  //
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
-  FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
-
+  // Analytics
+  Analytics analytics = getIt.get<Analytics>();
+  analytics.initialize();
+  await analytics.disable();
 
   // await getIt.get<UsersDB>().createOrUpdate(
   //     user: const modeldb.Users(
@@ -67,6 +82,9 @@ class IperonApp extends StatelessWidget {
       ),
       BlocProvider(
         create: (_) => getIt.get<CommonCubit>(),
+      ),
+      BlocProvider(
+        create: (_) => getIt.get<AuthCubit>(),
       ),
     ],
     child: getAppPlatform(context),

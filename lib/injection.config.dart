@@ -10,6 +10,8 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
+import 'package:messenger/analytics.dart' as _i914;
+import 'package:messenger/api/api.dart' as _i939;
 import 'package:messenger/cubit/auth_cubit.dart' as _i753;
 import 'package:messenger/cubit/common_cubit.dart' as _i191;
 import 'package:messenger/cubit/debug_cubit.dart' as _i1010;
@@ -39,6 +41,8 @@ _i174.GetIt init(
     return i.init().then((_) => i);
   });
   gh.singletonAsync<_i170.DB>(() => _i170.DB.create());
+  gh.singleton<_i939.API>(() => _i939.API());
+  gh.singleton<_i914.Analytics>(() => _i914.Analytics());
   gh.singletonAsync<_i590.Settings>(() => _i590.Settings.create());
   return getIt;
 }

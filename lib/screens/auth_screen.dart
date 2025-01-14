@@ -1,7 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:messenger/analytics.dart';
 import 'package:messenger/cubit/auth_cubit.dart';
 import 'package:messenger/cubit/common_cubit.dart';
 import 'package:messenger/cubit/debug_cubit.dart';
@@ -9,6 +11,7 @@ import 'package:messenger/injection.dart';
 import 'package:messenger/screens/common_screen.dart';
 
 import '../constants.dart';
+import '../logger.dart';
 import '../utils.dart';
 
 class AuthScreen extends StatelessWidget {
@@ -35,13 +38,15 @@ class Auth extends CommonScreen {
   final GlobalKey<FormState> formKeyAuth  = GlobalKey<FormState>();
   final FocusNode focusNodeEmail = FocusNode();
   final textControllerEmail = TextEditingController();
-  Utils utils = getIt.get<Utils>();
+  final FirebaseAnalytics analytics = FirebaseAnalytics.instance;
 
   Auth(this.context);
 
   // Android
   Widget android() {
     if(utils.isDebug) textControllerEmail.text = "user@exmaple.com";
+
+    Analytics analytics = getIt.get<Analytics>();
 
     return SafeArea(
       child: Scaffold(
@@ -71,7 +76,7 @@ class Auth extends CommonScreen {
                   style: const TextStyle(fontSize:15),
                   keyboardType: TextInputType.emailAddress,
                   decoration: InputDecoration(
-                    labelText: context.tr("email_address"),
+                    labelText: context.tr("emailAddress"),
                   ),
                 ),
                 const SizedBox(height: 20),
@@ -89,7 +94,7 @@ class Auth extends CommonScreen {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             backgroundColor: AppColors.snackBarBackgroundColor,
-                            content: Text(context.tr('not_internet_connection')),
+                            content: Text(context.tr('notInternetConnection')),
                           ),
                         );
                         return;
@@ -97,7 +102,7 @@ class Auth extends CommonScreen {
 
                       await context.read<AuthCubit>().validator(context, formKeyAuth, textControllerEmail);
 
-                      if(context.mounted && context.read<AuthCubit>().state.error.isNotEmpty) {
+                      if (context.mounted && context.read<AuthCubit>().state.error.isNotEmpty) {
                         final error = context.read<AuthCubit>().state.error;
 
                         ScaffoldMessenger.of(context).showSnackBar(
@@ -108,6 +113,16 @@ class Auth extends CommonScreen {
                           ),
                         );
                         return;
+                      }
+
+                      if (context.mounted && context.read<AuthCubit>().state.signInToken.isNotEmpty) {
+                        Logger logger = getIt.get<Logger>();
+                        logger.debug("ddddd");
+
+                        await analytics.eventLogin("email");
+
+                        // String signInToken = context.read<AuthCubit>().state.signInToken;
+                        // print(signInToken);
                       }
 
                     },
