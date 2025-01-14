@@ -5,6 +5,8 @@ import 'package:flutter/widgets.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:messenger/injection.dart';
+import 'package:messenger/protobuf/protos/models.pb.dart';
+import 'package:messenger/protobuf/protos/server.pb.dart';
 import 'package:messenger/utils.dart';
 
 import '../api/api.dart';
@@ -47,6 +49,7 @@ class AuthCubit extends Cubit<AuthState> {
 
     emit(AuthState.initial(loading: true));
 
+    // createByEmail
     AuthCreateByEmailResponse response = AuthCreateByEmailResponse();
 
     String err = await api.call(() async {
@@ -59,6 +62,19 @@ class AuthCubit extends Cubit<AuthState> {
       emit(AuthState.initial(error: err));
       return;
     }
+
+    // Server info
+    ServerInfoResponse responseServerInfo = ServerInfoResponse();
+    String errServerInfo = await api.call(() async {
+      responseServerInfo = await api.serverClient.info(EmptyRequest());
+    });
+
+    if (errServerInfo.isNotEmpty) {
+      emit(AuthState.initial(error: err));
+      return;
+    }
+    responseServerInfo.publicKey;
+
 
     emit(AuthState.initial(signInToken: response.signInToken, loading: false));
   }

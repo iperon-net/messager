@@ -1,14 +1,18 @@
 
 import 'package:grpc/grpc.dart';
 import 'package:injectable/injectable.dart';
+import 'package:messenger/protobuf/protos/server.pbgrpc.dart';
 
+import '../db/db.dart';
 import '../injection.dart';
 import '../logger.dart';
 import '../protobuf/protos/auth.pbgrpc.dart';
+import '../settings.dart';
 
 @singleton
 class API {
   AuthClient get authClient => AuthClient(getClientChannel());
+  ServerClient get serverClient => ServerClient(getClientChannel());
 
   // ChannelOptions
   ChannelOptions _getChannelOptions() {
@@ -26,7 +30,9 @@ class API {
 
   // getClientChannel
   ClientChannel getClientChannel() {
-    return ClientChannel("developer.iperon.net", port: 443, options: _getChannelOptions());
+    Settings settings = getIt.get<Settings>();
+
+    return ClientChannel(settings.grpcHost, port: settings.grpcPort, options: _getChannelOptions());
   }
 
   // call

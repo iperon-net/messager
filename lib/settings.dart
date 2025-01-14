@@ -35,4 +35,13 @@ class Settings {
     return dotenv.getInt("LOGGER_MAX_HISTORY_ITEMS", fallback: 1000);
   }
 
+  String get grpcHost {
+    return dotenv.get("GRPC_HOST", fallback: "production.iperon.net");
+  }
+
+  int get grpcPort {
+    return dotenv.getInt("GRPC_PORT", fallback: 443);
+  }
+
+
 }

@@ -96,7 +96,7 @@ class Auth extends CommonScreen {
 
                       await context.read<AuthCubit>().validator(context, formKeyAuth, textControllerEmail);
 
-                      if(context.mounted && context.read<AuthCubit>().state.error.isNotEmpty) {
+                      if (context.mounted && context.read<AuthCubit>().state.error.isNotEmpty) {
                         final error = context.read<AuthCubit>().state.error;
 
                         ScaffoldMessenger.of(context).showSnackBar(
@@ -107,6 +107,11 @@ class Auth extends CommonScreen {
                           ),
                         );
                         return;
+                      }
+
+                      if (context.mounted && context.read<AuthCubit>().state.signInToken.isNotEmpty) {
+                        // String signInToken = context.read<AuthCubit>().state.signInToken;
+                        // print(signInToken);
                       }
 
                     },
