@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,6 +10,7 @@ import 'package:messenger/injection.dart';
 import 'package:messenger/screens/common_screen.dart';
 
 import '../constants.dart';
+import '../logger.dart';
 import '../utils.dart';
 
 class AuthScreen extends StatelessWidget {
@@ -35,6 +37,7 @@ class Auth extends CommonScreen {
   final GlobalKey<FormState> formKeyAuth  = GlobalKey<FormState>();
   final FocusNode focusNodeEmail = FocusNode();
   final textControllerEmail = TextEditingController();
+  final FirebaseAnalytics analytics = FirebaseAnalytics.instance;
 
   Auth(this.context);
 
@@ -110,6 +113,9 @@ class Auth extends CommonScreen {
                       }
 
                       if (context.mounted && context.read<AuthCubit>().state.signInToken.isNotEmpty) {
+                        Logger logger = getIt.get<Logger>();
+                        logger.debug("ddddd");
+
                         // String signInToken = context.read<AuthCubit>().state.signInToken;
                         // print(signInToken);
                       }

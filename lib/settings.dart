@@ -43,5 +43,8 @@ class Settings {
     return dotenv.getInt("GRPC_PORT", fallback: 443);
   }
 
+  String get appMetricaKey {
+    return dotenv.get("APP_METRICA_KEY", fallback: "");
+  }
 
 }
