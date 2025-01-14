@@ -26,11 +26,8 @@ class Analytics {
   Future<bool> _analyticsFlag() async {
     final SharedPreferencesAsync asyncPrefs = SharedPreferencesAsync();
     final bool? flag = await asyncPrefs.getBool("analytics");
-    if(flag != null && flag){
-      return true;
-    } else {
-      return false;
-    }
+    if (flag != null && flag) return true;
+    return false;
   }
 
   void sendEvent(String messageEvent) {
