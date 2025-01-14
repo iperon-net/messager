@@ -43,6 +43,7 @@ Future<void> main() async {
   // Analytics
   Analytics analytics = getIt.get<Analytics>();
   analytics.initialize();
+  await analytics.disable();
 
   // await getIt.get<UsersDB>().createOrUpdate(
   //     user: const modeldb.Users(

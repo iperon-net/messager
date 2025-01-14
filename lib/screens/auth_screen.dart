@@ -3,6 +3,7 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:messenger/analytics.dart';
 import 'package:messenger/cubit/auth_cubit.dart';
 import 'package:messenger/cubit/common_cubit.dart';
 import 'package:messenger/cubit/debug_cubit.dart';
@@ -44,6 +45,8 @@ class Auth extends CommonScreen {
   // Android
   Widget android() {
     if(utils.isDebug) textControllerEmail.text = "user@exmaple.com";
+
+    Analytics analytics = getIt.get<Analytics>();
 
     return SafeArea(
       child: Scaffold(
@@ -115,6 +118,8 @@ class Auth extends CommonScreen {
                       if (context.mounted && context.read<AuthCubit>().state.signInToken.isNotEmpty) {
                         Logger logger = getIt.get<Logger>();
                         logger.debug("ddddd");
+
+                        await analytics.eventLogin("email");
 
                         // String signInToken = context.read<AuthCubit>().state.signInToken;
                         // print(signInToken);
