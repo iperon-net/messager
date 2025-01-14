@@ -1,3 +1,4 @@
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,11 +23,14 @@ GoRouter get router {
   Logger logger = getIt.get<Logger>();
   TalkerScreen talkerScreen = TalkerScreen(talker: logger.logger, appBarTitle: "Logger");
 
+  final FirebaseAnalytics analytics = FirebaseAnalytics.instance;
+
   return GoRouter(
     initialLocation: '/',
     redirect: _redirect,
-    observers: [
-      TalkerRouteObserver(logger.logger)
+    observers: <NavigatorObserver>[
+      TalkerRouteObserver(logger.logger),
+      FirebaseAnalyticsObserver(analytics: analytics),
     ],
     routes: <RouteBase>[
       GoRoute(

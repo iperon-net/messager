@@ -7,6 +7,7 @@ class AuthState with _$AuthState {
   const factory AuthState.initial({
     @Default(false) bool loading,
     @Default("") String error,
+    @Default("") String signInToken,
   }) = _Initial;
 
 }

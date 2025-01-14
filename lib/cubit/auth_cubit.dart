@@ -5,9 +5,13 @@ import 'package:flutter/widgets.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:messenger/injection.dart';
+import 'package:messenger/protobuf/protos/models.pb.dart';
+import 'package:messenger/protobuf/protos/server.pb.dart';
 import 'package:messenger/utils.dart';
 
+import '../api/api.dart';
 import '../logger.dart';
+import '../protobuf/protos/auth.pb.dart';
 
 part 'auth_state.dart';
 part 'auth_cubit.freezed.dart';
@@ -21,11 +25,11 @@ class AuthCubit extends Cubit<AuthState> {
   final utils = getIt.get<Utils>();
 
   String? validationEmail(BuildContext context, String? value) {
-    if (value == null || value.isEmpty) return context.tr('enter_valid_email');
+    if (value == null || value.isEmpty) return context.tr('enterValidEmail');
 
     value = value.replaceAll(' ', '').toLowerCase();
     final bool isValid = EmailValidator.validate(value);
-    if (!isValid) return context.tr('invalid_email_address');
+    if (!isValid) return context.tr('invalidEmailAddress');
 
     return null;
   }
@@ -41,12 +45,38 @@ class AuthCubit extends Cubit<AuthState> {
     if(!utils.isDebug) textControllerEmail.clear();
 
     //
-    emit(const AuthState.initial(loading: true));
-    await Future.delayed(const Duration(seconds: 5));
-    emit(const AuthState.initial(error: "test_error"));
+    API api = getIt.get<API>();
 
-    logger.debug(textControllerEmail.text.toString());
+    emit(AuthState.initial(loading: true));
 
+    // createByEmail
+    AuthCreateByEmailResponse response = AuthCreateByEmailResponse();
+
+    String err = await api.call(() async {
+      response = await api.authClient.createByEmail(
+        AuthCreateByEmailRequest(email: textControllerEmail.text),
+      );
+    });
+
+    if (err.isNotEmpty) {
+      emit(AuthState.initial(error: err));
+      return;
+    }
+
+    // Server info
+    ServerInfoResponse responseServerInfo = ServerInfoResponse();
+    String errServerInfo = await api.call(() async {
+      responseServerInfo = await api.serverClient.info(EmptyRequest());
+    });
+
+    if (errServerInfo.isNotEmpty) {
+      emit(AuthState.initial(error: err));
+      return;
+    }
+    responseServerInfo.publicKey;
+
+
+    emit(AuthState.initial(signInToken: response.signInToken, loading: false));
   }
 
 }

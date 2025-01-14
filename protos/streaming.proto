@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package Api;
+option go_package = "protobuf/";
+
+import "protos/models.proto";
+
+
+service Streaming {
+  rpc Events (EmptyRequest) returns (stream StreamingEventsResponse) {}
+}
+
+// Info response
+message StreamingEventsResponse {
+  enum Type {
+    healthcheck = 0;
+  }
+
+  Type type = 1;
+}
