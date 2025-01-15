@@ -3,17 +3,12 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
-import 'package:messenger/analytics.dart';
-import 'package:messenger/cubit/auth_cubit.dart';
 import 'package:messenger/cubit/common_cubit.dart';
-import 'package:messenger/cubit/debug_cubit.dart';
 import 'package:messenger/injection.dart';
 import 'package:messenger/screens/common_screen.dart';
 
 import '../constants.dart';
 import '../cubit/auth_confirmation_cubit.dart';
-import '../logger.dart';
 import '../utils.dart';
 
 class AuthConfirmationScreen extends StatelessWidget {

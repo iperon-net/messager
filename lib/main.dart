@@ -10,7 +10,6 @@ import 'package:messenger/utils.dart';
 
 import 'analytics.dart';
 import 'constants.dart';
-import 'cubit/auth_cubit.dart';
 import 'cubit/common_cubit.dart';
 import 'cubit/debug_cubit.dart';
 import 'firebase_options.dart';

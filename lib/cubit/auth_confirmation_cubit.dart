@@ -40,7 +40,7 @@ class AuthConfirmationCubit extends Cubit<AuthConfirmationState> {
 
     if(!utils.isDebug) textControllerEmail.clear();
 
-    API api = getIt.get<API>();
+    // API api = getIt.get<API>();
 
     return;
   }
