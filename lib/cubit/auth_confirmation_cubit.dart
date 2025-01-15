@@ -4,7 +4,6 @@ import 'package:flutter/widgets.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
-import '../api/api.dart';
 import '../injection.dart';
 import '../logger.dart';
 import '../utils.dart';
