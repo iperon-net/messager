@@ -1,4 +1,5 @@
 import 'package:appmetrica_plugin/appmetrica_plugin.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:injectable/injectable.dart';
 import 'package:messenger/settings.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -15,11 +16,13 @@ class Analytics {
 
   Future<void> enable() async {
     final SharedPreferencesAsync asyncPrefs = SharedPreferencesAsync();
+    FirebaseAnalytics.instance.setAnalyticsCollectionEnabled(true);
     await asyncPrefs.setBool("analytics", true);
   }
 
   Future<void> disable() async {
     final SharedPreferencesAsync asyncPrefs = SharedPreferencesAsync();
+    FirebaseAnalytics.instance.setAnalyticsCollectionEnabled(false);
     await asyncPrefs.remove("analytics");
   }
 

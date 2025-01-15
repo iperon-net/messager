@@ -8,5 +8,7 @@
   "test_error": "Test error",
   "internalServerError": "Internal Server Error",
   "errorConnecting": "Error connecting",
-  "incorrectEmailAddress": "Incorrect email address"
+  "incorrectEmailAddress": "Incorrect email address",
+  "confirmationCode": "Confirmation code",
+  "enterValidCode": "Enter valid confirmation code"
 }

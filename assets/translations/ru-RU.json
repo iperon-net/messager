@@ -8,6 +8,6 @@
   "test_error": "Тестовая ошибка",
   "internalServerError": "Внутренняя ошибка сервера",
   "errorConnecting": "Ошибка при подключении",
-  "incorrectEmailAddress": "Неправильный адрес электронной почты"
-
+  "incorrectEmailAddress": "Неправильный адрес электронной почты",
+  "confirmationCode": "Код подтверждения"
 }
