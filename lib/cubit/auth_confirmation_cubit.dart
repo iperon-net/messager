@@ -54,13 +54,11 @@ class AuthConfirmationCubit extends Cubit<AuthConfirmationState> {
 
     logger.debug(code.toString());
 
-    AuthConfirmationResponse responseConfirmation = AuthConfirmationResponse();
+    // AuthConfirmationResponse responseConfirmation = AuthConfirmationResponse();
 
-    String errAuthConfirmation = await api.call(() async {
+    // String errAuthConfirmation = await api.call(() async {
       // responseConfirmation = await api.authClient.confirmation(AuthConfirmationRequest(signInToken: "", code: code));
-    });
-
-
+    // });
 
     return;
   }
