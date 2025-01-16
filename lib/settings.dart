@@ -1,17 +1,34 @@
+import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:injectable/injectable.dart';
 
+import 'injection.dart';
+import 'logger.dart';
+
 
 @singleton
 class Settings {
+
   @factoryMethod
   static Future<Settings> create() async {
-    if (kDebugMode){
-      await dotenv.load(fileName: ".env.development", isOptional: true);
-    } else {
-      await dotenv.load(fileName: ".env.production", isOptional: true);
-    }
+    await dotenv.load(fileName: ".env", isOptional: true);
+
+    // Remote config
+    FirebaseRemoteConfig remoteConfig = FirebaseRemoteConfig.instance;
+    await remoteConfig.setConfigSettings(RemoteConfigSettings(
+      fetchTimeout: const Duration(minutes: 1),
+      minimumFetchInterval: const Duration(hours: 1),
+    ));
+
+    await remoteConfig.setDefaults(const {
+      "grpc_host": "production.iperon.net",
+      "grpc_port": 443,
+      "app_metrica_key": "130a5860-e40a-4361-851f-f595bd81e82a",
+    });
+
+    await remoteConfig.fetchAndActivate();
+
     return Settings();
   }
 
@@ -36,15 +53,21 @@ class Settings {
   }
 
   String get grpcHost {
-    return dotenv.get("GRPC_HOST", fallback: "production.iperon.net");
+    if (kDebugMode) return dotenv.get("GRPC_HOST", fallback: "staging.iperon.net");
+    FirebaseRemoteConfig remoteConfig = FirebaseRemoteConfig.instance;
+    return remoteConfig.getString("grpc_host");
   }
 
   int get grpcPort {
-    return dotenv.getInt("GRPC_PORT", fallback: 443);
-  }
+    if (kDebugMode) return dotenv.getInt("GRPC_PORT", fallback: 443);
+    FirebaseRemoteConfig remoteConfig = FirebaseRemoteConfig.instance;
+    return remoteConfig.getInt("grpc_port");
+ }
 
   String get appMetricaKey {
-    return dotenv.get("APP_METRICA_KEY", fallback: "");
+    if (kDebugMode) return dotenv.get("APP_METRICA_KEY", fallback: "");
+    FirebaseRemoteConfig remoteConfig = FirebaseRemoteConfig.instance;
+    return remoteConfig.getString("app_metrica_key");
   }
 
 }

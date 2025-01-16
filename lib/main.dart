@@ -3,9 +3,11 @@ import 'dart:ui';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:messenger/settings.dart';
 import 'package:messenger/utils.dart';
 
 import 'analytics.dart';
@@ -43,6 +45,10 @@ Future<void> main() async {
   Analytics analytics = getIt.get<Analytics>();
   analytics.initialize();
   await analytics.disable();
+
+  // Settings settings = getIt.get<Settings>();
+  // await settings.initialize();
+
 
   // await getIt.get<UsersDB>().createOrUpdate(
   //     user: const modeldb.Users(

@@ -40,6 +40,8 @@ class Analytics {
   Future<void> eventLogin(String method) async {
     if(!await _analyticsFlag()) return;
 
+    await FirebaseAnalytics.instance.logLogin(loginMethod: method);
+
     Map<String, String> attributesMap = {"method": method};
     AppMetrica.reportEventWithMap("login", attributesMap);
   }

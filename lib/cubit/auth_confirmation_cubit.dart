@@ -4,8 +4,10 @@ import 'package:flutter/widgets.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
+import '../api/api.dart';
 import '../injection.dart';
 import '../logger.dart';
+import '../protobuf/protos/auth.pb.dart';
 import '../utils.dart';
 
 part 'auth_confirmation_state.dart';
@@ -15,7 +17,7 @@ part 'auth_confirmation_cubit.freezed.dart';
 class AuthConfirmationCubit extends Cubit<AuthConfirmationState> {
   AuthConfirmationCubit() : super(const AuthConfirmationState.initial());
 
-  final textControllerEmail = TextEditingController();
+  final textControllerCode = TextEditingController();
   final logger = getIt.get<Logger>();
   final utils = getIt.get<Utils>();
 
@@ -33,13 +35,24 @@ class AuthConfirmationCubit extends Cubit<AuthConfirmationState> {
   Future<void> validator(
       BuildContext context,
       GlobalKey<FormState> formKeyAuth,
-      TextEditingController textControllerEmail,
+      TextEditingController textControllerCode,
   ) async {
     if (!formKeyAuth.currentState!.validate()) return;
 
-    if(!utils.isDebug) textControllerEmail.clear();
+    if(!utils.isDebug) textControllerCode.clear();
 
-    // API api = getIt.get<API>();
+    API api = getIt.get<API>();
+
+    // api.authClient.confirmation(request);
+    final code = textControllerCode.value;
+
+    AuthConfirmationResponse responseConfirmation = AuthConfirmationResponse();
+
+    String errAuthConfirmation = await api.call(() async {
+      // responseConfirmation = await api.authClient.confirmation(AuthConfirmationRequest(signInToken: "", code: code));
+    });
+
+
 
     return;
   }
