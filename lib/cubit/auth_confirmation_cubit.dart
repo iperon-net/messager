@@ -5,7 +5,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
 import '../analytics.dart';
-import '../api/api.dart';
 import '../injection.dart';
 import '../logger.dart';
 import '../utils.dart';
@@ -41,7 +40,7 @@ class AuthConfirmationCubit extends Cubit<AuthConfirmationState> {
 
     if(!utils.isDebug) textControllerCode.clear();
 
-    API api = getIt.get<API>();
+    // API api = getIt.get<API>();
 
     // api.authClient.confirmation(request);
     final code = textControllerCode.text;
