@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
+import '../analytics.dart';
 import '../api/api.dart';
 import '../injection.dart';
 import '../logger.dart';
@@ -44,7 +45,14 @@ class AuthConfirmationCubit extends Cubit<AuthConfirmationState> {
     API api = getIt.get<API>();
 
     // api.authClient.confirmation(request);
-    final code = textControllerCode.value;
+    final code = textControllerCode.text;
+
+    Logger logger = getIt.get<Logger>();
+    Analytics analytics = getIt.get<Analytics>();
+
+    analytics.eventLogin("email");
+
+    logger.debug(code.toString());
 
     AuthConfirmationResponse responseConfirmation = AuthConfirmationResponse();
 

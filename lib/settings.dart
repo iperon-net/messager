@@ -3,9 +3,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:injectable/injectable.dart';
 
-import 'injection.dart';
-import 'logger.dart';
-
 
 @singleton
 class Settings {
