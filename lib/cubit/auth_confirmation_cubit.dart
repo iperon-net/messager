@@ -8,11 +8,10 @@ import '../analytics.dart';
 import '../api/api.dart';
 import '../injection.dart';
 import '../logger.dart';
-import '../protobuf/protos/auth.pb.dart';
 import '../utils.dart';
 
-part 'auth_confirmation_state.dart';
 part 'auth_confirmation_cubit.freezed.dart';
+part 'auth_confirmation_state.dart';
 
 @injectable
 class AuthConfirmationCubit extends Cubit<AuthConfirmationState> {
