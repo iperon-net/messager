@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:dart_jsonwebtoken/dart_jsonwebtoken.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/widgets.dart';
@@ -50,10 +51,10 @@ class AuthCubit extends Cubit<AuthState> {
     emit(AuthState.initial(loading: true));
 
     // createByEmail
-    AuthCreateByEmailResponse response = AuthCreateByEmailResponse();
+    AuthCreateByEmailResponse responseAuthCreateByEmail = AuthCreateByEmailResponse();
 
     String err = await api.call(() async {
-      response = await api.authClient.createByEmail(
+      responseAuthCreateByEmail = await api.authClient.createByEmail(
         AuthCreateByEmailRequest(email: textControllerEmail.text),
       );
     });
@@ -70,13 +71,19 @@ class AuthCubit extends Cubit<AuthState> {
     });
 
     if (errServerInfo.isNotEmpty) {
-      emit(AuthState.initial(error: err));
+      emit(AuthState.initial(error: errServerInfo.toString()));
       return;
     }
-    responseServerInfo.publicKey;
 
+    try {
+      JWT.verify(responseAuthCreateByEmail.signInToken, ECPublicKey(responseServerInfo.publicKey));
+    } on JWTException catch (ex) {
+      logger.error(ex.toString());
+      emit(AuthState.initial(error: "signatureVerificationError", loading: false));
+      return;
+    }
 
-    emit(AuthState.initial(signInToken: response.signInToken, loading: false));
+    emit(AuthState.initial(signInToken: responseAuthCreateByEmail.signInToken, loading: false));
   }
 
 }

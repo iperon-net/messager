@@ -1,12 +1,19 @@
 import 'package:bloc/bloc.dart';
+import 'package:dart_jsonwebtoken/dart_jsonwebtoken.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/widgets.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
+import 'package:messenger/db/models.dart';
 
 import '../analytics.dart';
+import '../api/api.dart';
+import '../db/db.dart';
 import '../injection.dart';
 import '../logger.dart';
+import '../protobuf/protos/auth.pb.dart';
+import '../protobuf/protos/models.pb.dart';
+import '../protobuf/protos/server.pb.dart';
 import '../utils.dart';
 
 part 'auth_confirmation_cubit.freezed.dart';
@@ -35,28 +42,66 @@ class AuthConfirmationCubit extends Cubit<AuthConfirmationState> {
       BuildContext context,
       GlobalKey<FormState> formKeyAuth,
       TextEditingController textControllerCode,
+      String signInToken,
   ) async {
     if (!formKeyAuth.currentState!.validate()) return;
 
     if(!utils.isDebug) textControllerCode.clear();
 
-    // API api = getIt.get<API>();
+    API api = getIt.get<API>();
 
     // api.authClient.confirmation(request);
     final code = textControllerCode.text;
 
     Logger logger = getIt.get<Logger>();
+    UsersDB usersDB = getIt.get<UsersDB>();
     Analytics analytics = getIt.get<Analytics>();
 
-    analytics.eventLogin("email");
+    AuthConfirmationResponse responseConfirmation = AuthConfirmationResponse();
 
-    logger.debug(code.toString());
+    String errAuthConfirmation = await api.call(() async {
+      responseConfirmation = await api.authClient.confirmation(AuthConfirmationRequest(
+          signInToken: signInToken,
+          code: int.parse(code),
+      ));
+    });
 
-    // AuthConfirmationResponse responseConfirmation = AuthConfirmationResponse();
+    if (errAuthConfirmation.isNotEmpty) {
+      emit(AuthConfirmationState.initial(error: errAuthConfirmation.toString(), loading: false));
+      return;
+    }
 
-    // String errAuthConfirmation = await api.call(() async {
-      // responseConfirmation = await api.authClient.confirmation(AuthConfirmationRequest(signInToken: "", code: code));
-    // });
+    logger.debug(responseConfirmation.accessToken);
+    logger.debug(responseConfirmation.refreshToken);
+
+    // Server info
+    ServerInfoResponse responseServerInfo = ServerInfoResponse();
+    String errServerInfo = await api.call(() async {
+      responseServerInfo = await api.serverClient.info(EmptyRequest());
+    });
+
+    if (errServerInfo.isNotEmpty) {
+      emit(AuthConfirmationState.initial(error: errServerInfo.toString()));
+      return;
+    }
+
+    JWT jwtToken;
+    try {
+      jwtToken = JWT.verify(responseConfirmation.accessToken, ECPublicKey(responseServerInfo.publicKey));
+    } on JWTException catch (ex) {
+      logger.error(ex.toString());
+      emit(AuthConfirmationState.initial(error: "signatureVerificationError", loading: false));
+      return;
+    }
+
+    Users user = Users(
+        expirationTime: jwtToken.payload['exp'],
+        email: jwtToken.payload['email'],
+        userId: jwtToken.payload['user_id'],
+        accessToken: responseConfirmation.accessToken,
+        refreshToken: responseConfirmation.refreshToken,
+    );
+    usersDB.createOrUpdate(user: user);
 
     return;
   }

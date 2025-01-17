@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:messenger/cubit/common_cubit.dart';
+import 'package:messenger/db/models.dart';
 import 'package:messenger/injection.dart';
 import 'package:messenger/screens/common_screen.dart';
 
@@ -100,7 +101,7 @@ class AuthConfirmation extends CommonScreen {
                         return;
                       }
 
-                      await context.read<AuthConfirmationCubit>().validator(context, formKeyAuth, textControllerCode);
+                      await context.read<AuthConfirmationCubit>().validator(context, formKeyAuth, textControllerCode, signInToken);
 
                       if (context.mounted && context.read<AuthConfirmationCubit>().state.error.isNotEmpty) {
                         final error = context.read<AuthConfirmationCubit>().state.error;

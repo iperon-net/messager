@@ -63,6 +63,7 @@ dependencies:
   protobuf: ^3.1.0
   appmetrica_plugin: ^3.1.0
   firebase_remote_config: ^5.3.0
+  dart_jsonwebtoken: ^2.14.2
 
 
 dev_dependencies:

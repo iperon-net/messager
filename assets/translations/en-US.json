@@ -10,5 +10,7 @@
   "errorConnecting": "Error connecting",
   "incorrectEmailAddress": "Incorrect email address",
   "confirmationCode": "Confirmation code",
-  "enterValidCode": "Enter valid confirmation code"
+  "enterValidCode": "Enter valid confirmation code",
+  "signatureVerificationError": "Signature verification error",
+  "authorizationCodeExpired": "Authorization code expired"
 }
