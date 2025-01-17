@@ -10,7 +10,6 @@ import 'package:messenger/utils.dart';
 
 import 'analytics.dart';
 import 'constants.dart';
-import 'cubit/auth_cubit.dart';
 import 'cubit/common_cubit.dart';
 import 'cubit/debug_cubit.dart';
 import 'firebase_options.dart';
@@ -43,7 +42,11 @@ Future<void> main() async {
   // Analytics
   Analytics analytics = getIt.get<Analytics>();
   analytics.initialize();
-  await analytics.disable();
+  await analytics.enable();
+
+  // Settings settings = getIt.get<Settings>();
+  // await settings.initialize();
+
 
   // await getIt.get<UsersDB>().createOrUpdate(
   //     user: const modeldb.Users(
@@ -82,9 +85,6 @@ class IperonApp extends StatelessWidget {
       ),
       BlocProvider(
         create: (_) => getIt.get<CommonCubit>(),
-      ),
-      BlocProvider(
-        create: (_) => getIt.get<AuthCubit>(),
       ),
     ],
     child: getAppPlatform(context),

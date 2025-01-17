@@ -12,6 +12,7 @@ import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 import 'package:messenger/analytics.dart' as _i914;
 import 'package:messenger/api/api.dart' as _i939;
+import 'package:messenger/cubit/auth_confirmation_cubit.dart' as _i1047;
 import 'package:messenger/cubit/auth_cubit.dart' as _i753;
 import 'package:messenger/cubit/common_cubit.dart' as _i191;
 import 'package:messenger/cubit/debug_cubit.dart' as _i1010;
@@ -35,6 +36,8 @@ _i174.GetIt init(
   gh.factory<_i1010.DebugCubit>(() => _i1010.DebugCubit());
   gh.factory<_i191.CommonCubit>(() => _i191.CommonCubit());
   gh.factory<_i170.UsersDB>(() => _i170.UsersDB());
+  gh.factory<_i1047.AuthConfirmationCubit>(
+      () => _i1047.AuthConfirmationCubit());
   gh.singleton<_i701.Utils>(() => _i701.Utils());
   gh.singletonAsync<_i155.Logger>(() {
     final i = _i155.Logger();

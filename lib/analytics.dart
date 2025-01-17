@@ -1,4 +1,5 @@
 import 'package:appmetrica_plugin/appmetrica_plugin.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:injectable/injectable.dart';
 import 'package:messenger/settings.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -15,11 +16,13 @@ class Analytics {
 
   Future<void> enable() async {
     final SharedPreferencesAsync asyncPrefs = SharedPreferencesAsync();
+    FirebaseAnalytics.instance.setAnalyticsCollectionEnabled(true);
     await asyncPrefs.setBool("analytics", true);
   }
 
   Future<void> disable() async {
     final SharedPreferencesAsync asyncPrefs = SharedPreferencesAsync();
+    FirebaseAnalytics.instance.setAnalyticsCollectionEnabled(false);
     await asyncPrefs.remove("analytics");
   }
 
@@ -36,6 +39,8 @@ class Analytics {
 
   Future<void> eventLogin(String method) async {
     if(!await _analyticsFlag()) return;
+
+    await FirebaseAnalytics.instance.logLogin(loginMethod: method);
 
     Map<String, String> attributesMap = {"method": method};
     AppMetrica.reportEventWithMap("login", attributesMap);

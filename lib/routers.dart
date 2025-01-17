@@ -7,9 +7,12 @@ import 'package:messenger/injection.dart';
 import 'package:messenger/logger.dart';
 import 'package:talker_flutter/talker_flutter.dart';
 
+import 'cubit/auth_confirmation_cubit.dart';
 import 'cubit/auth_cubit.dart';
 import 'cubit/common_cubit.dart';
+import 'screens/auth_confirmation.dart';
 import 'screens/auth_screen.dart';
+import 'screens/common_screen.dart';
 
 
 var _redirect = (BuildContext context, GoRouterState state) async {
@@ -26,7 +29,7 @@ GoRouter get router {
   final FirebaseAnalytics analytics = FirebaseAnalytics.instance;
 
   return GoRouter(
-    initialLocation: '/',
+    initialLocation: "/auth",
     redirect: _redirect,
     observers: <NavigatorObserver>[
       TalkerRouteObserver(logger.logger),
@@ -34,7 +37,8 @@ GoRouter get router {
     ],
     routes: <RouteBase>[
       GoRoute(
-        path: '/',
+        path: "/auth",
+        name: "auth",
         builder: (BuildContext context, GoRouterState state) {
           return BlocProvider(
             lazy: true,
@@ -43,6 +47,21 @@ GoRouter get router {
           );
         },
         routes: <RouteBase>[
+          GoRoute(
+            path: "/confirmation/:signInToken",
+            name: "auth_confirmation",
+            builder: (BuildContext context, GoRouterState state) {
+              if(!state.pathParameters.containsKey("signInToken")) return CommonScreen().notImplemented();
+
+              String signInToken = state.pathParameters.values.elementAt(0);
+
+              return BlocProvider(
+                lazy: true,
+                create: (context) => AuthConfirmationCubit(),
+                child: AuthConfirmationScreen(signInToken: signInToken),
+              );
+            },
+          ),
           GoRoute(
             path: "/logger_monitor",
             name: "logger_monitor",

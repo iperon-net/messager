@@ -5,13 +5,13 @@ import 'package:messenger/injection.dart';
 import 'package:messenger/logger.dart';
 import 'package:messenger/settings.dart';
 import 'package:messenger/utils.dart';
-import 'package:sqflite/sqflite.dart';
 import "package:path/path.dart" as p;
+import 'package:sqflite/sqflite.dart';
 import 'package:sqflite_sqlcipher/sqflite.dart' as sqflite_sqlcipher;
+
 import 'models.dart' as modeldb;
 
 part 'users.dart';
-
 
 @singleton
 class DB {
@@ -38,6 +38,10 @@ class DB {
   @factoryMethod
   static Future<DB> create() async {
     String databasesPath = await getDatabasesPath();
+
+    await getIt.getAsync<Settings>();
+    await getIt.getAsync<Logger>();
+
     Settings settings = getIt.get<Settings>();
 
     String path = p.join(databasesPath, settings.databaseName);
