@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:messenger/cubit/common_cubit.dart';
-import 'package:messenger/db/models.dart';
 import 'package:messenger/injection.dart';
 import 'package:messenger/screens/common_screen.dart';
 

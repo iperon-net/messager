@@ -103,6 +103,7 @@ class AuthConfirmationCubit extends Cubit<AuthConfirmationState> {
     );
     usersDB.createOrUpdate(user: user);
 
+    analytics.eventLogin("email");
     return;
   }
 
