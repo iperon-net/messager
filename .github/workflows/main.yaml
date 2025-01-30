@@ -28,5 +28,8 @@ jobs:
       - name: install cider
         run: dart pub global activate cider
 
+      - name: ls -ls
+        run: ls -ls
+
       - name: bump version
         run: cider bump breaking --bump-build
