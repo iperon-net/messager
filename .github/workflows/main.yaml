@@ -28,8 +28,8 @@ jobs:
       - name: install cider
         run: dart pub global activate cider
 
-      - name: install cider
-        run: cd  ${{ inputs.working_directory }}
+      - name: cd
+        run: cd messenger
 
       - name: bump version
         run: cider bump breaking --bump-build
