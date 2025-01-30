@@ -5,7 +5,7 @@ on: workflow_call
 
 jobs:
   analyze:
-    name: "Analyze"
+    name: "Common analyze"
     runs-on: ubuntu-24.04
     timeout-minutes: 5
     steps:
@@ -23,4 +23,5 @@ jobs:
           pub-cache-key: "flutter-pub:os:-:channel:-:version:-:arch:-:hash:" # optional, change this to force refresh cache of dart pub get dependencies
           pub-cache-path: "${{ runner.tool_cache }}/flutter/:channel:-:version:-:arch:" # optional, change this to specify the cache path
 
+      - run: flutter config --no-cli-animations
       - run: flutter analyze
