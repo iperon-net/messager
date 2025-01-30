@@ -19,7 +19,13 @@ jobs:
     timeout-minutes: 5
     needs: [Testing]
     steps:
-      - name: Auto tag
-        uses: jacopocarlini/action-autotag@stable
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
         with:
-          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          channel: stable
+          cache: true
+
+      - name: install cider
+        run:
+          pub global activate cider
+          cider bump breaking --bump-build
