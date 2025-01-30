@@ -8,6 +8,18 @@ on:
 jobs:
   Analyze:
     uses: iperon-net/messenger/.github/workflows/_analyze.yaml@main
+
   Testing:
     needs: [Analyze]
     uses: iperon-net/messenger/.github/workflows/_testing.yaml@main
+
+  AutoTag:
+    name: "Auto tag"
+    runs-on: macos-15
+    timeout-minutes: 5
+    needs: [Testing]
+    steps:
+      - name: Auto tag
+        uses: jacopocarlini/action-autotag@stable
+        with:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
