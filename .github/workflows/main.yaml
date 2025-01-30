@@ -6,15 +6,15 @@ on:
       - main
 
 jobs:
-  Analyze:
-    uses: iperon-net/messenger/.github/workflows/_analyze.yaml@main
+#  Analyze:
+#    uses: iperon-net/messenger/.github/workflows/_analyze.yaml@main
+#
+#  Testing:
+#    needs: [Analyze]
+#    uses: iperon-net/messenger/.github/workflows/_testing.yaml@main
 
-  Testing:
-    needs: [Analyze]
-    uses: iperon-net/messenger/.github/workflows/_testing.yaml@main
-
-  AutoTag:
-    name: "Auto tag"
+  bump_version:
+    name: "Bump version"
     runs-on: macos-15
     timeout-minutes: 5
     needs: [Testing]
@@ -26,6 +26,7 @@ jobs:
           cache: true
 
       - name: install cider
-        run:
-          pub global activate cider
-          cider bump breaking --bump-build
+        run: pub global activate cider
+
+      - name: bump version
+        run: cider bump breaking --bump-build
