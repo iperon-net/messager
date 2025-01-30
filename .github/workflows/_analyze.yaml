@@ -6,7 +6,7 @@ on: workflow_call
 jobs:
   analyze:
     name: "Common analyze"
-    runs-on: macos-15-xlarge
+    runs-on: macos-15
     timeout-minutes: 5
     steps:
 
