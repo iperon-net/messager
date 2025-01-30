@@ -1,0 +1,22 @@
+name: "Testing code"
+
+on: workflow_call
+
+jobs:
+  analyze:
+    name: "Testing code"
+    runs-on: macos-15
+    timeout-minutes: 5
+    steps:
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - run: flutter analyze
+      - run: flutter test

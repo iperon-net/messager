@@ -8,3 +8,6 @@ on:
 jobs:
   Analyze:
     uses: iperon-net/messenger/.github/workflows/_analyze.yaml@main
+  Testing:
+    needs: [Analyze]
+    uses: iperon-net/messenger/.github/workflows/_testing.yaml@main
