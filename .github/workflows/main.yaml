@@ -19,6 +19,9 @@ jobs:
     timeout-minutes: 5
 #    needs: [Testing]
     steps:
+      - name: ls -ls
+        run: echo ls -ls
+
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
@@ -27,9 +30,6 @@ jobs:
 
       - name: install cider
         run: dart pub global activate cider
-
-      - name: ls -ls
-        run: ls -ls
 
       - name: bump version
         run: cider bump breaking --bump-build
