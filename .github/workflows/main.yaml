@@ -26,7 +26,7 @@ jobs:
           cache: true
 
       - name: install cider
-        run: pub global activate cider
+        run: dart pub global activate cider
 
       - name: bump version
         run: cider bump breaking --bump-build
