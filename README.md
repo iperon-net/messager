@@ -1,6 +1,6 @@
 # messenger
 
-Business messeng
+Iperon messenger
 
 ## Getting Started
 
