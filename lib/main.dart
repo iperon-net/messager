@@ -1,11 +1,49 @@
 import 'package:flutter/material.dart';
 import 'package:messenger/di.dart';
+import 'package:messenger/logger.dart';
+import 'package:messenger/repositories/repositories.dart';
+import 'package:sqflite/sqflite.dart';
+
+import 'models/users.dart';
+import 'streams.dart';
 // import 'package:matcher/expect.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await configureDI();
+
+  final logger = getIt.get<Logger>();
+  final repositories = getIt.get<Repositories>();
+  final streams = getIt.get<Streams>();
+
+  streams.streamControllerSync.stream.listen((onData) {
+    logger.debug(onData);
+  });
+  streams.streamControllerSync.add("dddd");
+
+  streams.streamControllerSync.close();
+
+  if (!streams.streamControllerSync.isClosed){
+    streams.streamControllerSync.add("dddd2");
+  }
+
+  await streams.openStreamSync(ignoreCheckClose: true);
+  streams.streamControllerSync.stream.listen((onData) {
+    logger.debug(onData);
+  });
+  streams.streamControllerSync.add("dddd2");
+
+
+  // logger.debug(repositories.database.isOpen.toString());
+  //
+  // final user = await repositories.database.query("users", where: '"email" = ?', whereArgs: ["kostya@yandex.ru"]);
+  // if (user.isNotEmpty) {
+  //   logger.debug(user.toString());
+  //
+  //   final userModel = User.fromJson(user.last);
+  //   logger.debug(userModel.email.toString());
+  // }
 
   runApp(const MyApp());
 }

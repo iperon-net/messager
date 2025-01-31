@@ -23,6 +23,7 @@ class Settings {
 
     await remoteConfig.setDefaults({
       "app_metrica_key": "130a5860-e40a-4361-851f-f595bd81e82a",
+      "database_name": "iperon.db",
     });
 
     await remoteConfig.fetchAndActivate();
@@ -33,6 +34,20 @@ class Settings {
   String get appMetricaKey {
     return remoteConfig.getString("app_metrica_key");
   }
+
+  String get databaseName {
+    return remoteConfig.getString("database_name");
+  }
+
+  bool get isDeleteDatabase {
+    return dotenv.getBool("IS_DELETE_DATABASE", fallback: false);
+  }
+
+  int get databaseVersion {
+    return dotenv.getInt("DATABASE_VERSION", fallback: 1);
+  }
+
+
 
 
 }

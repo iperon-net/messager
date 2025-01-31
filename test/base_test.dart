@@ -1,9 +1,9 @@
-import 'package:test/test.dart';
 
-void main() {
-  group('Test', () {
-    test('testing', () {
-      expect(1, 1);
-    });
+
+import 'package:flutter_test/flutter_test.dart';
+
+Future<void> main() async {
+  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
+    expect(1, 1);
   });
 }

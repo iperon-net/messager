@@ -3,7 +3,10 @@ import 'package:get_it/get_it.dart';
 
 import 'firebase_options.dart';
 import 'logger.dart';
+import 'repositories/repositories.dart';
 import 'settings.dart';
+import 'storage.dart';
+import 'streams.dart';
 
 GetIt getIt = GetIt.instance;
 
@@ -14,8 +17,6 @@ Future<void> configureDI() async {
       name: "Iperon messenger"
   );
 
-  // getIt.registerSingleton(Logger()..initialization());
-
   getIt.registerSingletonAsync<Logger>(() async {
     final logger = Logger();
     logger.initialization();
@@ -23,10 +24,29 @@ Future<void> configureDI() async {
   });
 
   getIt.registerSingletonAsync<Settings>(() async {
-    final Settings settings = Settings();
+    final settings = Settings();
     await settings.initialization();
     return settings;
   }, dependsOn: [Logger]);
+
+  getIt.registerSingletonAsync<Repositories>(() async {
+    final repositories = Repositories();
+    await repositories.initialization();
+    return repositories;
+  }, dependsOn: [Logger, Settings]);
+
+  getIt.registerSingletonAsync<Storage>(() async {
+    final storage = Storage();
+    await storage.initialization();
+    return storage;
+  }, dependsOn: [Logger, Settings]);
+
+  getIt.registerSingletonAsync<Streams>(() async {
+    final streams = Streams();
+    await streams.initialization();
+    return streams;
+  }, dependsOn: [Logger, Settings, Repositories]);
+
 
   await getIt.allReady();
 }
