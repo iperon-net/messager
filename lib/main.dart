@@ -1,10 +1,5 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:messenger/di.dart';
-import 'package:messenger/settings.dart';
-
-import 'firebase_options.dart';
-import 'logger.dart';
 // import 'package:matcher/expect.dart';
 
 Future<void> main() async {
