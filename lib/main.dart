@@ -6,6 +6,7 @@ import 'package:messenger/repositories/repositories.dart';
 import 'package:pem/pem.dart';
 import 'package:sqflite/sqflite.dart';
 
+import 'connectivity.dart';
 import 'models/users.dart';
 import 'streams.dart';
 // import 'package:matcher/expect.dart';
@@ -18,6 +19,17 @@ Future<void> main() async {
   final logger = getIt.get<Logger>();
   final repositories = getIt.get<Repositories>();
   final streams = getIt.get<Streams>();
+  final connectivity = getIt.get<Connectivity>();
+
+  connectivity.stream.listen((onData) {
+    logger.debug(onData.status.toString());
+  });
+
+  connectivity.stream.listen((onData) {
+    logger.debug(onData.status.toString());
+  });
+
+  await connectivity.check();
 
   // Streams
   // streams.streamControllerSync.stream.listen((onData) {

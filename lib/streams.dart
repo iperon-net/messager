@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:ffi';
+import 'package:connectivity_plus/connectivity_plus.dart';
 
 import 'di.dart';
 import 'logger.dart';
@@ -10,6 +11,7 @@ class Streams {
 
   Future<void> initialization() async {
     await openStreamSync();
+    logger.debug("streams initialization");
   }
 
   Future<void> openStreamSync({bool ignoreCheckClose = false}) async {

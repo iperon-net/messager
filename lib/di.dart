@@ -1,7 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get_it/get_it.dart';
 
+import 'connectivity.dart';
 import 'firebase_options.dart';
+import 'isolates.dart';
 import 'logger.dart';
 import 'repositories/repositories.dart';
 import 'settings.dart';
@@ -47,6 +49,17 @@ Future<void> configureDI() async {
     return streams;
   }, dependsOn: [Logger, Settings, Repositories]);
 
+  getIt.registerSingletonAsync<Connectivity>(() async {
+    final connectivity = Connectivity();
+    await connectivity.initialization();
+    return connectivity;
+  }, dependsOn: [Logger, Settings, Streams]);
+
+  getIt.registerSingletonAsync<Isolates>(() async {
+    final isolates = Isolates();
+    // await isolates.initialization();
+    return isolates;
+  }, dependsOn: [Logger, Settings, Repositories, Streams]);
 
   await getIt.allReady();
 }

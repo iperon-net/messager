@@ -18,6 +18,7 @@ class Storage {
     }
 
     storage = FlutterSecureStorage();
+    logger.debug("storage initialization");
   }
 
   Future<void> setSecure({required String key, required String value}) async {
