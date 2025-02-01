@@ -12,7 +12,6 @@ Future<void> main() async {
   await configureDI();
 
   final logger = getIt.get<Logger>();
-  final repositories = getIt.get<Repositories>();
   final connectivity = getIt.get<Connectivity>();
   final syncer = getIt.get<Syncer>();
 
