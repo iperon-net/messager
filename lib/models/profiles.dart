@@ -3,8 +3,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'profiles.freezed.dart';
 part 'profiles.g.dart';
 
-DateTime _defaultDateTime() => DateTime(0);
-
 @freezed
 class Profile with _$Profile {
   const Profile._();

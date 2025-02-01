@@ -1,13 +1,9 @@
-import 'package:cryptography/cryptography.dart';
 import 'package:flutter/material.dart';
 import 'package:messenger/di.dart';
 import 'package:messenger/logger.dart';
 import 'package:messenger/repositories/repositories.dart';
-import 'package:pem/pem.dart';
-import 'package:sqflite/sqflite.dart';
 
 import 'connectivity.dart';
-import 'models/users.dart';
 import 'syncer.dart';
 
 Future<void> main() async {
