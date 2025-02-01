@@ -1,13 +1,19 @@
+import 'dart:math';
+
+import 'package:flutter/foundation.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:sqflite_sqlcipher/sqflite.dart' as sqflite_sqlcipher;
 import "package:path/path.dart" as p;
 
 import '../di.dart';
 import '../logger.dart';
 import '../settings.dart';
+import '../storage.dart';
 
 class Repositories {
   final logger = getIt.get<Logger>();
   final settings = getIt.get<Settings>();
+  final storage = getIt.get<Storage>();
 
   late Database database;
 
@@ -46,22 +52,59 @@ class Repositories {
       """);
 
       await batch.commit();
-
     }
 
     // onUpgrade
     Future<void> onUpgrade(Database db, int oldVersion, int newVersion) async {
     }
 
-    database = await openDatabase(
-      path,
-      version: settings.databaseVersion,
-      onConfigure: onConfigure,
-      onCreate: onCreate,
-      onUpgrade: onUpgrade,
-    );
+    if (kDebugMode){
+      database = await openDatabase(
+        path,
+        version: settings.databaseVersion,
+        onConfigure: onConfigure,
+        onCreate: onCreate,
+        onUpgrade: onUpgrade,
+      );
+      logger.warning("The database is not encrypted");
+    } else {
+      // Generate password for database
+      String password = await storage.getSecure(key: "database_password");
+      if (password.isEmpty) {
+        password = generatePassword();
+        await storage.setSecure(key: "database_password", value: password);
+        logger.info("A new password has been set for the database");
+      }
+
+      database = await sqflite_sqlcipher.openDatabase(
+        path,
+        version: settings.databaseVersion,
+        password: password,
+        onConfigure: onConfigure,
+        onCreate: onCreate,
+        onUpgrade: onUpgrade,
+      );
+    }
+
     int dbVersion = await database.getVersion();
     logger.info("Current DB version: $dbVersion");
+  }
+
+  // Generate password
+  String generatePassword() {
+    final random = Random();
+    final characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    String password = '';
+
+    int min = 30;
+    int max = 60;
+    final rnd = Random();
+    final length = min + rnd.nextInt(max - min);
+
+    for (int i = 0; i < length; i++) {
+      password += characters[random.nextInt(characters.length)];
+    }
+    return password;
   }
 
 

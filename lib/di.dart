@@ -29,17 +29,17 @@ Future<void> configureDI() async {
     return settings;
   }, dependsOn: [Logger]);
 
-  getIt.registerSingletonAsync<Repositories>(() async {
-    final repositories = Repositories();
-    await repositories.initialization();
-    return repositories;
-  }, dependsOn: [Logger, Settings]);
-
   getIt.registerSingletonAsync<Storage>(() async {
     final storage = Storage();
     await storage.initialization();
     return storage;
   }, dependsOn: [Logger, Settings]);
+
+  getIt.registerSingletonAsync<Repositories>(() async {
+    final repositories = Repositories();
+    await repositories.initialization();
+    return repositories;
+  }, dependsOn: [Logger, Settings, Storage]);
 
   getIt.registerSingletonAsync<Streams>(() async {
     final streams = Streams();

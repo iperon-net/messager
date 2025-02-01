@@ -1,7 +1,9 @@
+import 'package:cryptography/cryptography.dart';
 import 'package:flutter/material.dart';
 import 'package:messenger/di.dart';
 import 'package:messenger/logger.dart';
 import 'package:messenger/repositories/repositories.dart';
+import 'package:pem/pem.dart';
 import 'package:sqflite/sqflite.dart';
 
 import 'models/users.dart';
@@ -17,22 +19,46 @@ Future<void> main() async {
   final repositories = getIt.get<Repositories>();
   final streams = getIt.get<Streams>();
 
-  streams.streamControllerSync.stream.listen((onData) {
-    logger.debug(onData);
-  });
-  streams.streamControllerSync.add("dddd");
+  // Streams
+  // streams.streamControllerSync.stream.listen((onData) {
+  //   logger.debug(onData);
+  // });
+  // streams.streamControllerSync.add("dddd");
+  //
+  // streams.streamControllerSync.close();
+  //
+  // if (!streams.streamControllerSync.isClosed){
+  //   streams.streamControllerSync.add("dddd2");
+  // }
+  //
+  // await streams.openStreamSync(ignoreCheckClose: true);
+  // streams.streamControllerSync.stream.listen((onData) {
+  //   logger.debug(onData);
+  // });
+  // streams.streamControllerSync.add("dddd2");
 
-  streams.streamControllerSync.close();
+  // Streams
+  // final algorithm = X25519();
+  // final aliceKeyPair = await algorithm.newKeyPair();
+  //
+  // final publicKey = await aliceKeyPair.extractPublicKey();
+  // final publicKeyString = PemCodec(PemLabel.publicKey).encode(publicKey.bytes);
+  //
+  // logger.debug(publicKeyString);
+  //
+  //
+  // final bobKeyPair = await algorithm.newKeyPair();
+  // final bobPublicKey = await bobKeyPair.extractPublicKey();
+  // final sharedSecret = await algorithm.sharedSecretKey(
+  //   keyPair: aliceKeyPair,
+  //   remotePublicKey: bobPublicKey,
+  // );
+  // final sharedSecretBytes = await sharedSecret.extractBytes();
+  //
+  //
+  // print('Shared secret: $sharedSecretBytes');
+  // logger.debug(sharedSecretBytes.toString());
 
-  if (!streams.streamControllerSync.isClosed){
-    streams.streamControllerSync.add("dddd2");
-  }
-
-  await streams.openStreamSync(ignoreCheckClose: true);
-  streams.streamControllerSync.stream.listen((onData) {
-    logger.debug(onData);
-  });
-  streams.streamControllerSync.add("dddd2");
 
 
   // logger.debug(repositories.database.isOpen.toString());
