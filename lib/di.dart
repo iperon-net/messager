@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:get_it/get_it.dart';
 
 import 'connectivity.dart';
+import 'crypto.dart';
 import 'firebase_options.dart';
 import 'logger.dart';
 import 'repositories/repositories.dart';
@@ -40,6 +41,12 @@ Future<void> configureDI() async {
     final connectivity = Connectivity();
     await connectivity.initialization();
     return connectivity;
+  }, dependsOn: [Logger, Settings]);
+
+  getIt.registerSingletonAsync<Crypto>(() async {
+    final crypto = Crypto();
+    await crypto.initialization();
+    return crypto;
   }, dependsOn: [Logger, Settings]);
 
   getIt.registerSingletonAsync<Repositories>(() async {
