@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:messenger/di.dart';
 import 'package:messenger/logger.dart';
-import 'package:messenger/repositories/repositories.dart';
 
 import 'connectivity.dart';
 import 'syncer.dart';
