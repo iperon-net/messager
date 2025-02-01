@@ -50,7 +50,6 @@ class Connectivity {
         streamController.add(ConnectivityResult(status: ConnectivityStatus.offline, detail: ConnectivityDetail.none));
         logger.warning("Network unavailable");
       }
-      // logger.debug(connectivityResult.toString());
     });
 
     logger.debug("connectivity initialization");

@@ -8,8 +8,7 @@ import 'package:sqflite/sqflite.dart';
 
 import 'connectivity.dart';
 import 'models/users.dart';
-import 'streams.dart';
-// import 'package:matcher/expect.dart';
+import 'syncer.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,8 +17,8 @@ Future<void> main() async {
 
   final logger = getIt.get<Logger>();
   final repositories = getIt.get<Repositories>();
-  final streams = getIt.get<Streams>();
   final connectivity = getIt.get<Connectivity>();
+  final syncer = getIt.get<Syncer>();
 
   connectivity.stream.listen((onData) {
     logger.debug(onData.status.toString());
@@ -30,6 +29,8 @@ Future<void> main() async {
   });
 
   await connectivity.check();
+
+  await syncer.startSyncer();
 
   // Streams
   // streams.streamControllerSync.stream.listen((onData) {
@@ -134,6 +135,7 @@ class _MyHomePageState extends State<MyHomePage> {
       _counter++;
     });
   }
+  final syncer = getIt.get<Syncer>();
 
   @override
   Widget build(BuildContext context) {
@@ -178,6 +180,12 @@ class _MyHomePageState extends State<MyHomePage> {
             Text(
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
+            ),
+            StreamBuilder<DateTime>(
+                stream: syncer.stream,
+                builder: (context, data) {
+                  return Text(data.data.toString());
+                },
             ),
           ],
         ),

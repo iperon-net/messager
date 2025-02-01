@@ -3,12 +3,11 @@ import 'package:get_it/get_it.dart';
 
 import 'connectivity.dart';
 import 'firebase_options.dart';
-import 'isolates.dart';
 import 'logger.dart';
 import 'repositories/repositories.dart';
 import 'settings.dart';
 import 'storage.dart';
-import 'streams.dart';
+import 'syncer.dart';
 
 GetIt getIt = GetIt.instance;
 
@@ -37,29 +36,23 @@ Future<void> configureDI() async {
     return storage;
   }, dependsOn: [Logger, Settings]);
 
+  getIt.registerSingletonAsync<Connectivity>(() async {
+    final connectivity = Connectivity();
+    await connectivity.initialization();
+    return connectivity;
+  }, dependsOn: [Logger, Settings]);
+
   getIt.registerSingletonAsync<Repositories>(() async {
     final repositories = Repositories();
     await repositories.initialization();
     return repositories;
   }, dependsOn: [Logger, Settings, Storage]);
 
-  getIt.registerSingletonAsync<Streams>(() async {
-    final streams = Streams();
-    await streams.initialization();
-    return streams;
-  }, dependsOn: [Logger, Settings, Repositories]);
-
-  getIt.registerSingletonAsync<Connectivity>(() async {
-    final connectivity = Connectivity();
-    await connectivity.initialization();
-    return connectivity;
-  }, dependsOn: [Logger, Settings, Streams]);
-
-  getIt.registerSingletonAsync<Isolates>(() async {
-    final isolates = Isolates();
-    // await isolates.initialization();
-    return isolates;
-  }, dependsOn: [Logger, Settings, Repositories, Streams]);
+  getIt.registerSingletonAsync<Syncer>(() async {
+    final syncer = Syncer();
+    await syncer.initialization();
+    return syncer;
+  }, dependsOn: [Logger, Settings, Storage, Repositories]);
 
   await getIt.allReady();
 }
