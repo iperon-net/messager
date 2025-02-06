@@ -25,6 +25,7 @@ class Settings {
       "app_metrica_key": "130a5860-e40a-4361-851f-f595bd81e82a",
       "database_name": "iperon.db",
       "healthcheck_url": "https://healthcheck.iperon.net/",
+      "healthcheck_interval": 30,
     });
 
     await remoteConfig.fetchAndActivate();
@@ -56,5 +57,8 @@ class Settings {
     return remoteConfig.getInt("healthcheck_timeout");
   }
 
+  int get healthcheckInterval {
+    return remoteConfig.getInt("healthcheck_interval");
+  }
 
 }

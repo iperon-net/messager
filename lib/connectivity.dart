@@ -22,23 +22,18 @@ import 'utils.dart';
 
 enum ConnectivityStatus { connected, disconnected }
 
-
-class ConnectivityResult {
-  ConnectivityStatus status;
-  ConnectivityResult({this.status = ConnectivityStatus.disconnected});
-}
-
 class Connectivity {
   final logger = getIt.get<Logger>();
   final settings = getIt.get<Settings>();
   final utils = getIt.get<Utils>();
 
-  late StreamController<ConnectivityResult> streamController;
+  late StreamController<ConnectivityStatus> streamController;
 
   Future<void> initialization() async {
     streamController = StreamController.broadcast();
 
     final connection = InternetConnection.createInstance(
+      checkInterval: Duration(seconds: settings.healthcheckInterval),
       customCheckOptions: [
         InternetCheckOption(
             uri: Uri.parse(settings.healthcheckUrl),
@@ -50,10 +45,10 @@ class Connectivity {
 
     connection.onStatusChange.listen((InternetStatus status) {
       if(status == InternetStatus.connected){
-        streamController.add(ConnectivityResult(status: ConnectivityStatus.connected));
+        streamController.add(ConnectivityStatus.connected);
         logger.info("The device is connected internet");
       } else {
-        streamController.add(ConnectivityResult(status: ConnectivityStatus.disconnected));
+        streamController.add(ConnectivityStatus.disconnected);
         logger.warning("The device is disconnected internet");
       }
     });
@@ -62,7 +57,7 @@ class Connectivity {
   }
 
   // Stream
-  Stream<ConnectivityResult> get stream => streamController.stream;
+  Stream<ConnectivityStatus> get stream => streamController.stream;
 
   // check
   Future<bool> get check async => await InternetConnection().hasInternetAccess;
