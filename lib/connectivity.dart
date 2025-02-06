@@ -11,12 +11,12 @@ import 'utils.dart';
 
   final connectivity = getIt.get<Connectivity>();
 
-  connectivity.stream.listen((onData) {
+  connectivity.stream.listen((ConnectivityStatus status) {
     logger.debug(onData.status.toString());
   });
 
   // or manual check
-  await connectivity.checkConnectivity();
+  await connectivity.check();
 
 */
 
