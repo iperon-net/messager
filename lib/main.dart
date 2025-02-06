@@ -3,6 +3,7 @@ import 'package:messenger/di.dart';
 import 'package:messenger/logger.dart';
 
 import 'connectivity.dart';
+import 'crypto.dart';
 import 'syncer.dart';
 
 Future<void> main() async {
@@ -13,70 +14,7 @@ Future<void> main() async {
   final logger = getIt.get<Logger>();
   final connectivity = getIt.get<Connectivity>();
   final syncer = getIt.get<Syncer>();
-
-  connectivity.stream.listen((onData) {
-    logger.debug(onData.status.toString());
-  });
-
-  connectivity.stream.listen((onData) {
-    logger.debug(onData.status.toString());
-  });
-
-  await connectivity.check();
-
-  await syncer.startSyncer();
-
-  // Streams
-  // streams.streamControllerSync.stream.listen((onData) {
-  //   logger.debug(onData);
-  // });
-  // streams.streamControllerSync.add("dddd");
-  //
-  // streams.streamControllerSync.close();
-  //
-  // if (!streams.streamControllerSync.isClosed){
-  //   streams.streamControllerSync.add("dddd2");
-  // }
-  //
-  // await streams.openStreamSync(ignoreCheckClose: true);
-  // streams.streamControllerSync.stream.listen((onData) {
-  //   logger.debug(onData);
-  // });
-  // streams.streamControllerSync.add("dddd2");
-
-  // Streams
-  // final algorithm = X25519();
-  // final aliceKeyPair = await algorithm.newKeyPair();
-  //
-  // final publicKey = await aliceKeyPair.extractPublicKey();
-  // final publicKeyString = PemCodec(PemLabel.publicKey).encode(publicKey.bytes);
-  //
-  // logger.debug(publicKeyString);
-  //
-  //
-  // final bobKeyPair = await algorithm.newKeyPair();
-  // final bobPublicKey = await bobKeyPair.extractPublicKey();
-  // final sharedSecret = await algorithm.sharedSecretKey(
-  //   keyPair: aliceKeyPair,
-  //   remotePublicKey: bobPublicKey,
-  // );
-  // final sharedSecretBytes = await sharedSecret.extractBytes();
-  //
-  //
-  // print('Shared secret: $sharedSecretBytes');
-  // logger.debug(sharedSecretBytes.toString());
-
-
-
-  // logger.debug(repositories.database.isOpen.toString());
-  //
-  // final user = await repositories.database.query("users", where: '"email" = ?', whereArgs: ["kostya@yandex.ru"]);
-  // if (user.isNotEmpty) {
-  //   logger.debug(user.toString());
-  //
-  //   final userModel = User.fromJson(user.last);
-  //   logger.debug(userModel.email.toString());
-  // }
+  final crypto = getIt.get<Crypto>();
 
   runApp(const MyApp());
 }

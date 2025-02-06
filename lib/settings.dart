@@ -24,6 +24,7 @@ class Settings {
     await remoteConfig.setDefaults({
       "app_metrica_key": "130a5860-e40a-4361-851f-f595bd81e82a",
       "database_name": "iperon.db",
+      "healthcheck_url": "https://healthcheck.iperon.net/",
     });
 
     await remoteConfig.fetchAndActivate();
@@ -47,6 +48,9 @@ class Settings {
     return dotenv.getInt("DATABASE_VERSION", fallback: 1);
   }
 
+  String get healthcheckUrl {
+    return remoteConfig.getString("healthcheck_url");
+  }
 
 
 

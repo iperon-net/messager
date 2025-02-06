@@ -14,10 +14,10 @@ class Storage {
   Future<void> initialization() async {
     if (Platform.isAndroid) {
       storage = FlutterSecureStorage(aOptions: AndroidOptions(encryptedSharedPreferences: true));
-      return;
+    } else {
+      storage = FlutterSecureStorage();
     }
 
-    storage = FlutterSecureStorage();
     logger.debug("storage initialization");
   }
 

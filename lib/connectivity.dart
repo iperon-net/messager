@@ -1,5 +1,8 @@
 import 'dart:async';
 
+import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
+
+import 'settings.dart';
 import 'di.dart';
 import 'logger.dart';
 import 'package:connectivity_plus/connectivity_plus.dart' as cp;
@@ -34,6 +37,8 @@ class ConnectivityResult {
 
 class Connectivity {
   final logger = getIt.get<Logger>();
+  final settings = getIt.get<Settings>();
+
   late StreamController<ConnectivityResult> streamController;
 
   Future<void> initialization() async {
@@ -50,6 +55,16 @@ class Connectivity {
         streamController.add(ConnectivityResult(status: ConnectivityStatus.offline, detail: ConnectivityDetail.none));
         logger.warning("Network unavailable");
       }
+    });
+
+    final connection = InternetConnection.createInstance(
+      customCheckOptions: [
+        InternetCheckOption(uri: Uri.parse(settings.healthcheckUrl)),
+      ],
+    );
+
+    connection.onStatusChange.listen((InternetStatus status) {
+      logger.info("status $status");
     });
 
     logger.debug("connectivity initialization");
