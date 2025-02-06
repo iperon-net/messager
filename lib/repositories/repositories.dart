@@ -1,9 +1,9 @@
 import 'dart:math';
 
 import 'package:flutter/foundation.dart';
+import "package:path/path.dart" as p;
 import 'package:sqflite/sqflite.dart';
 import 'package:sqflite_sqlcipher/sqflite.dart' as sqflite_sqlcipher;
-import "package:path/path.dart" as p;
 
 import '../di.dart';
 import '../logger.dart';
@@ -66,12 +66,13 @@ class Repositories {
         onCreate: onCreate,
         onUpgrade: onUpgrade,
       );
+
       logger.warning("The database is not encrypted");
     } else {
       // Generate password for database
       String password = await storage.getSecure(key: "database_password");
       if (password.isEmpty) {
-        password = generatePassword();
+        password = await generatePassword();
         await storage.setSecure(key: "database_password", value: password);
         logger.info("A new password has been set for the database");
       }
@@ -86,24 +87,25 @@ class Repositories {
       );
     }
 
-    int dbVersion = await database.getVersion();
+    final dbVersion = await database.getVersion();
     logger.info("Current DB version: $dbVersion");
   }
 
   // Generate password
-  String generatePassword() {
+  Future<String> generatePassword() async {
     final random = Random();
-    final characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    final characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_-';
     String password = '';
 
-    int min = 30;
-    int max = 60;
+    int min = 60;
+    int max = 100;
     final rnd = Random();
     final length = min + rnd.nextInt(max - min);
 
     for (int i = 0; i < length; i++) {
       password += characters[random.nextInt(characters.length)];
     }
+
     return password;
   }
 

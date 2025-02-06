@@ -15,6 +15,7 @@ GetIt getIt = GetIt.instance;
 
 Future<void> configureDI() async {
 
+  // Firebase initialize
   await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
       name: "Iperon messenger"
