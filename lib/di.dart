@@ -5,6 +5,7 @@ import 'connectivity.dart';
 import 'crypto.dart';
 import 'firebase_options.dart';
 import 'logger.dart';
+import 'notifications.dart';
 import 'repositories/repositories.dart';
 import 'settings.dart';
 import 'storage.dart';
@@ -16,10 +17,7 @@ GetIt getIt = GetIt.instance;
 Future<void> configureDI() async {
 
   // Firebase initialize
-  await Firebase.initializeApp(
-      options: DefaultFirebaseOptions.currentPlatform,
-      name: "Iperon messenger"
-  );
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   getIt.registerSingletonAsync<Logger>(() async {
     final logger = Logger();
@@ -63,6 +61,12 @@ Future<void> configureDI() async {
     await repositories.initialization();
     return repositories;
   }, dependsOn: [Logger, Settings, Storage]);
+
+  getIt.registerSingletonAsync<Notifications>(() async {
+    final notifications = Notifications();
+    await notifications.initialization();
+    return notifications;
+  }, dependsOn: [Logger, Settings, Storage, Repositories]);
 
   getIt.registerSingletonAsync<Syncer>(() async {
     final syncer = Syncer();

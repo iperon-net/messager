@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:messenger/di.dart';
 
 import 'firebase_options.dart';
+import 'notifications.dart';
 import 'syncer.dart';
 
 Future<void> main() async {
@@ -14,6 +15,9 @@ Future<void> main() async {
   // final connectivity = getIt.get<Connectivity>();
   // final syncer = getIt.get<Syncer>();
   // final crypto = getIt.get<Crypto>();
+
+  // final notifications = getIt.get<Notifications>();
+  // await notifications.getPermissionRequests();
 
   runApp(const MyApp());
 }
