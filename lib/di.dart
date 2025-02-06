@@ -9,6 +9,7 @@ import 'repositories/repositories.dart';
 import 'settings.dart';
 import 'storage.dart';
 import 'syncer.dart';
+import 'utils.dart';
 
 GetIt getIt = GetIt.instance;
 
@@ -31,16 +32,17 @@ Future<void> configureDI() async {
     return settings;
   }, dependsOn: [Logger]);
 
+  getIt.registerSingletonAsync<Utils>(() async {
+    final utils = Utils();
+    await utils.initialization();
+    return utils;
+  }, dependsOn: [Logger, Settings]);
+
+
   getIt.registerSingletonAsync<Storage>(() async {
     final storage = Storage();
     await storage.initialization();
     return storage;
-  }, dependsOn: [Logger, Settings]);
-
-  getIt.registerSingletonAsync<Connectivity>(() async {
-    final connectivity = Connectivity();
-    await connectivity.initialization();
-    return connectivity;
   }, dependsOn: [Logger, Settings]);
 
   getIt.registerSingletonAsync<Crypto>(() async {
@@ -48,6 +50,12 @@ Future<void> configureDI() async {
     await crypto.initialization();
     return crypto;
   }, dependsOn: [Logger, Settings]);
+
+  getIt.registerSingletonAsync<Connectivity>(() async {
+    final connectivity = Connectivity();
+    await connectivity.initialization();
+    return connectivity;
+  }, dependsOn: [Logger, Settings, Utils]);
 
   getIt.registerSingletonAsync<Repositories>(() async {
     final repositories = Repositories();

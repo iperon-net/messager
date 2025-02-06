@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:messenger/di.dart';
-import 'package:messenger/logger.dart';
 
-import 'connectivity.dart';
-import 'crypto.dart';
 import 'syncer.dart';
 
 Future<void> main() async {
@@ -11,10 +8,10 @@ Future<void> main() async {
 
   await configureDI();
 
-  final logger = getIt.get<Logger>();
-  final connectivity = getIt.get<Connectivity>();
-  final syncer = getIt.get<Syncer>();
-  final crypto = getIt.get<Crypto>();
+  // final logger = getIt.get<Logger>();
+  // final connectivity = getIt.get<Connectivity>();
+  // final syncer = getIt.get<Syncer>();
+  // final crypto = getIt.get<Crypto>();
 
   runApp(const MyApp());
 }

@@ -52,6 +52,9 @@ class Settings {
     return remoteConfig.getString("healthcheck_url");
   }
 
+  int get healthcheckTimeout {
+    return remoteConfig.getInt("healthcheck_timeout");
+  }
 
 
 }

@@ -5,7 +5,7 @@ import 'package:internet_connection_checker_plus/internet_connection_checker_plu
 import 'settings.dart';
 import 'di.dart';
 import 'logger.dart';
-import 'package:connectivity_plus/connectivity_plus.dart' as cp;
+import 'utils.dart';
 
 /* Usage
 
@@ -20,51 +20,42 @@ import 'package:connectivity_plus/connectivity_plus.dart' as cp;
 
 */
 
-enum ConnectivityStatus { online, offline }
-enum ConnectivityDetail { wifi, mobile, none }
+enum ConnectivityStatus { connected, disconnected }
 
 
 class ConnectivityResult {
   ConnectivityStatus status;
-  ConnectivityDetail detail;
-
-  ConnectivityResult({
-    this.status = ConnectivityStatus.offline,
-    this.detail = ConnectivityDetail.none,
-  });
-
+  ConnectivityResult({this.status = ConnectivityStatus.disconnected});
 }
 
 class Connectivity {
   final logger = getIt.get<Logger>();
   final settings = getIt.get<Settings>();
+  final utils = getIt.get<Utils>();
 
   late StreamController<ConnectivityResult> streamController;
 
   Future<void> initialization() async {
     streamController = StreamController.broadcast();
 
-    cp.Connectivity().onConnectivityChanged.listen((List<cp.ConnectivityResult> connectivityResult) {
-      if (connectivityResult.contains(cp.ConnectivityResult.mobile)) {
-        streamController.add(ConnectivityResult(status: ConnectivityStatus.online, detail: ConnectivityDetail.mobile));
-        logger.info("The device is connected via mobile network");
-      } else if (connectivityResult.contains(cp.ConnectivityResult.wifi)) {
-        streamController.add(ConnectivityResult(status: ConnectivityStatus.online, detail: ConnectivityDetail.wifi));
-        logger.info("The device is connected via wifi network");
-      } else if (connectivityResult.contains(cp.ConnectivityResult.none)) {
-        streamController.add(ConnectivityResult(status: ConnectivityStatus.offline, detail: ConnectivityDetail.none));
-        logger.warning("Network unavailable");
-      }
-    });
-
     final connection = InternetConnection.createInstance(
       customCheckOptions: [
-        InternetCheckOption(uri: Uri.parse(settings.healthcheckUrl)),
+        InternetCheckOption(
+            uri: Uri.parse(settings.healthcheckUrl),
+            timeout: Duration(seconds: settings.healthcheckTimeout),
+            headers: {"User-Agent": utils.userAgent}
+        ),
       ],
     );
 
     connection.onStatusChange.listen((InternetStatus status) {
-      logger.info("status $status");
+      if(status == InternetStatus.connected){
+        streamController.add(ConnectivityResult(status: ConnectivityStatus.connected));
+        logger.info("The device is connected internet");
+      } else {
+        streamController.add(ConnectivityResult(status: ConnectivityStatus.disconnected));
+        logger.warning("The device is disconnected internet");
+      }
     });
 
     logger.debug("connectivity initialization");
@@ -74,19 +65,6 @@ class Connectivity {
   Stream<ConnectivityResult> get stream => streamController.stream;
 
   // check
-  Future<ConnectivityResult> check() async {
-    final List<cp.ConnectivityResult> connectivityResult = await (cp.Connectivity().checkConnectivity());
-
-    if (connectivityResult.contains(cp.ConnectivityResult.mobile)) {
-      logger.info("The device is connected via mobile network");
-      return ConnectivityResult(status: ConnectivityStatus.online, detail: ConnectivityDetail.mobile);
-    } else if (connectivityResult.contains(cp.ConnectivityResult.wifi)) {
-      logger.info("The device is connected via wifi network");
-      return ConnectivityResult(status: ConnectivityStatus.online, detail: ConnectivityDetail.wifi);
-    }
-
-    logger.warning("Network unavailable");
-    return ConnectivityResult(status: ConnectivityStatus.offline, detail: ConnectivityDetail.none);
-  }
+  Future<bool> get check async => await InternetConnection().hasInternetAccess;
 
 }
