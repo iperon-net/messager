@@ -12,6 +12,7 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_udid/flutter_udid.dart';
 import 'package:grpc/grpc.dart';
 import 'package:messenger/contrib/di.dart';
+import 'package:messenger/themes.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 import 'components/not_implemented/not_implemented_component.dart';
@@ -126,8 +127,7 @@ Future<void> main() async {
     saveLocale: true,
     assetLoader: YamlAssetLoader(),
     fallbackLocale: const Locale('en', 'US'),
-    // child: utils.platform == SysPlatform.ios ? const IperonMessengerCupertino() : const IperonMessengerMaterial(),
-    child: const IperonMessengerCupertino(),
+    child: utils.platform == SysPlatform.ios ? const IperonMessengerCupertino() : const IperonMessengerMaterial(),
   ));
 
 }
@@ -151,10 +151,7 @@ class IperonMessengerMaterial extends StatelessWidget {
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
       locale: context.locale,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
+      theme: themeLight,
       routerConfig: router,
       // home: Center(child: Icon(CupertinoIcons.share)),
     );
@@ -167,34 +164,12 @@ class IperonMessengerCupertino extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return CupertinoApp.router(
       debugShowCheckedModeBanner: false,
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
       locale: context.locale,
       routerConfig: router,
-
-      // home: const NotImplementedComponent(),
-      // theme: CupertinoThemeData(
-      // ),
-      // debugShowCheckedModeBanner: false,
-      // title: 'Flutter Demo',
-      // home: CupertinoPageScaffold(
-      //   navigationBar: CupertinoNavigationBar(
-      //     previousPageTitle: "test",
-      //     // automaticallyImplyLeading: true,
-      //     leading: Text("ищменить", style: TextStyle(fontSize: MediaQuery.of(context).textScaler.scale(14), fontWeight: FontWeight.bold)),
-      //     trailing: Icon(CupertinoIcons.add, size: 20,),
-      //     // backgroundColor: CupertinoColors.quaternarySystemFill,
-      //     middle: Text(
-      //       'Чаты',
-      //       // style: TextStyle(fontSize: MediaQuery.of(context).textScaler.scale(16), fontWeight: FontWeight.bold),
-      //     ),
-      //     // bottom: Text("ddd"),
-      //   ),
-      //   child: NotImplementedComponent(),
-      // ),
     );
   }
 }
