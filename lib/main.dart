@@ -8,16 +8,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_udid/flutter_udid.dart';
 import 'package:grpc/grpc.dart';
-import 'package:messenger/di.dart';
-import 'package:messenger/settings.dart';
+import 'package:messenger/contrib/di.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-import 'crypto.dart';
+import 'contrib/crypto.dart';
+import 'contrib/settings.dart';
 import 'firebase_options.dart';
-import 'logger.dart';
-import 'notifications.dart';
+import 'contrib/logger.dart';
+import 'contrib/notifications.dart';
 import 'protobuf/protos/auth.pbgrpc.dart';
-import 'syncer.dart';
+import 'contrib/syncer.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -111,10 +111,21 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CupertinoApp(
+      theme: CupertinoThemeData(
+      ),
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       home: CupertinoPageScaffold(
         navigationBar: CupertinoNavigationBar(
-          middle: Text('Чаты'),
+          previousPageTitle: "test",
+          // automaticallyImplyLeading: true,
+          leading: Text("ищменить", style: TextStyle(fontSize: MediaQuery.of(context).textScaler.scale(14), fontWeight: FontWeight.bold)),
+          trailing: Icon(CupertinoIcons.add, size: 20,),
+          // backgroundColor: CupertinoColors.quaternarySystemFill,
+          middle: Text(
+            'Чаты',
+            // style: TextStyle(fontSize: MediaQuery.of(context).textScaler.scale(16), fontWeight: FontWeight.bold),
+          ),
           // bottom: Text("ddd"),
         ),
         child: Center(child: Icon(CupertinoIcons.share)),

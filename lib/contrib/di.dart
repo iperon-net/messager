@@ -3,10 +3,10 @@ import 'package:get_it/get_it.dart';
 
 import 'connectivity.dart';
 import 'crypto.dart';
-import 'firebase_options.dart';
+import '../firebase_options.dart';
 import 'logger.dart';
 import 'notifications.dart';
-import 'repositories/repositories.dart';
+import '../repositories/repositories.dart';
 import 'settings.dart';
 import 'storage.dart';
 import 'syncer.dart';
