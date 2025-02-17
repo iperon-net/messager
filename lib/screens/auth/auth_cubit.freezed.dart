@@ -17,13 +17,13 @@ final _privateConstructorUsedError = UnsupportedError('It seems like you constru
 /// @nodoc
 mixin _$AuthState {
 
+ String get errorMessage => throw _privateConstructorUsedError;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String errorMessage)  $default,) => throw _privateConstructorUsedError;
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,}) => throw _privateConstructorUsedError;
-
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,required TResult orElse(),}) => throw _privateConstructorUsedError;
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Initial value)  initial,}) => throw _privateConstructorUsedError;
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Initial value)?  initial,}) => throw _privateConstructorUsedError;
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Initial value)?  initial,required TResult orElse(),}) => throw _privateConstructorUsedError;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String errorMessage)?  $default,{required TResult orElse(),}) => throw _privateConstructorUsedError;
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _AuthState value)  $default,) => throw _privateConstructorUsedError;
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _AuthState value)?  $default,) => throw _privateConstructorUsedError;
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _AuthState value)?  $default,{required TResult orElse(),}) => throw _privateConstructorUsedError;
 
 
 }
@@ -39,16 +39,16 @@ mixin _$AuthState {
 /// @nodoc
 
 
-class _$InitialImpl  implements _Initial {
-  const _$InitialImpl();
+class _$AuthStateImpl  implements _AuthState {
+  const _$AuthStateImpl({this.errorMessage = ""});
 
   
 
-
+@override@JsonKey() final  String errorMessage;
 
 @override
 String toString() {
-  return 'AuthState.initial()';
+  return 'AuthState(errorMessage: $errorMessage)';
 }
 
 
@@ -56,29 +56,29 @@ String toString() {
 
 
 @override
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,}) {
-  return initial();
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String errorMessage)  $default,) {
+  return $default(errorMessage);
 }
 
 @override
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,required TResult orElse(),}) {
-  if (initial != null) {
-    return initial();
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String errorMessage)?  $default,{required TResult orElse(),}) {
+  if ($default != null) {
+    return $default(errorMessage);
   }
   return orElse();
 }
 @override
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Initial value)  initial,}) {
-  return initial(this);
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _AuthState value)  $default,) {
+  return $default(this);
 }
 @override
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Initial value)?  initial,}) {
-  return initial?.call(this);
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _AuthState value)?  $default,) {
+  return $default?.call(this);
 }
 @override
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Initial value)?  initial,required TResult orElse(),}) {
-  if (initial != null) {
-    return initial(this);
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _AuthState value)?  $default,{required TResult orElse(),}) {
+  if ($default != null) {
+    return $default(this);
   }
   return orElse();
 }
@@ -86,12 +86,12 @@ String toString() {
 }
 
 
-abstract class _Initial implements AuthState {
-  const factory _Initial() = _$InitialImpl;
+abstract class _AuthState implements AuthState {
+  const factory _AuthState({final  String errorMessage}) = _$AuthStateImpl;
   
 
   
 
-
+@override String get errorMessage;
 
 }
