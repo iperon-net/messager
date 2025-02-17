@@ -37,10 +37,9 @@ class AuthScreenAndroid extends StatelessWidget {
 
                   // Button
                   SizedBox(
-                    width: double.infinity,
                     child: ElevatedButton(
-                        child: Text(context.tr("continue")),
-                        onPressed: () {}
+                      child: Text(context.tr("continue")),
+                      onPressed: () {}
                     ),
                   ),
 

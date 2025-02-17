@@ -6,6 +6,7 @@ import 'package:flutter/widgets.dart';
 
 import '../../contrib/di.dart';
 import '../../contrib/utils.dart';
+import '../../themes.dart';
 
 part 'auth_screen_ios.dart';
 part 'auth_screen_android.dart';

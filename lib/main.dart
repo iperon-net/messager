@@ -170,6 +170,21 @@ class IperonMessengerCupertino extends StatelessWidget {
       supportedLocales: context.supportedLocales,
       locale: context.locale,
       routerConfig: router,
+        theme: const CupertinoThemeData(
+          primaryColor: CupertinoDynamicColor.withBrightness(
+            color: Color(0xff72538d),
+            darkColor: Color(0xff605fc5),
+          ),
+          barBackgroundColor:CupertinoDynamicColor.withBrightness(
+            color: Colors.white,
+            darkColor: Color(0xff1b263b),
+          ),
+          scaffoldBackgroundColor: CupertinoDynamicColor.withBrightness(
+            color: Colors.white,
+            darkColor: Color(0xff1b263b),
+          ),
+          // textTheme: CupertinoTextThemeData(),
+        ),
     );
   }
 }
