@@ -58,6 +58,10 @@ dependencies:
   flutter_udid: ^4.0.0
   grpc: ^4.0.1
   permission_handler: ^11.3.1
+  easy_localization: ^3.0.7+1
+  flutter_bloc: ^9.0.0
+  easy_localization_loader: ^2.0.2
+  go_router: ^14.8.0
 
 
 dev_dependencies:
@@ -117,4 +121,5 @@ flutter:
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
   assets:
+    - assets/translations/
     - .env
