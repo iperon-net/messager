@@ -17,7 +17,7 @@ class Settings {
     remoteConfig = FirebaseRemoteConfig.instance;
 
     await remoteConfig.setConfigSettings(RemoteConfigSettings(
-      fetchTimeout: Duration(minutes: 1),
+      fetchTimeout: Duration(seconds: 10),
       minimumFetchInterval: kDebugMode ? Duration(hours: 1): Duration(hours: 12),
     ));
 
@@ -28,13 +28,18 @@ class Settings {
       "healthcheck_interval": 30,
     });
 
-    await remoteConfig.fetchAndActivate();
+    try {
+      await remoteConfig.fetchAndActivate();
+    } on Exception catch (e) {
+      logger.error("Error receiving settings from a remote server, error message ${e.toString()}");
+    }
 
+    // try {
+    //   await remoteConfig.activate();
+    // } on Exception catch (e) {
+    //   logger.error(e.toString());
+    // }
     logger.debug("settings initialization");
-  }
-
-  String get appMetricaKey {
-    return remoteConfig.getString("app_metrica_key");
   }
 
   String get databaseName {

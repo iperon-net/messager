@@ -1,30 +1,40 @@
 import 'package:talker/talker.dart';
 
 class Logger {
-  final logger = Talker();
+  final _logger = Talker();
 
   void initialization() {
-    logger.debug("logger initialization");
+    _logger.configure(
+      settings: TalkerSettings(
+        enabled: true,
+        useHistory: true,
+        maxHistoryItems: 1000,
+        useConsoleLogs: true,
+        timeFormat: TimeFormat.timeAndSeconds,
+      ),
+      logger: TalkerLogger(),
+    );
+    _logger.debug("logger initialization");
   }
 
   void debug(String message) {
-    logger.debug(message);
+    _logger.debug(message);
   }
 
   void warning(String message) {
-    logger.warning(message);
+    _logger.warning(message);
   }
 
   void info(String message) {
-    logger.info(message);
+    _logger.info(message);
   }
 
   void error(String message) {
-    logger.error(message);
+    _logger.error(message);
   }
 
   void critical(String message) {
-    logger.critical(message);
+    _logger.critical(message);
   }
 
 }

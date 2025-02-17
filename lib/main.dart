@@ -1,9 +1,22 @@
-import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/material.dart';
-import 'package:messenger/di.dart';
+import 'dart:convert';
+import 'dart:math';
 
+import 'package:convert/convert.dart' as convert;
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:flutter_udid/flutter_udid.dart';
+import 'package:grpc/grpc.dart';
+import 'package:messenger/di.dart';
+import 'package:messenger/settings.dart';
+import 'package:permission_handler/permission_handler.dart';
+
+import 'crypto.dart';
 import 'firebase_options.dart';
+import 'logger.dart';
 import 'notifications.dart';
+import 'protobuf/protos/auth.pbgrpc.dart';
 import 'syncer.dart';
 
 Future<void> main() async {
@@ -11,7 +24,54 @@ Future<void> main() async {
 
   await configureDI();
 
-  // final logger = getIt.get<Logger>();
+  final logger = getIt.get<Logger>();
+  final crypto = getIt.get<Crypto>();
+  final settings = getIt.get<Settings>();
+
+  // final status = await Permission.camera.status;
+  // logger.debug(status.toString());
+
+  // final channelOptions = ChannelOptions(
+  //   credentials: const ChannelCredentials.secure(
+  //       // certificates:
+  //   ),
+  //   idleTimeout: const Duration(minutes: 60),
+  //   backoffStrategy: (_) => const Duration(seconds: 60),
+  //   keepAlive: const ClientKeepAliveOptions(
+  //     pingInterval: Duration(seconds: 60),
+  //     permitWithoutCalls: true,
+  //   ),
+  //   codecRegistry: CodecRegistry(codecs: const [GzipCodec(), IdentityCodec()]),
+  // );
+  //
+  //
+  // final authClient = AuthClient(ClientChannel("developer.iperon.net", port: 443, options: channelOptions));
+  //
+  // final responseCreateByEmail = await authClient.createByEmail(AuthCreateByEmailRequest(email: "kostya@yandex.ru"));
+  //
+  // // Ecdh
+  // final keyExchange = await crypto.keyExchangeGenerateKeyPair();
+  //
+  // final response = await authClient.confirmation(
+  //     AuthConfirmationRequest(
+  //       signInToken: responseCreateByEmail.signInToken,
+  //       code: 555555,
+  //       exchangeKey: keyExchange.publicKey,
+  //     )
+  // );
+  //
+  // final sharedKey = await crypto.keyExchangeValidate(keyPair: keyExchange.keyPair, remotePublicKey: response.exchangeKey);
+  // logger.debug(base64.encode(sharedKey));
+  // logger.debug(response.sessionToken);
+
+
+
+  // String udid = await FlutterUdid.udid;
+  // logger.debug(udid.toString());
+
+  // d33055a70953714e
+  // 9545EA22-64C1-4795-9153-A25F9FC3289E
+
   // final connectivity = getIt.get<Connectivity>();
   // final syncer = getIt.get<Syncer>();
   // final crypto = getIt.get<Crypto>();
@@ -19,7 +79,29 @@ Future<void> main() async {
   // final notifications = getIt.get<Notifications>();
   // await notifications.getPermissionRequests();
 
+  // FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+  // const AndroidInitializationSettings initializationSettingsAndroid = AndroidInitializationSettings('app_icon');
+  //
+  // final initializationSettings = InitializationSettings(android: initializationSettingsAndroid);
+  //
+  // await flutterLocalNotificationsPlugin.initialize(
+  //     initializationSettings,
+  //     onDidReceiveNotificationResponse: onDidReceiveNotificationResponse,
+  // );
+  //
+  // final androidNotificationDetails = AndroidNotificationDetails('2', 'Main channel2');
+  // final notificationDetails = NotificationDetails(android: androidNotificationDetails);
+  //
+  // await flutterLocalNotificationsPlugin.show(Random().nextInt(1000000), 'Тест', 'Тело', notificationDetails, payload: null);
+
   runApp(const MyApp());
+}
+
+void onDidReceiveNotificationResponse(NotificationResponse notificationResponse) async {
+  final String? payload = notificationResponse.payload;
+  if (notificationResponse.payload != null) {
+    debugPrint('notification payload: $payload');
+  }
 }
 
 class MyApp extends StatelessWidget {
@@ -28,14 +110,26 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return CupertinoApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+      home: CupertinoPageScaffold(
+        navigationBar: CupertinoNavigationBar(
+          middle: Text('Чаты'),
+          // bottom: Text("ddd"),
+        ),
+        child: Center(child: Icon(CupertinoIcons.share)),
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
     );
+
+
+    // return MaterialApp(
+    //   title: 'Flutter Demo',
+    //   theme: ThemeData(
+    //     colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+    //     useMaterial3: true,
+    //   ),
+    //   home: MyHomePage(title: 'Flutter Demo Home Page'),
+    // );
   }
 }
 

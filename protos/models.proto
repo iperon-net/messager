@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+package Api;
+option go_package = "protobuf/";
+
+
+message EmptyRequest {}
+message EmptyResponse {}

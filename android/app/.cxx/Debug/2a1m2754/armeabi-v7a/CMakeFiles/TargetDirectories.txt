@@ -1,0 +1,2 @@
+/Users/kostya/StudioProjects/messenger/android/app/.cxx/Debug/2a1m2754/armeabi-v7a/CMakeFiles/edit_cache.dir
+/Users/kostya/StudioProjects/messenger/android/app/.cxx/Debug/2a1m2754/armeabi-v7a/CMakeFiles/rebuild_cache.dir
