@@ -29,25 +29,26 @@ class ServerInfoResponse extends $pb.GeneratedMessage {
     return $result;
   }
   ServerInfoResponse._() : super();
-  factory ServerInfoResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory ServerInfoResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  factory ServerInfoResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory ServerInfoResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ServerInfoResponse', package: const $pb.PackageName(_omitMessageNames ? '' : 'Api'), createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ServerInfoResponse',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'Api'), createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'environment')
     ..aOS(2, _omitFieldNames ? '' : 'publicKey')
-    ..hasRequiredFields = false
-  ;
+    ..hasRequiredFields = false;
 
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
   ServerInfoResponse clone() => ServerInfoResponse()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
-  ServerInfoResponse copyWith(void Function(ServerInfoResponse) updates) => super.copyWith((message) => updates(message as ServerInfoResponse)) as ServerInfoResponse;
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  ServerInfoResponse copyWith(void Function(ServerInfoResponse) updates) =>
+      super.copyWith((message) => updates(message as ServerInfoResponse)) as ServerInfoResponse;
 
   $pb.BuilderInfo get info_ => _i;
 
@@ -62,7 +63,10 @@ class ServerInfoResponse extends $pb.GeneratedMessage {
   @$pb.TagNumber(1)
   $core.String get environment => $_getSZ(0);
   @$pb.TagNumber(1)
-  set environment($core.String v) { $_setString(0, v); }
+  set environment($core.String v) {
+    $_setString(0, v);
+  }
+
   @$pb.TagNumber(1)
   $core.bool hasEnvironment() => $_has(0);
   @$pb.TagNumber(1)
@@ -71,13 +75,15 @@ class ServerInfoResponse extends $pb.GeneratedMessage {
   @$pb.TagNumber(2)
   $core.String get publicKey => $_getSZ(1);
   @$pb.TagNumber(2)
-  set publicKey($core.String v) { $_setString(1, v); }
+  set publicKey($core.String v) {
+    $_setString(1, v);
+  }
+
   @$pb.TagNumber(2)
   $core.bool hasPublicKey() => $_has(1);
   @$pb.TagNumber(2)
   void clearPublicKey() => clearField(2);
 }
-
 
 const _omitFieldNames = $core.bool.fromEnvironment('protobuf.omit_field_names');
 const _omitMessageNames = $core.bool.fromEnvironment('protobuf.omit_message_names');

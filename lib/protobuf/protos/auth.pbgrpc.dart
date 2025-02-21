@@ -30,11 +30,8 @@ class AuthClient extends $grpc.Client {
       ($0.AuthConfirmationRequest value) => value.writeToBuffer(),
       ($core.List<$core.int> value) => $0.AuthConfirmationResponse.fromBuffer(value));
 
-  AuthClient($grpc.ClientChannel channel,
-      {$grpc.CallOptions? options,
-      $core.Iterable<$grpc.ClientInterceptor>? interceptors})
-      : super(channel, options: options,
-        interceptors: interceptors);
+  AuthClient($grpc.ClientChannel channel, {$grpc.CallOptions? options, $core.Iterable<$grpc.ClientInterceptor>? interceptors})
+      : super(channel, options: options, interceptors: interceptors);
 
   $grpc.ResponseFuture<$0.AuthCreateByEmailResponse> createByEmail($0.AuthCreateByEmailRequest request, {$grpc.CallOptions? options}) {
     return $createUnaryCall(_$createByEmail, request, options: options);
@@ -66,11 +63,13 @@ abstract class AuthServiceBase extends $grpc.Service {
         ($0.AuthConfirmationResponse value) => value.writeToBuffer()));
   }
 
-  $async.Future<$0.AuthCreateByEmailResponse> createByEmail_Pre($grpc.ServiceCall call, $async.Future<$0.AuthCreateByEmailRequest> request) async {
+  $async.Future<$0.AuthCreateByEmailResponse> createByEmail_Pre(
+      $grpc.ServiceCall call, $async.Future<$0.AuthCreateByEmailRequest> request) async {
     return createByEmail(call, await request);
   }
 
-  $async.Future<$0.AuthConfirmationResponse> confirmation_Pre($grpc.ServiceCall call, $async.Future<$0.AuthConfirmationRequest> request) async {
+  $async.Future<$0.AuthConfirmationResponse> confirmation_Pre(
+      $grpc.ServiceCall call, $async.Future<$0.AuthConfirmationRequest> request) async {
     return confirmation(call, await request);
   }
 

@@ -65,6 +65,7 @@ class AuthScreenAndroid extends StatelessWidget {
 
                   // Button
                   SizedBox(
+                    width: MediaQuery.of(context).size.width,
                     child: ElevatedButton(
                       child: Text(context.tr("continue")),
                       onPressed: () async => context.read<AuthCubit>().validator(context),

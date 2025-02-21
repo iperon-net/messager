@@ -16,11 +16,13 @@ class AuthCubit extends Cubit<AuthState> {
   final alerts = getIt.get<Alerts>();
 
   AuthCubit()
-      : super(AuthState(
-          formKey: GlobalKey<FormState>(),
-          textControllerEmail: TextEditingController(),
-          focusNodeEmail: FocusNode(),
-        ));
+      : super(
+          AuthState(
+            formKey: GlobalKey<FormState>(),
+            textControllerEmail: TextEditingController(),
+            focusNodeEmail: FocusNode(),
+          ),
+        );
 
   Future<void> validator(BuildContext context) async {
     if (!state.formKey.currentState!.validate()) return;

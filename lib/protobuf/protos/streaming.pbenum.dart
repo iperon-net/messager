@@ -16,7 +16,7 @@ import 'package:protobuf/protobuf.dart' as $pb;
 class StreamingEventsResponse_Type extends $pb.ProtobufEnum {
   static const StreamingEventsResponse_Type healthcheck = StreamingEventsResponse_Type._(0, _omitEnumNames ? '' : 'healthcheck');
 
-  static const $core.List<StreamingEventsResponse_Type> values = <StreamingEventsResponse_Type> [
+  static const $core.List<StreamingEventsResponse_Type> values = <StreamingEventsResponse_Type>[
     healthcheck,
   ];
 
@@ -25,6 +25,5 @@ class StreamingEventsResponse_Type extends $pb.ProtobufEnum {
 
   const StreamingEventsResponse_Type._($core.int v, $core.String n) : super(v, n);
 }
-
 
 const _omitEnumNames = $core.bool.fromEnvironment('protobuf.omit_enum_names');

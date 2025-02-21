@@ -22,16 +22,11 @@ export 'streaming.pb.dart';
 
 @$pb.GrpcServiceName('Api.Streaming')
 class StreamingClient extends $grpc.Client {
-  static final _$events = $grpc.ClientMethod<$1.EmptyRequest, $3.StreamingEventsResponse>(
-      '/Api.Streaming/Events',
-      ($1.EmptyRequest value) => value.writeToBuffer(),
-      ($core.List<$core.int> value) => $3.StreamingEventsResponse.fromBuffer(value));
+  static final _$events = $grpc.ClientMethod<$1.EmptyRequest, $3.StreamingEventsResponse>('/Api.Streaming/Events',
+      ($1.EmptyRequest value) => value.writeToBuffer(), ($core.List<$core.int> value) => $3.StreamingEventsResponse.fromBuffer(value));
 
-  StreamingClient($grpc.ClientChannel channel,
-      {$grpc.CallOptions? options,
-      $core.Iterable<$grpc.ClientInterceptor>? interceptors})
-      : super(channel, options: options,
-        interceptors: interceptors);
+  StreamingClient($grpc.ClientChannel channel, {$grpc.CallOptions? options, $core.Iterable<$grpc.ClientInterceptor>? interceptors})
+      : super(channel, options: options, interceptors: interceptors);
 
   $grpc.ResponseStream<$3.StreamingEventsResponse> events($1.EmptyRequest request, {$grpc.CallOptions? options}) {
     return $createStreamingCall(_$events, $async.Stream.fromIterable([request]), options: options);
@@ -43,13 +38,8 @@ abstract class StreamingServiceBase extends $grpc.Service {
   $core.String get $name => 'Api.Streaming';
 
   StreamingServiceBase() {
-    $addMethod($grpc.ServiceMethod<$1.EmptyRequest, $3.StreamingEventsResponse>(
-        'Events',
-        events_Pre,
-        false,
-        true,
-        ($core.List<$core.int> value) => $1.EmptyRequest.fromBuffer(value),
-        ($3.StreamingEventsResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$1.EmptyRequest, $3.StreamingEventsResponse>('Events', events_Pre, false, true,
+        ($core.List<$core.int> value) => $1.EmptyRequest.fromBuffer(value), ($3.StreamingEventsResponse value) => value.writeToBuffer()));
   }
 
   $async.Stream<$3.StreamingEventsResponse> events_Pre($grpc.ServiceCall call, $async.Future<$1.EmptyRequest> request) async* {

@@ -19,8 +19,7 @@ const EmptyRequest$json = {
 };
 
 /// Descriptor for `EmptyRequest`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List emptyRequestDescriptor = $convert.base64Decode(
-    'CgxFbXB0eVJlcXVlc3Q=');
+final $typed_data.Uint8List emptyRequestDescriptor = $convert.base64Decode('CgxFbXB0eVJlcXVlc3Q=');
 
 @$core.Deprecated('Use emptyResponseDescriptor instead')
 const EmptyResponse$json = {
@@ -28,6 +27,4 @@ const EmptyResponse$json = {
 };
 
 /// Descriptor for `EmptyResponse`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List emptyResponseDescriptor = $convert.base64Decode(
-    'Cg1FbXB0eVJlc3BvbnNl');
-
+final $typed_data.Uint8List emptyResponseDescriptor = $convert.base64Decode('Cg1FbXB0eVJlc3BvbnNl');

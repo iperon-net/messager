@@ -32,7 +32,7 @@ analyzer:
   exclude:
     - "**/*.g.dart"
     - "**/*.freezed.dart"
-    - "protobuf/*"
+    - "lib/protobuf/*"
   errors:
     invalid_annotation_target: ignore
 

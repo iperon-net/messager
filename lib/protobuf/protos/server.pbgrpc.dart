@@ -22,16 +22,11 @@ export 'server.pb.dart';
 
 @$pb.GrpcServiceName('Api.Server')
 class ServerClient extends $grpc.Client {
-  static final _$info = $grpc.ClientMethod<$1.EmptyRequest, $2.ServerInfoResponse>(
-      '/Api.Server/Info',
-      ($1.EmptyRequest value) => value.writeToBuffer(),
-      ($core.List<$core.int> value) => $2.ServerInfoResponse.fromBuffer(value));
+  static final _$info = $grpc.ClientMethod<$1.EmptyRequest, $2.ServerInfoResponse>('/Api.Server/Info',
+      ($1.EmptyRequest value) => value.writeToBuffer(), ($core.List<$core.int> value) => $2.ServerInfoResponse.fromBuffer(value));
 
-  ServerClient($grpc.ClientChannel channel,
-      {$grpc.CallOptions? options,
-      $core.Iterable<$grpc.ClientInterceptor>? interceptors})
-      : super(channel, options: options,
-        interceptors: interceptors);
+  ServerClient($grpc.ClientChannel channel, {$grpc.CallOptions? options, $core.Iterable<$grpc.ClientInterceptor>? interceptors})
+      : super(channel, options: options, interceptors: interceptors);
 
   $grpc.ResponseFuture<$2.ServerInfoResponse> info($1.EmptyRequest request, {$grpc.CallOptions? options}) {
     return $createUnaryCall(_$info, request, options: options);
@@ -43,13 +38,8 @@ abstract class ServerServiceBase extends $grpc.Service {
   $core.String get $name => 'Api.Server';
 
   ServerServiceBase() {
-    $addMethod($grpc.ServiceMethod<$1.EmptyRequest, $2.ServerInfoResponse>(
-        'Info',
-        info_Pre,
-        false,
-        false,
-        ($core.List<$core.int> value) => $1.EmptyRequest.fromBuffer(value),
-        ($2.ServerInfoResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$1.EmptyRequest, $2.ServerInfoResponse>('Info', info_Pre, false, false,
+        ($core.List<$core.int> value) => $1.EmptyRequest.fromBuffer(value), ($2.ServerInfoResponse value) => value.writeToBuffer()));
   }
 
   $async.Future<$2.ServerInfoResponse> info_Pre($grpc.ServiceCall call, $async.Future<$1.EmptyRequest> request) async {

@@ -25,24 +25,25 @@ class AuthCreateByEmailRequest extends $pb.GeneratedMessage {
     return $result;
   }
   AuthCreateByEmailRequest._() : super();
-  factory AuthCreateByEmailRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory AuthCreateByEmailRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  factory AuthCreateByEmailRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory AuthCreateByEmailRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'AuthCreateByEmailRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'Api'), createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'AuthCreateByEmailRequest',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'Api'), createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'email')
-    ..hasRequiredFields = false
-  ;
+    ..hasRequiredFields = false;
 
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
   AuthCreateByEmailRequest clone() => AuthCreateByEmailRequest()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
-  AuthCreateByEmailRequest copyWith(void Function(AuthCreateByEmailRequest) updates) => super.copyWith((message) => updates(message as AuthCreateByEmailRequest)) as AuthCreateByEmailRequest;
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  AuthCreateByEmailRequest copyWith(void Function(AuthCreateByEmailRequest) updates) =>
+      super.copyWith((message) => updates(message as AuthCreateByEmailRequest)) as AuthCreateByEmailRequest;
 
   $pb.BuilderInfo get info_ => _i;
 
@@ -57,7 +58,10 @@ class AuthCreateByEmailRequest extends $pb.GeneratedMessage {
   @$pb.TagNumber(1)
   $core.String get email => $_getSZ(0);
   @$pb.TagNumber(1)
-  set email($core.String v) { $_setString(0, v); }
+  set email($core.String v) {
+    $_setString(0, v);
+  }
+
   @$pb.TagNumber(1)
   $core.bool hasEmail() => $_has(0);
   @$pb.TagNumber(1)
@@ -80,25 +84,26 @@ class AuthCreateByEmailResponse extends $pb.GeneratedMessage {
     return $result;
   }
   AuthCreateByEmailResponse._() : super();
-  factory AuthCreateByEmailResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory AuthCreateByEmailResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  factory AuthCreateByEmailResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory AuthCreateByEmailResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'AuthCreateByEmailResponse', package: const $pb.PackageName(_omitMessageNames ? '' : 'Api'), createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'AuthCreateByEmailResponse',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'Api'), createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'signInToken')
     ..aOS(2, _omitFieldNames ? '' : 'email')
-    ..hasRequiredFields = false
-  ;
+    ..hasRequiredFields = false;
 
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
   AuthCreateByEmailResponse clone() => AuthCreateByEmailResponse()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
-  AuthCreateByEmailResponse copyWith(void Function(AuthCreateByEmailResponse) updates) => super.copyWith((message) => updates(message as AuthCreateByEmailResponse)) as AuthCreateByEmailResponse;
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  AuthCreateByEmailResponse copyWith(void Function(AuthCreateByEmailResponse) updates) =>
+      super.copyWith((message) => updates(message as AuthCreateByEmailResponse)) as AuthCreateByEmailResponse;
 
   $pb.BuilderInfo get info_ => _i;
 
@@ -107,13 +112,17 @@ class AuthCreateByEmailResponse extends $pb.GeneratedMessage {
   AuthCreateByEmailResponse createEmptyInstance() => create();
   static $pb.PbList<AuthCreateByEmailResponse> createRepeated() => $pb.PbList<AuthCreateByEmailResponse>();
   @$core.pragma('dart2js:noInline')
-  static AuthCreateByEmailResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<AuthCreateByEmailResponse>(create);
+  static AuthCreateByEmailResponse getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<AuthCreateByEmailResponse>(create);
   static AuthCreateByEmailResponse? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.String get signInToken => $_getSZ(0);
   @$pb.TagNumber(1)
-  set signInToken($core.String v) { $_setString(0, v); }
+  set signInToken($core.String v) {
+    $_setString(0, v);
+  }
+
   @$pb.TagNumber(1)
   $core.bool hasSignInToken() => $_has(0);
   @$pb.TagNumber(1)
@@ -122,7 +131,10 @@ class AuthCreateByEmailResponse extends $pb.GeneratedMessage {
   @$pb.TagNumber(2)
   $core.String get email => $_getSZ(1);
   @$pb.TagNumber(2)
-  set email($core.String v) { $_setString(1, v); }
+  set email($core.String v) {
+    $_setString(1, v);
+  }
+
   @$pb.TagNumber(2)
   $core.bool hasEmail() => $_has(1);
   @$pb.TagNumber(2)
@@ -149,26 +161,27 @@ class AuthConfirmationRequest extends $pb.GeneratedMessage {
     return $result;
   }
   AuthConfirmationRequest._() : super();
-  factory AuthConfirmationRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory AuthConfirmationRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  factory AuthConfirmationRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory AuthConfirmationRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'AuthConfirmationRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'Api'), createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'AuthConfirmationRequest',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'Api'), createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'signInToken')
     ..a<$core.int>(2, _omitFieldNames ? '' : 'code', $pb.PbFieldType.O3)
     ..a<$core.List<$core.int>>(3, _omitFieldNames ? '' : 'exchangeKey', $pb.PbFieldType.OY)
-    ..hasRequiredFields = false
-  ;
+    ..hasRequiredFields = false;
 
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
   AuthConfirmationRequest clone() => AuthConfirmationRequest()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
-  AuthConfirmationRequest copyWith(void Function(AuthConfirmationRequest) updates) => super.copyWith((message) => updates(message as AuthConfirmationRequest)) as AuthConfirmationRequest;
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  AuthConfirmationRequest copyWith(void Function(AuthConfirmationRequest) updates) =>
+      super.copyWith((message) => updates(message as AuthConfirmationRequest)) as AuthConfirmationRequest;
 
   $pb.BuilderInfo get info_ => _i;
 
@@ -183,7 +196,10 @@ class AuthConfirmationRequest extends $pb.GeneratedMessage {
   @$pb.TagNumber(1)
   $core.String get signInToken => $_getSZ(0);
   @$pb.TagNumber(1)
-  set signInToken($core.String v) { $_setString(0, v); }
+  set signInToken($core.String v) {
+    $_setString(0, v);
+  }
+
   @$pb.TagNumber(1)
   $core.bool hasSignInToken() => $_has(0);
   @$pb.TagNumber(1)
@@ -192,7 +208,10 @@ class AuthConfirmationRequest extends $pb.GeneratedMessage {
   @$pb.TagNumber(2)
   $core.int get code => $_getIZ(1);
   @$pb.TagNumber(2)
-  set code($core.int v) { $_setSignedInt32(1, v); }
+  set code($core.int v) {
+    $_setSignedInt32(1, v);
+  }
+
   @$pb.TagNumber(2)
   $core.bool hasCode() => $_has(1);
   @$pb.TagNumber(2)
@@ -201,7 +220,10 @@ class AuthConfirmationRequest extends $pb.GeneratedMessage {
   @$pb.TagNumber(3)
   $core.List<$core.int> get exchangeKey => $_getN(2);
   @$pb.TagNumber(3)
-  set exchangeKey($core.List<$core.int> v) { $_setBytes(2, v); }
+  set exchangeKey($core.List<$core.int> v) {
+    $_setBytes(2, v);
+  }
+
   @$pb.TagNumber(3)
   $core.bool hasExchangeKey() => $_has(2);
   @$pb.TagNumber(3)
@@ -232,27 +254,28 @@ class AuthConfirmationResponse extends $pb.GeneratedMessage {
     return $result;
   }
   AuthConfirmationResponse._() : super();
-  factory AuthConfirmationResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory AuthConfirmationResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  factory AuthConfirmationResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory AuthConfirmationResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'AuthConfirmationResponse', package: const $pb.PackageName(_omitMessageNames ? '' : 'Api'), createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'AuthConfirmationResponse',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'Api'), createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'sessionToken')
     ..aOS(2, _omitFieldNames ? '' : 'email')
     ..aOS(3, _omitFieldNames ? '' : 'userId')
     ..a<$core.List<$core.int>>(4, _omitFieldNames ? '' : 'exchangeKey', $pb.PbFieldType.OY)
-    ..hasRequiredFields = false
-  ;
+    ..hasRequiredFields = false;
 
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
   AuthConfirmationResponse clone() => AuthConfirmationResponse()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
-  AuthConfirmationResponse copyWith(void Function(AuthConfirmationResponse) updates) => super.copyWith((message) => updates(message as AuthConfirmationResponse)) as AuthConfirmationResponse;
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  AuthConfirmationResponse copyWith(void Function(AuthConfirmationResponse) updates) =>
+      super.copyWith((message) => updates(message as AuthConfirmationResponse)) as AuthConfirmationResponse;
 
   $pb.BuilderInfo get info_ => _i;
 
@@ -267,7 +290,10 @@ class AuthConfirmationResponse extends $pb.GeneratedMessage {
   @$pb.TagNumber(1)
   $core.String get sessionToken => $_getSZ(0);
   @$pb.TagNumber(1)
-  set sessionToken($core.String v) { $_setString(0, v); }
+  set sessionToken($core.String v) {
+    $_setString(0, v);
+  }
+
   @$pb.TagNumber(1)
   $core.bool hasSessionToken() => $_has(0);
   @$pb.TagNumber(1)
@@ -276,7 +302,10 @@ class AuthConfirmationResponse extends $pb.GeneratedMessage {
   @$pb.TagNumber(2)
   $core.String get email => $_getSZ(1);
   @$pb.TagNumber(2)
-  set email($core.String v) { $_setString(1, v); }
+  set email($core.String v) {
+    $_setString(1, v);
+  }
+
   @$pb.TagNumber(2)
   $core.bool hasEmail() => $_has(1);
   @$pb.TagNumber(2)
@@ -285,7 +314,10 @@ class AuthConfirmationResponse extends $pb.GeneratedMessage {
   @$pb.TagNumber(3)
   $core.String get userId => $_getSZ(2);
   @$pb.TagNumber(3)
-  set userId($core.String v) { $_setString(2, v); }
+  set userId($core.String v) {
+    $_setString(2, v);
+  }
+
   @$pb.TagNumber(3)
   $core.bool hasUserId() => $_has(2);
   @$pb.TagNumber(3)
@@ -294,13 +326,15 @@ class AuthConfirmationResponse extends $pb.GeneratedMessage {
   @$pb.TagNumber(4)
   $core.List<$core.int> get exchangeKey => $_getN(3);
   @$pb.TagNumber(4)
-  set exchangeKey($core.List<$core.int> v) { $_setBytes(3, v); }
+  set exchangeKey($core.List<$core.int> v) {
+    $_setBytes(3, v);
+  }
+
   @$pb.TagNumber(4)
   $core.bool hasExchangeKey() => $_has(3);
   @$pb.TagNumber(4)
   void clearExchangeKey() => clearField(4);
 }
-
 
 const _omitFieldNames = $core.bool.fromEnvironment('protobuf.omit_field_names');
 const _omitMessageNames = $core.bool.fromEnvironment('protobuf.omit_message_names');
