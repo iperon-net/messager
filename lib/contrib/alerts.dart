@@ -7,6 +7,16 @@ import 'di.dart';
 import 'logger.dart';
 import 'utils.dart';
 
+class Alert {
+  String title;
+  String message;
+
+  bool i18n = false;
+  Duration duration = const Duration(seconds: 10);
+
+  Alert(this.title, this.message);
+}
+
 class Alerts {
   final logger = getIt.get<Logger>();
   final utils = getIt.get<Utils>();
@@ -51,17 +61,12 @@ class Alerts {
     }
   }
 
-  Future<void> show(BuildContext context, {
-    required String title,
-    required String message,
-    bool i18n = false,
-    Duration duration = const Duration(seconds: 5)
-  }) async {
+  Future<void> show(BuildContext context, Alert alert) async {
 
     if (utils.platform == SysPlatform.ios && context.mounted) {
-      showCupertinoAlertDialog(context, title: title, message: message, i18n: i18n);
+      showCupertinoAlertDialog(context, title: alert.title, message: alert.message, i18n: alert.i18n);
     } else if (utils.platform == SysPlatform.android && context.mounted) {
-      showMaterialAlertDialog(context, title: title, message: message, i18n: i18n, duration: duration);
+      showMaterialAlertDialog(context, title: alert.title, message: alert.message, i18n: alert.i18n, duration: alert.duration);
     }
   }
 }

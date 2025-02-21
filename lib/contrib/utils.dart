@@ -39,23 +39,23 @@ class Utils {
     }, context: context);
   */
   Future<R?> exception<R>(Future<R> Function() func, {BuildContext? context}) async {
-    final alerts = getIt.get<Alerts>();
+    // final alerts = getIt.get<Alerts>();
 
     try {
       return await func();
     } on BaseException catch(error) {
       logger.error("Error exception: ${error.message}");
 
-      if (context != null){
-        alerts.show(context, title: context.tr("error"), message: error.message);
-      }
+      // if (context != null){
+        // alerts.show(context, title: context.tr("error"), message: error.message);
+      // }
       return null;
 
     } catch (error) {
       logger.error("Error exception: $error");
-      if (context != null){
-        alerts.show(context, title: context.tr("error"), message: error.toString());
-      }
+      // if (context != null){
+        // alerts.show(context, title: context.tr("error"), message: error.toString());
+      // }
       return null;
     }
   }

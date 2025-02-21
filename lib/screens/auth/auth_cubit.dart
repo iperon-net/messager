@@ -37,9 +37,9 @@ class AuthCubit extends Cubit<AuthState> {
   String? validatorEmail(BuildContext context, String? value) {
     if (value == null || value.isEmpty) return context.tr('enterValidEmail');
 
-    utils.exception(() async {
-      throw BaseException("eeeee");
-    }, context: context);
+    // utils.exception(() async {
+    //   throw BaseException("eeeee");
+    // }, context: context);
 
     value = value.replaceAll(' ', '').toLowerCase();
     final bool isValid = EmailValidator.validate(value);
@@ -58,6 +58,7 @@ class AuthCubit extends Cubit<AuthState> {
 
     emit(state.copyWith(statusState: StatusState.success));
 
-    if (context.mounted) alerts.show(context, title: "Error", message: "Системная ошибка", duration: Duration(seconds: 20));
+    if (context.mounted) alerts.show(context, Alert("Error", "Системная ошибка"));
+
   }
 }
