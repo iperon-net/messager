@@ -5,10 +5,12 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:messenger/constants.dart';
+import 'package:messenger/exceptions.dart';
 
 import '../../contrib/alerts.dart';
 import '../../contrib/di.dart';
 import '../../contrib/logger.dart';
+import '../../contrib/utils.dart';
 
 part 'auth_state.dart';
 part 'auth_cubit.freezed.dart';
@@ -16,6 +18,7 @@ part 'auth_cubit.freezed.dart';
 class AuthCubit extends Cubit<AuthState> {
   final logger = getIt.get<Logger>();
   final alerts = getIt.get<Alerts>();
+  final utils = getIt.get<Utils>();
 
   AuthCubit()
       : super(
@@ -26,9 +29,23 @@ class AuthCubit extends Cubit<AuthState> {
           ),
         );
 
+  Future<void> testException() async {
+    throw BaseException("eeeee");
+  }
+
   // Validator email
   String? validatorEmail(BuildContext context, String? value) {
     if (value == null || value.isEmpty) return context.tr('enterValidEmail');
+
+    utils.exception(() async {
+      throw BaseException("eeeee");
+    }, context: context);
+
+    // try {
+    //   throw BaseException("eeeee");
+    // } on BaseException  catch (e, s) {
+    //   logger.error("ddddd ${e.message} ${s.toString()}");
+    // }
 
     value = value.replaceAll(' ', '').toLowerCase();
     final bool isValid = EmailValidator.validate(value);
@@ -47,6 +64,6 @@ class AuthCubit extends Cubit<AuthState> {
 
     emit(state.copyWith(statusState: StatusState.success));
 
-    if (context.mounted) alerts.show(context, title: "Error", message: "Test message");
+    if (context.mounted) alerts.show(context, title: "Error", message: "Системная ошибка", duration: Duration(seconds: 20));
   }
 }

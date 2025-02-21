@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../themes.dart';
 import 'di.dart';
 import 'logger.dart';
 import 'utils.dart';
@@ -32,13 +33,14 @@ class Alerts {
     );
   }
 
-  void showMaterialAlertDialog(BuildContext context, {required String title, required String message, required bool i18n}) {
+  void showMaterialAlertDialog(BuildContext context, {required String title, required String message, required Duration duration, required bool i18n}) {
     ScaffoldMessenger.of(context).clearSnackBars();
 
     final showSnackBar = SnackBar(
       content: Text(i18n ? context.tr(message) : message),
       showCloseIcon: true,
-      duration: const Duration(seconds: 5),
+      duration: duration,
+      backgroundColor: AppColors.alertBackgroundColor,
     );
     ScaffoldMessenger.of(context).showSnackBar(showSnackBar);
   }
@@ -49,11 +51,17 @@ class Alerts {
     }
   }
 
-  Future<void> show(BuildContext context, {required String title, required String message, bool i18n = false}) async {
+  Future<void> show(BuildContext context, {
+    required String title,
+    required String message,
+    bool i18n = false,
+    Duration duration = const Duration(seconds: 5)
+  }) async {
+
     if (utils.platform == SysPlatform.ios && context.mounted) {
       showCupertinoAlertDialog(context, title: title, message: message, i18n: i18n);
     } else if (utils.platform == SysPlatform.android && context.mounted) {
-      showMaterialAlertDialog(context, title: title, message: message, i18n: i18n);
+      showMaterialAlertDialog(context, title: title, message: message, i18n: i18n, duration: duration);
     }
   }
 }
