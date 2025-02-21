@@ -41,12 +41,6 @@ class AuthCubit extends Cubit<AuthState> {
       throw BaseException("eeeee");
     }, context: context);
 
-    // try {
-    //   throw BaseException("eeeee");
-    // } on BaseException  catch (e, s) {
-    //   logger.error("ddddd ${e.message} ${s.toString()}");
-    // }
-
     value = value.replaceAll(' ', '').toLowerCase();
     final bool isValid = EmailValidator.validate(value);
     if (!isValid) return context.tr('invalidEmailAddress');

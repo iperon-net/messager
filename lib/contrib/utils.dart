@@ -43,7 +43,7 @@ class Utils {
 
     try {
       return await func();
-    } on BaseException catch(error, stacktrace) {
+    } on BaseException catch(error) {
       logger.error("Error exception: ${error.message}");
 
       if (context != null){
