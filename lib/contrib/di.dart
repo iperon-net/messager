@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get_it/get_it.dart';
 
+import 'alerts.dart';
 import 'connectivity.dart';
 import 'crypto.dart';
 import '../firebase_options.dart';
@@ -54,6 +55,12 @@ Future<void> configureDI() async {
     final connectivity = Connectivity();
     await connectivity.initialization();
     return connectivity;
+  }, dependsOn: [Logger, Settings, Utils]);
+
+  getIt.registerSingletonAsync<Alerts>(() async {
+    final alerts = Alerts();
+    await alerts.initialization();
+    return alerts;
   }, dependsOn: [Logger, Settings, Utils]);
 
   getIt.registerSingletonAsync<Repositories>(() async {

@@ -7,8 +7,8 @@ targets:
           # This can significantly speed up code-generation.
           format: false
           # Disable the generation of copyWith/== for the entire project
-          copy_with: false
-          equal: false
+          copy_with: true
+          equal: true
           # `when` and `map` can be enabled/disabled entirely by setting them to `true`/`false`
           map: true
           # We can also enable/disable specific variants of `when`/`map` by setting them to `true`/`false`:

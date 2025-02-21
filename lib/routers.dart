@@ -1,12 +1,11 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-
-import 'contrib/di.dart';
-import 'contrib/logger.dart';
+import 'screens/auth/auth_cubit.dart';
 import 'screens/auth/auth_screen.dart';
 
 GoRouter get router {
-
   return GoRouter(
     initialLocation: "/auth",
     // observers: <NavigatorObserver>[
@@ -19,10 +18,12 @@ GoRouter get router {
         name: "auth",
         // redirect: middlewareAuth,
         builder: (BuildContext context, GoRouterState state) {
-          return const AuthScreen();
-        },
+          return BlocProvider(
+            create: (BuildContext context) => AuthCubit(),
+            child: const AuthScreen(),
+          );
+        }
       ),
     ]
   );
-
 }

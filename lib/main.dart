@@ -1,30 +1,17 @@
-import 'dart:convert';
-import 'dart:math';
-
-import 'package:convert/convert.dart' as convert;
 import 'package:easy_localization/easy_localization.dart';
 import 'package:easy_localization_loader/easy_localization_loader.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:flutter_udid/flutter_udid.dart';
-import 'package:grpc/grpc.dart';
-import 'package:messenger/contrib/di.dart';
-import 'package:messenger/themes.dart';
-import 'package:permission_handler/permission_handler.dart';
 
-import 'components/not_implemented/not_implemented_component.dart';
+
 import 'contrib/crypto.dart';
+import 'contrib/di.dart';
+import 'contrib/logger.dart';
 import 'contrib/settings.dart';
 import 'contrib/utils.dart';
-import 'firebase_options.dart';
-import 'contrib/logger.dart';
-import 'contrib/notifications.dart';
-import 'protobuf/protos/auth.pbgrpc.dart';
-import 'contrib/syncer.dart';
 import 'routers.dart';
+import 'themes.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -74,7 +61,6 @@ Future<void> main() async {
   // logger.debug(response.sessionToken);
 
 
-
   // String udid = await FlutterUdid.udid;
   // logger.debug(udid.toString());
 
@@ -103,33 +89,17 @@ Future<void> main() async {
   //
   // await flutterLocalNotificationsPlugin.show(Random().nextInt(1000000), 'Тест', 'Тело', notificationDetails, payload: null);
 
-  // runApp(MultiBlocProvider(
-  //   providers: [
-  //     BlocProvider<BlocC>(
-  //       create: (BuildContext context) => BlocC(),
-  //     ),
-  //   ],
-  //   child: EasyLocalization(
-  //     supportedLocales: <Locale>[
-  //       const Locale('en', 'US')
-  //     ],
-  //     path: 'assets/translations',
-  //     fallbackLocale: Locale('en', 'US'),
-  //     child: utils.platform == SysPlatform.ios ? const IperonMessengerCupertino() : const IperonMessengerMaterial(),
-  //   ),
-  // ));
-
   runApp(EasyLocalization(
-    supportedLocales: <Locale>[
-      const Locale('en', 'US')
-    ],
-    path: 'assets/translations',
-    saveLocale: true,
-    assetLoader: YamlAssetLoader(),
-    fallbackLocale: const Locale('en', 'US'),
-    child: utils.platform == SysPlatform.ios ? const IperonMessengerCupertino() : const IperonMessengerMaterial(),
-  ));
-
+      supportedLocales: <Locale>[
+        const Locale('en', 'US')
+      ],
+      path: 'assets/translations',
+      saveLocale: true,
+      assetLoader: YamlAssetLoader(),
+      fallbackLocale: const Locale('en', 'US'),
+      child: utils.platform == SysPlatform.ios ? const IperonMessengerCupertino() : const IperonMessengerMaterial(),
+    ),
+  );
 }
 
 void onDidReceiveNotificationResponse(NotificationResponse notificationResponse) async {
@@ -170,21 +140,21 @@ class IperonMessengerCupertino extends StatelessWidget {
       supportedLocales: context.supportedLocales,
       locale: context.locale,
       routerConfig: router,
-        theme: const CupertinoThemeData(
-          primaryColor: CupertinoDynamicColor.withBrightness(
-            color: Color(0xff72538d),
-            darkColor: Color(0xff605fc5),
-          ),
-          barBackgroundColor:CupertinoDynamicColor.withBrightness(
-            color: Colors.white,
-            darkColor: Color(0xff1b263b),
-          ),
-          scaffoldBackgroundColor: CupertinoDynamicColor.withBrightness(
-            color: Colors.white,
-            darkColor: Color(0xff1b263b),
-          ),
-          // textTheme: CupertinoTextThemeData(),
+      theme: const CupertinoThemeData(
+        primaryColor: CupertinoDynamicColor.withBrightness(
+          color: Color(0xff72538d),
+          darkColor: Color(0xff605fc5),
         ),
+        barBackgroundColor: CupertinoDynamicColor.withBrightness(
+          color: Colors.white,
+          darkColor: Color(0xff1b263b),
+        ),
+        scaffoldBackgroundColor: CupertinoDynamicColor.withBrightness(
+          color: Colors.white,
+          darkColor: Color(0xff1b263b),
+        ),
+        // textTheme: CupertinoTextThemeData(),
+      ),
     );
   }
 }
