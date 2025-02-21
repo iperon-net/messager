@@ -26,6 +26,7 @@ class AuthScreen extends StatelessWidget {
   }
 }
 
+// Android
 class AuthScreenAndroid extends StatelessWidget {
   const AuthScreenAndroid({super.key});
 
@@ -79,6 +80,7 @@ class AuthScreenAndroid extends StatelessWidget {
   }
 }
 
+// iOS
 class AuthScreenIOS extends StatelessWidget {
   const AuthScreenIOS({super.key});
 
