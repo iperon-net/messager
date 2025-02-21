@@ -15,19 +15,20 @@ class Alerts {
   void showCupertinoAlertDialog(BuildContext context, {required String title, required String message, required bool i18n}) {
     showCupertinoDialog<void>(
       context: context,
-      builder: (BuildContext context) => CupertinoAlertDialog(
-        title: Text(i18n ? context.tr(title) : title),
-        content: Text(i18n ? context.tr(message) : message),
-        actions: <CupertinoDialogAction>[
-          CupertinoDialogAction(
-            isDestructiveAction: true,
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            child: Text(context.tr("close")),
+      builder: (BuildContext context) =>
+          CupertinoAlertDialog(
+            title: Text(i18n ? context.tr(title) : title),
+            content: Text(i18n ? context.tr(message) : message),
+            actions: <CupertinoDialogAction>[
+              CupertinoDialogAction(
+                isDestructiveAction: true,
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: Text(context.tr("close")),
+              ),
+            ],
           ),
-        ],
-      ),
     );
   }
 
@@ -40,6 +41,12 @@ class Alerts {
       duration: const Duration(seconds: 5),
     );
     ScaffoldMessenger.of(context).showSnackBar(showSnackBar);
+  }
+
+  Future<void> reset(BuildContext context) async {
+    if (utils.platform == SysPlatform.android && context.mounted) {
+      ScaffoldMessenger.of(context).clearSnackBars();
+    }
   }
 
   Future<void> show(BuildContext context, {required String title, required String message, bool i18n = false}) async {

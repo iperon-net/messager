@@ -23,6 +23,7 @@ const ServerInfoResponse$json = {
 };
 
 /// Descriptor for `ServerInfoResponse`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List serverInfoResponseDescriptor =
-    $convert.base64Decode('ChJTZXJ2ZXJJbmZvUmVzcG9uc2USIAoLZW52aXJvbm1lbnQYASABKAlSC2Vudmlyb25tZW50Eh'
-        '0KCnB1YmxpY19rZXkYAiABKAlSCXB1YmxpY0tleQ==');
+final $typed_data.Uint8List serverInfoResponseDescriptor = $convert.base64Decode(
+    'ChJTZXJ2ZXJJbmZvUmVzcG9uc2USIAoLZW52aXJvbm1lbnQYASABKAlSC2Vudmlyb25tZW50Eh'
+    '0KCnB1YmxpY19rZXkYAiABKAlSCXB1YmxpY0tleQ==');
+

@@ -22,8 +22,8 @@ const AuthCreateByEmailRequest$json = {
 };
 
 /// Descriptor for `AuthCreateByEmailRequest`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List authCreateByEmailRequestDescriptor =
-    $convert.base64Decode('ChhBdXRoQ3JlYXRlQnlFbWFpbFJlcXVlc3QSFAoFZW1haWwYASABKAlSBWVtYWls');
+final $typed_data.Uint8List authCreateByEmailRequestDescriptor = $convert.base64Decode(
+    'ChhBdXRoQ3JlYXRlQnlFbWFpbFJlcXVlc3QSFAoFZW1haWwYASABKAlSBWVtYWls');
 
 @$core.Deprecated('Use authCreateByEmailResponseDescriptor instead')
 const AuthCreateByEmailResponse$json = {
@@ -35,9 +35,9 @@ const AuthCreateByEmailResponse$json = {
 };
 
 /// Descriptor for `AuthCreateByEmailResponse`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List authCreateByEmailResponseDescriptor =
-    $convert.base64Decode('ChlBdXRoQ3JlYXRlQnlFbWFpbFJlc3BvbnNlEiIKDXNpZ25faW5fdG9rZW4YASABKAlSC3NpZ2'
-        '5JblRva2VuEhQKBWVtYWlsGAIgASgJUgVlbWFpbA==');
+final $typed_data.Uint8List authCreateByEmailResponseDescriptor = $convert.base64Decode(
+    'ChlBdXRoQ3JlYXRlQnlFbWFpbFJlc3BvbnNlEiIKDXNpZ25faW5fdG9rZW4YASABKAlSC3NpZ2'
+    '5JblRva2VuEhQKBWVtYWlsGAIgASgJUgVlbWFpbA==');
 
 @$core.Deprecated('Use authConfirmationRequestDescriptor instead')
 const AuthConfirmationRequest$json = {
@@ -50,10 +50,10 @@ const AuthConfirmationRequest$json = {
 };
 
 /// Descriptor for `AuthConfirmationRequest`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List authConfirmationRequestDescriptor =
-    $convert.base64Decode('ChdBdXRoQ29uZmlybWF0aW9uUmVxdWVzdBIiCg1zaWduX2luX3Rva2VuGAEgASgJUgtzaWduSW'
-        '5Ub2tlbhISCgRjb2RlGAIgASgFUgRjb2RlEiEKDGV4Y2hhbmdlX2tleRgDIAEoDFILZXhjaGFu'
-        'Z2VLZXk=');
+final $typed_data.Uint8List authConfirmationRequestDescriptor = $convert.base64Decode(
+    'ChdBdXRoQ29uZmlybWF0aW9uUmVxdWVzdBIiCg1zaWduX2luX3Rva2VuGAEgASgJUgtzaWduSW'
+    '5Ub2tlbhISCgRjb2RlGAIgASgFUgRjb2RlEiEKDGV4Y2hhbmdlX2tleRgDIAEoDFILZXhjaGFu'
+    'Z2VLZXk=');
 
 @$core.Deprecated('Use authConfirmationResponseDescriptor instead')
 const AuthConfirmationResponse$json = {
@@ -67,7 +67,8 @@ const AuthConfirmationResponse$json = {
 };
 
 /// Descriptor for `AuthConfirmationResponse`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List authConfirmationResponseDescriptor =
-    $convert.base64Decode('ChhBdXRoQ29uZmlybWF0aW9uUmVzcG9uc2USIwoNc2Vzc2lvbl90b2tlbhgBIAEoCVIMc2Vzc2'
-        'lvblRva2VuEhQKBWVtYWlsGAIgASgJUgVlbWFpbBIXCgd1c2VyX2lkGAMgASgJUgZ1c2VySWQS'
-        'IQoMZXhjaGFuZ2Vfa2V5GAQgASgMUgtleGNoYW5nZUtleQ==');
+final $typed_data.Uint8List authConfirmationResponseDescriptor = $convert.base64Decode(
+    'ChhBdXRoQ29uZmlybWF0aW9uUmVzcG9uc2USIwoNc2Vzc2lvbl90b2tlbhgBIAEoCVIMc2Vzc2'
+    'lvblRva2VuEhQKBWVtYWlsGAIgASgJUgVlbWFpbBIXCgd1c2VyX2lkGAMgASgJUgZ1c2VySWQS'
+    'IQoMZXhjaGFuZ2Vfa2V5GAQgASgMUgtleGNoYW5nZUtleQ==');
+

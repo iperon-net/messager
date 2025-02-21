@@ -52,9 +52,9 @@ class AuthScreenAndroid extends StatelessWidget {
                   TextFormField(
                     // onTap: () => ScaffoldMessenger.of(context).clearSnackBars(),
                     onTap: () {},
-                    // validator: (value) => context.read<AuthCubit>().validatorEmail(context, value),
-                    // focusNode: context.read<AuthCubit>().focusNodeEmail,
-                    // controller: context.read<AuthCubit>().textControllerEmail,
+                    validator: (value) => context.read<AuthCubit>().validatorEmail(context, value),
+                    focusNode: state.focusNodeEmail,
+                    controller: state.textControllerEmail,
                     style: const TextStyle(fontSize: 15),
                     keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(

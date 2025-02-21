@@ -1,4 +1,6 @@
 import 'package:bloc/bloc.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -24,16 +26,27 @@ class AuthCubit extends Cubit<AuthState> {
           ),
         );
 
+  // Validator email
+  String? validatorEmail(BuildContext context, String? value) {
+    if (value == null || value.isEmpty) return context.tr('enterValidEmail');
+
+    value = value.replaceAll(' ', '').toLowerCase();
+    final bool isValid = EmailValidator.validate(value);
+    if (!isValid) return context.tr('invalidEmailAddress');
+    return null;
+  }
+
   Future<void> validator(BuildContext context) async {
+    await alerts.reset(context);
+
     if (!state.formKey.currentState!.validate()) return;
 
     logger.debug("validator");
 
-    emit(state.copyWith(errorMessage: "", statusState: StatusState.loading));
+    emit(state.copyWith(statusState: StatusState.loading));
 
-    emit(state.copyWith(errorMessage: "", statusState: StatusState.success));
+    emit(state.copyWith(statusState: StatusState.success));
 
-    alerts.show(context, title: "Error", message: "Test message");
-    // context.read<AlertCubit>().setErrorMessage(context, "success");
+    if (context.mounted) alerts.show(context, title: "Error", message: "Test message");
   }
 }

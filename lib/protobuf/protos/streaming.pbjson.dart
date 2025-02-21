@@ -31,6 +31,7 @@ const StreamingEventsResponse_Type$json = {
 };
 
 /// Descriptor for `StreamingEventsResponse`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List streamingEventsResponseDescriptor =
-    $convert.base64Decode('ChdTdHJlYW1pbmdFdmVudHNSZXNwb25zZRI1CgR0eXBlGAEgASgOMiEuQXBpLlN0cmVhbWluZ0'
-        'V2ZW50c1Jlc3BvbnNlLlR5cGVSBHR5cGUiFwoEVHlwZRIPCgtoZWFsdGhjaGVjaxAA');
+final $typed_data.Uint8List streamingEventsResponseDescriptor = $convert.base64Decode(
+    'ChdTdHJlYW1pbmdFdmVudHNSZXNwb25zZRI1CgR0eXBlGAEgASgOMiEuQXBpLlN0cmVhbWluZ0'
+    'V2ZW50c1Jlc3BvbnNlLlR5cGVSBHR5cGUiFwoEVHlwZRIPCgtoZWFsdGhjaGVjaxAA');
+
