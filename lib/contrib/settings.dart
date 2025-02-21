@@ -1,4 +1,3 @@
-
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -18,7 +17,7 @@ class Settings {
 
     await remoteConfig.setConfigSettings(RemoteConfigSettings(
       fetchTimeout: Duration(seconds: 10),
-      minimumFetchInterval: kDebugMode ? Duration(hours: 1): Duration(hours: 12),
+      minimumFetchInterval: kDebugMode ? Duration(hours: 1) : Duration(hours: 12),
     ));
 
     await remoteConfig.setDefaults({
@@ -65,5 +64,4 @@ class Settings {
   int get healthcheckInterval {
     return remoteConfig.getInt("healthcheck_interval");
   }
-
 }

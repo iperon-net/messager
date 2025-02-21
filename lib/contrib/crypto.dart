@@ -1,4 +1,3 @@
-
 import 'dart:convert';
 import 'dart:typed_data';
 
@@ -37,7 +36,6 @@ class CryptoKeyExchangeGenerateKeyPair {
   logger.debug("sharedKey = $sharedKey");
 
 */
-
 
 class Crypto {
   final logger = getIt.get<Logger>();
@@ -83,5 +81,4 @@ class Crypto {
 
     return sharedSecret.extractBytes();
   }
-
 }

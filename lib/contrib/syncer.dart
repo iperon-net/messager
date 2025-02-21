@@ -1,7 +1,5 @@
-
 import 'dart:async';
 import 'dart:isolate';
-
 
 import 'di.dart';
 import 'logger.dart';
@@ -50,5 +48,4 @@ class Syncer {
       await Future.delayed(Duration(seconds: 5));
     }
   }
-
 }

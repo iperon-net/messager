@@ -29,10 +29,9 @@ ThemeData get themeLight {
   return ThemeData(
     useMaterial3: true,
     appBarTheme: const AppBarTheme(
-      backgroundColor: AppColors.appBarBackgroundColor,
-      foregroundColor: AppColors.appBarForegroundColor,
-      titleTextStyle: TextStyle(fontSize: 15)
-    ),
+        backgroundColor: AppColors.appBarBackgroundColor,
+        foregroundColor: AppColors.appBarForegroundColor,
+        titleTextStyle: TextStyle(fontSize: 15)),
     scaffoldBackgroundColor: Colors.white,
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
@@ -87,10 +86,8 @@ ThemeData get themeLight {
       selectedLabelStyle: TextStyle(fontSize: 12),
       unselectedLabelStyle: TextStyle(fontSize: 12),
     ),
-
     listTileTheme: const ListTileThemeData(
       selectedColor: AppColors.primaryColor,
     ),
   );
-
 }

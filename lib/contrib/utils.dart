@@ -28,5 +28,4 @@ class Utils {
       return SysPlatform.android;
     }
   }
-
 }

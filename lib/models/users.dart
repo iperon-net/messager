@@ -13,31 +13,16 @@ class User with _$User {
   @JsonSerializable(
     explicitToJson: true,
   )
-
   const factory User({
-    @JsonKey(name: 'email')
-    required String email,
-
-    @JsonKey(name: 'username')
-    @Default('') String username,
-
-    @JsonKey(name: 'session')
-    required String session,
-
-    @ConverterBoolToInt()
-    @JsonKey(name: 'is_active')
-    @Default(false) bool isActive,
-
-    @JsonKey(name: 'crypto_key')
-    @Default("") String cryptoKey,
+    @JsonKey(name: 'email') required String email,
+    @JsonKey(name: 'username') @Default('') String username,
+    @JsonKey(name: 'session') required String session,
+    @ConverterBoolToInt() @JsonKey(name: 'is_active') @Default(false) bool isActive,
+    @JsonKey(name: 'crypto_key') @Default("") String cryptoKey,
 
     // @JsonKey(name: 'profile')
     // @Default("") Profile profile,
-
   }) = _User;
-
 
   factory User.fromJson(Map<String, Object?> json) => _$UserFromJson(json);
 }
-
-

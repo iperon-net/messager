@@ -32,5 +32,9 @@ analyzer:
   exclude:
     - "**/*.g.dart"
     - "**/*.freezed.dart"
+    - "protobuf/*"
   errors:
     invalid_annotation_target: ignore
+
+formatter:
+  page_width: 140

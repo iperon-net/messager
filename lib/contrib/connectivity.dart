@@ -38,13 +38,12 @@ class Connectivity {
         InternetCheckOption(
             uri: Uri.parse(settings.healthcheckUrl),
             timeout: Duration(seconds: settings.healthcheckTimeout),
-            headers: {"User-Agent": utils.userAgent}
-        ),
+            headers: {"User-Agent": utils.userAgent}),
       ],
     );
 
     connection.onStatusChange.listen((InternetStatus status) {
-      if(status == InternetStatus.connected){
+      if (status == InternetStatus.connected) {
         streamController.add(ConnectivityStatus.connected);
         logger.info("The device is connected internet");
       } else {
@@ -61,5 +60,4 @@ class Connectivity {
 
   // check
   Future<bool> get check async => await InternetConnection().hasInternetAccess;
-
 }

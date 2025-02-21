@@ -4,7 +4,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
-
 import 'contrib/crypto.dart';
 import 'contrib/di.dart';
 import 'contrib/logger.dart';
@@ -60,7 +59,6 @@ Future<void> main() async {
   // logger.debug(base64.encode(sharedKey));
   // logger.debug(response.sessionToken);
 
-
   // String udid = await FlutterUdid.udid;
   // logger.debug(udid.toString());
 
@@ -89,10 +87,9 @@ Future<void> main() async {
   //
   // await flutterLocalNotificationsPlugin.show(Random().nextInt(1000000), 'Тест', 'Тело', notificationDetails, payload: null);
 
-  runApp(EasyLocalization(
-      supportedLocales: <Locale>[
-        const Locale('en', 'US')
-      ],
+  runApp(
+    EasyLocalization(
+      supportedLocales: <Locale>[const Locale('en', 'US')],
       path: 'assets/translations',
       saveLocale: true,
       assetLoader: YamlAssetLoader(),

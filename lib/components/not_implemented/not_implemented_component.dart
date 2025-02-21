@@ -14,18 +14,12 @@ class NotImplementedComponent extends StatelessWidget {
 
     if (utils.platform == SysPlatform.ios) {
       return CupertinoPageScaffold(
-        child: Center(
-            child: Text(context.tr("notImplementedScreen"))
-        ),
+        child: Center(child: Text(context.tr("notImplementedScreen"))),
       );
     }
 
     return Scaffold(
-      body: Center(
-          child: Text(context.tr("notImplementedScreen"))
-      ),
+      body: Center(child: Text(context.tr("notImplementedScreen"))),
     );
-
   }
-
 }

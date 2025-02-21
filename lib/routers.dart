@@ -7,23 +7,22 @@ import 'screens/auth/auth_screen.dart';
 
 GoRouter get router {
   return GoRouter(
-    initialLocation: "/auth",
-    // observers: <NavigatorObserver>[
-    //   TalkerRouteObserver(logger.talker),
-    //   FirebaseAnalyticsObserver(analytics: FirebaseAnalytics.instance),
-    // ],
-    routes: <RouteBase>[
-      GoRoute(
-        path: "/auth",
-        name: "auth",
-        // redirect: middlewareAuth,
-        builder: (BuildContext context, GoRouterState state) {
-          return BlocProvider(
-            create: (BuildContext context) => AuthCubit(),
-            child: const AuthScreen(),
-          );
-        }
-      ),
-    ]
-  );
+      initialLocation: "/auth",
+      // observers: <NavigatorObserver>[
+      //   TalkerRouteObserver(logger.talker),
+      //   FirebaseAnalyticsObserver(analytics: FirebaseAnalytics.instance),
+      // ],
+      routes: <RouteBase>[
+        GoRoute(
+          path: "/auth",
+          name: "auth",
+          // redirect: middlewareAuth,
+          builder: (BuildContext context, GoRouterState state) {
+            return BlocProvider(
+              create: (BuildContext context) => AuthCubit(),
+              child: const AuthScreen(),
+            );
+          },
+        ),
+      ]);
 }

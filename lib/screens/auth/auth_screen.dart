@@ -7,13 +7,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../contrib/di.dart';
 import '../../contrib/logger.dart';
 import '../../contrib/utils.dart';
-import '../../themes.dart';
 import 'auth_cubit.dart';
-
 
 class AuthScreen extends StatelessWidget {
   const AuthScreen({super.key});
-
 
   @override
   Widget build(BuildContext context) {
@@ -27,9 +24,7 @@ class AuthScreen extends StatelessWidget {
       return AuthScreenAndroid();
     }
   }
-
 }
-
 
 class AuthScreenAndroid extends StatelessWidget {
   const AuthScreenAndroid({super.key});
@@ -46,39 +41,35 @@ class AuthScreenAndroid extends StatelessWidget {
             child: SafeArea(
               child: Container(
                 padding: const EdgeInsets.fromLTRB(25, 0, 25, 0),
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      const Image(
-                        width: 150,
-                        image: AssetImage('assets/images/logo.png'),
-                      ),
-                      const SizedBox(height: 30),
-                      TextFormField(
-                        // onTap: () => ScaffoldMessenger.of(context).clearSnackBars(),
-                        onTap: () {},
-                        // validator: (value) => context.read<AuthCubit>().validatorEmail(context, value),
-                        // focusNode: context.read<AuthCubit>().focusNodeEmail,
-                        // controller: context.read<AuthCubit>().textControllerEmail,
-                        style: const TextStyle(fontSize: 15),
-                        keyboardType: TextInputType.emailAddress,
-                        decoration: InputDecoration(
-                          labelText: context.tr("emailAddress"),
-                        ),
-                      ),
-                      const SizedBox(height: 20),
+                child:
+                    Column(mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.center, children: <Widget>[
+                  const Image(
+                    width: 150,
+                    image: AssetImage('assets/images/logo.png'),
+                  ),
+                  const SizedBox(height: 30),
+                  TextFormField(
+                    // onTap: () => ScaffoldMessenger.of(context).clearSnackBars(),
+                    onTap: () {},
+                    // validator: (value) => context.read<AuthCubit>().validatorEmail(context, value),
+                    // focusNode: context.read<AuthCubit>().focusNodeEmail,
+                    // controller: context.read<AuthCubit>().textControllerEmail,
+                    style: const TextStyle(fontSize: 15),
+                    keyboardType: TextInputType.emailAddress,
+                    decoration: InputDecoration(
+                      labelText: context.tr("emailAddress"),
+                    ),
+                  ),
+                  const SizedBox(height: 20),
 
-                      // Button
-                      SizedBox(
-                        child: ElevatedButton(
-                          child: Text(context.tr("continue")),
-                          onPressed: () async => context.read<AuthCubit>().validator(context),
-                        ),
-                      ),
-
-                    ]
-                ),
+                  // Button
+                  SizedBox(
+                    child: ElevatedButton(
+                      child: Text(context.tr("continue")),
+                      onPressed: () async => context.read<AuthCubit>().validator(context),
+                    ),
+                  ),
+                ]),
               ),
             ),
           ),
@@ -86,7 +77,6 @@ class AuthScreenAndroid extends StatelessWidget {
       },
     );
   }
-
 }
 
 class AuthScreenIOS extends StatelessWidget {
@@ -185,10 +175,7 @@ class AuthScreenIOS extends StatelessWidget {
                     ),
                     const SizedBox(height: 30),
                     SizedBox(
-                      width: MediaQuery
-                          .of(context)
-                          .size
-                          .width,
+                      width: MediaQuery.of(context).size.width,
                       child: CupertinoButton.filled(
                         onPressed: () async => context.read<AuthCubit>().validator(context),
                         child: Text(context.tr('continue')),
@@ -204,4 +191,3 @@ class AuthScreenIOS extends StatelessWidget {
     );
   }
 }
-

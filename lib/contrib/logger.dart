@@ -36,5 +36,4 @@ class Logger {
   void critical(String message) {
     _logger.critical(message);
   }
-
 }

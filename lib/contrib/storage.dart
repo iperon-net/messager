@@ -43,6 +43,7 @@ class Storage {
   Future<void> setString({required String key, required String value}) async {
     await asyncPrefs.setString(key, value);
   }
+
   Future<void> setInt({required String key, required int value}) async {
     await asyncPrefs.setInt(key, value);
   }
@@ -54,10 +55,4 @@ class Storage {
   Future<void> remove({required String key}) async {
     await asyncPrefs.remove('counter');
   }
-
-
-
-
-
-
 }

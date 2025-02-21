@@ -16,7 +16,6 @@ import 'utils.dart';
 GetIt getIt = GetIt.instance;
 
 Future<void> configureDI() async {
-
   // Firebase initialize
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
@@ -37,7 +36,6 @@ Future<void> configureDI() async {
     await utils.initialization();
     return utils;
   }, dependsOn: [Logger, Settings]);
-
 
   getIt.registerSingletonAsync<Storage>(() async {
     final storage = Storage();

@@ -1,6 +1,5 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 
-
 import 'di.dart';
 import 'logger.dart';
 
@@ -28,7 +27,7 @@ class Notifications {
     );
     logger.info('User granted permission: ${settings.authorizationStatus}');
 
-    if(settings.authorizationStatus == AuthorizationStatus.authorized) {
+    if (settings.authorizationStatus == AuthorizationStatus.authorized) {
       final fcmToken = await notification.getToken();
       logger.debug("fcmToken $fcmToken");
     }
@@ -45,5 +44,4 @@ class Notifications {
 
     return;
   }
-
 }

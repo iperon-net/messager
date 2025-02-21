@@ -55,10 +55,9 @@ class Repositories {
     }
 
     // onUpgrade
-    Future<void> onUpgrade(Database db, int oldVersion, int newVersion) async {
-    }
+    Future<void> onUpgrade(Database db, int oldVersion, int newVersion) async {}
 
-    if (kDebugMode){
+    if (kDebugMode) {
       database = await openDatabase(
         path,
         version: settings.databaseVersion,
@@ -108,6 +107,4 @@ class Repositories {
 
     return password;
   }
-
-
 }
