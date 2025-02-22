@@ -67,10 +67,10 @@ class AuthCubit extends Cubit<AuthState> {
     emit(state.copyWith(statusState: StatusState.loading));
 
     // Send to API
-    late AuthCreateByEmailResponse response;
+    late AuthCreateByEmailResponse createByEmailResponse;
 
     final error = await utils.exceptionGrpc(() async {
-      response = await api.auth.createByEmail(state.textControllerEmail.text);
+      createByEmailResponse = await api.auth.createByEmail(state.textControllerEmail.text);
     });
 
     if (error.isNotEmpty) {
@@ -82,7 +82,12 @@ class AuthCubit extends Cubit<AuthState> {
     emit(state.copyWith(statusState: StatusState.success));
 
     if(context.mounted) {
-      context.goNamed("authConfirmation");
+      context.goNamed(
+          "authConfirmation",
+          pathParameters: {
+            "signInToken" : createByEmailResponse.signInToken,
+          },
+      );
       return;
     }
 

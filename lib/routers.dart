@@ -27,7 +27,7 @@ GoRouter get router {
           },
           routes: [
             GoRoute(
-              path: "/confirmation",
+              path: "/confirmation/:signInToken",
               name: "authConfirmation",
               builder: (BuildContext context, GoRouterState state) {
                 return BlocProvider(

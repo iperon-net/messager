@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:messenger/screens/auth/auth_confirmation_cubit.dart';
 
 import '../../contrib/di.dart';
@@ -40,8 +41,6 @@ class AuthConfirmationAndroid extends StatelessWidget {
 
     return BlocBuilder<AuthConfirmationCubit, AuthConfirmationState>(
       builder: (context, state) {
-        // state.focusNodeCode.focusInDirection(direction);
-
         return Scaffold(
           appBar: AppBar(
             backgroundColor: Colors.white,
