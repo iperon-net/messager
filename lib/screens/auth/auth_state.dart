@@ -9,5 +9,7 @@ sealed class AuthState with _$AuthState {
     required TextEditingController textControllerEmail,
     required FocusNode focusNodeEmail,
     @Default(StatusState.initial) StatusState statusState,
+    @Default("") String signInToken,
+
   }) = _Initial;
 }

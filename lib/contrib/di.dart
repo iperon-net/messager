@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get_it/get_it.dart';
 
+import '../api/api.dart';
 import 'alerts.dart';
 import 'connectivity.dart';
 import 'crypto.dart';
@@ -65,6 +66,12 @@ Future<void> configureDI() async {
     final repositories = Repositories();
     await repositories.initialization();
     return repositories;
+  }, dependsOn: [Logger, Settings, Storage]);
+
+  getIt.registerSingletonAsync<API>(() async {
+    final api = API();
+    await api.initialization();
+    return api;
   }, dependsOn: [Logger, Settings, Storage]);
 
   getIt.registerSingletonAsync<Notifications>(() async {

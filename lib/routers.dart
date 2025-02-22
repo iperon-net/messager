@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'screens/auth/auth_confirmation_cubit.dart';
+import 'screens/auth/auth_confirmation_screen.dart';
 import 'screens/auth/auth_cubit.dart';
 import 'screens/auth/auth_screen.dart';
 
@@ -23,6 +25,18 @@ GoRouter get router {
               child: const AuthScreen(),
             );
           },
+          routes: [
+            GoRoute(
+              path: "/confirmation",
+              name: "authConfirmation",
+              builder: (BuildContext context, GoRouterState state) {
+                return BlocProvider(
+                  create: (BuildContext context) => AuthConfirmationCubit(),
+                  child: const AuthConfirmationScreen(),
+                );
+              },
+            ),
+          ]
         ),
       ]);
 }

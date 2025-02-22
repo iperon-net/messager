@@ -17,10 +17,10 @@ final _privateConstructorUsedError = UnsupportedError('It seems like you constru
 /// @nodoc
 mixin _$AuthState {
 
- GlobalKey<FormState> get formKey => throw _privateConstructorUsedError; TextEditingController get textControllerEmail => throw _privateConstructorUsedError; FocusNode get focusNodeEmail => throw _privateConstructorUsedError; StatusState get statusState => throw _privateConstructorUsedError;
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( GlobalKey<FormState> formKey,  TextEditingController textControllerEmail,  FocusNode focusNodeEmail,  StatusState statusState)  $default,) => throw _privateConstructorUsedError;
+ GlobalKey<FormState> get formKey => throw _privateConstructorUsedError; TextEditingController get textControllerEmail => throw _privateConstructorUsedError; FocusNode get focusNodeEmail => throw _privateConstructorUsedError; StatusState get statusState => throw _privateConstructorUsedError; String get signInToken => throw _privateConstructorUsedError;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( GlobalKey<FormState> formKey,  TextEditingController textControllerEmail,  FocusNode focusNodeEmail,  StatusState statusState,  String signInToken)  $default,) => throw _privateConstructorUsedError;
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( GlobalKey<FormState> formKey,  TextEditingController textControllerEmail,  FocusNode focusNodeEmail,  StatusState statusState)?  $default,{required TResult orElse(),}) => throw _privateConstructorUsedError;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( GlobalKey<FormState> formKey,  TextEditingController textControllerEmail,  FocusNode focusNodeEmail,  StatusState statusState,  String signInToken)?  $default,{required TResult orElse(),}) => throw _privateConstructorUsedError;
 @optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _Initial value)  $default,) => throw _privateConstructorUsedError;
 @optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _Initial value)?  $default,) => throw _privateConstructorUsedError;
 @optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _Initial value)?  $default,{required TResult orElse(),}) => throw _privateConstructorUsedError;
@@ -37,7 +37,7 @@ abstract class $AuthStateCopyWith<$Res>  {
   factory $AuthStateCopyWith(AuthState value, $Res Function(AuthState) then) = _$AuthStateCopyWithImpl<$Res, AuthState>;
 @useResult
 $Res call({
- GlobalKey<FormState> formKey, TextEditingController textControllerEmail, FocusNode focusNodeEmail, StatusState statusState
+ GlobalKey<FormState> formKey, TextEditingController textControllerEmail, FocusNode focusNodeEmail, StatusState statusState, String signInToken
 });
 
 
@@ -55,13 +55,14 @@ class _$AuthStateCopyWithImpl<$Res,$Val extends AuthState> implements $AuthState
 
 /// Create a copy of AuthState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? formKey = null,Object? textControllerEmail = null,Object? focusNodeEmail = null,Object? statusState = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? formKey = null,Object? textControllerEmail = null,Object? focusNodeEmail = null,Object? statusState = null,Object? signInToken = null,}) {
   return _then(_value.copyWith(
 formKey: null == formKey ? _value.formKey : formKey // ignore: cast_nullable_to_non_nullable
 as GlobalKey<FormState>,textControllerEmail: null == textControllerEmail ? _value.textControllerEmail : textControllerEmail // ignore: cast_nullable_to_non_nullable
 as TextEditingController,focusNodeEmail: null == focusNodeEmail ? _value.focusNodeEmail : focusNodeEmail // ignore: cast_nullable_to_non_nullable
 as FocusNode,statusState: null == statusState ? _value.statusState : statusState // ignore: cast_nullable_to_non_nullable
-as StatusState,
+as StatusState,signInToken: null == signInToken ? _value.signInToken : signInToken // ignore: cast_nullable_to_non_nullable
+as String,
   )as $Val);
 }
 
@@ -73,7 +74,7 @@ abstract class _$$InitialImplCopyWith<$Res> implements $AuthStateCopyWith<$Res> 
   factory _$$InitialImplCopyWith(_$InitialImpl value, $Res Function(_$InitialImpl) then) = __$$InitialImplCopyWithImpl<$Res>;
 @override @useResult
 $Res call({
- GlobalKey<FormState> formKey, TextEditingController textControllerEmail, FocusNode focusNodeEmail, StatusState statusState
+ GlobalKey<FormState> formKey, TextEditingController textControllerEmail, FocusNode focusNodeEmail, StatusState statusState, String signInToken
 });
 
 
@@ -88,13 +89,14 @@ class __$$InitialImplCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res, _$
 
 /// Create a copy of AuthState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? formKey = null,Object? textControllerEmail = null,Object? focusNodeEmail = null,Object? statusState = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? formKey = null,Object? textControllerEmail = null,Object? focusNodeEmail = null,Object? statusState = null,Object? signInToken = null,}) {
   return _then(_$InitialImpl(
 formKey: null == formKey ? _value.formKey : formKey // ignore: cast_nullable_to_non_nullable
 as GlobalKey<FormState>,textControllerEmail: null == textControllerEmail ? _value.textControllerEmail : textControllerEmail // ignore: cast_nullable_to_non_nullable
 as TextEditingController,focusNodeEmail: null == focusNodeEmail ? _value.focusNodeEmail : focusNodeEmail // ignore: cast_nullable_to_non_nullable
 as FocusNode,statusState: null == statusState ? _value.statusState : statusState // ignore: cast_nullable_to_non_nullable
-as StatusState,
+as StatusState,signInToken: null == signInToken ? _value.signInToken : signInToken // ignore: cast_nullable_to_non_nullable
+as String,
   ));
 }
 
@@ -105,7 +107,7 @@ as StatusState,
 
 
 class _$InitialImpl extends _Initial  {
-  const _$InitialImpl({required this.formKey, required this.textControllerEmail, required this.focusNodeEmail, this.statusState = StatusState.initial}): super._();
+  const _$InitialImpl({required this.formKey, required this.textControllerEmail, required this.focusNodeEmail, this.statusState = StatusState.initial, this.signInToken = ""}): super._();
 
   
 
@@ -113,21 +115,22 @@ class _$InitialImpl extends _Initial  {
 @override final  TextEditingController textControllerEmail;
 @override final  FocusNode focusNodeEmail;
 @override@JsonKey() final  StatusState statusState;
+@override@JsonKey() final  String signInToken;
 
 @override
 String toString() {
-  return 'AuthState(formKey: $formKey, textControllerEmail: $textControllerEmail, focusNodeEmail: $focusNodeEmail, statusState: $statusState)';
+  return 'AuthState(formKey: $formKey, textControllerEmail: $textControllerEmail, focusNodeEmail: $focusNodeEmail, statusState: $statusState, signInToken: $signInToken)';
 }
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _$InitialImpl&&(identical(other.formKey, formKey) || other.formKey == formKey)&&(identical(other.textControllerEmail, textControllerEmail) || other.textControllerEmail == textControllerEmail)&&(identical(other.focusNodeEmail, focusNodeEmail) || other.focusNodeEmail == focusNodeEmail)&&(identical(other.statusState, statusState) || other.statusState == statusState));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _$InitialImpl&&(identical(other.formKey, formKey) || other.formKey == formKey)&&(identical(other.textControllerEmail, textControllerEmail) || other.textControllerEmail == textControllerEmail)&&(identical(other.focusNodeEmail, focusNodeEmail) || other.focusNodeEmail == focusNodeEmail)&&(identical(other.statusState, statusState) || other.statusState == statusState)&&(identical(other.signInToken, signInToken) || other.signInToken == signInToken));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,formKey,textControllerEmail,focusNodeEmail,statusState);
+int get hashCode => Object.hash(runtimeType,formKey,textControllerEmail,focusNodeEmail,statusState,signInToken);
 
 /// Create a copy of AuthState
 /// with the given fields replaced by the non-null parameter values.
@@ -137,14 +140,14 @@ int get hashCode => Object.hash(runtimeType,formKey,textControllerEmail,focusNod
 _$$InitialImplCopyWith<_$InitialImpl> get copyWith => __$$InitialImplCopyWithImpl<_$InitialImpl>(this, _$identity);
 
 @override
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( GlobalKey<FormState> formKey,  TextEditingController textControllerEmail,  FocusNode focusNodeEmail,  StatusState statusState)  $default,) {
-  return $default(formKey,textControllerEmail,focusNodeEmail,statusState);
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( GlobalKey<FormState> formKey,  TextEditingController textControllerEmail,  FocusNode focusNodeEmail,  StatusState statusState,  String signInToken)  $default,) {
+  return $default(formKey,textControllerEmail,focusNodeEmail,statusState,signInToken);
 }
 
 @override
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( GlobalKey<FormState> formKey,  TextEditingController textControllerEmail,  FocusNode focusNodeEmail,  StatusState statusState)?  $default,{required TResult orElse(),}) {
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( GlobalKey<FormState> formKey,  TextEditingController textControllerEmail,  FocusNode focusNodeEmail,  StatusState statusState,  String signInToken)?  $default,{required TResult orElse(),}) {
   if ($default != null) {
-    return $default(formKey,textControllerEmail,focusNodeEmail,statusState);
+    return $default(formKey,textControllerEmail,focusNodeEmail,statusState,signInToken);
   }
   return orElse();
 }
@@ -168,12 +171,12 @@ _$$InitialImplCopyWith<_$InitialImpl> get copyWith => __$$InitialImplCopyWithImp
 
 
 abstract class _Initial extends AuthState {
-  const factory _Initial({required final  GlobalKey<FormState> formKey, required final  TextEditingController textControllerEmail, required final  FocusNode focusNodeEmail, final  StatusState statusState}) = _$InitialImpl;
+  const factory _Initial({required final  GlobalKey<FormState> formKey, required final  TextEditingController textControllerEmail, required final  FocusNode focusNodeEmail, final  StatusState statusState, final  String signInToken}) = _$InitialImpl;
   const _Initial._(): super._();
 
   
 
-@override GlobalKey<FormState> get formKey;@override TextEditingController get textControllerEmail;@override FocusNode get focusNodeEmail;@override StatusState get statusState;
+@override GlobalKey<FormState> get formKey;@override TextEditingController get textControllerEmail;@override FocusNode get focusNodeEmail;@override StatusState get statusState;@override String get signInToken;
 /// Create a copy of AuthState
 /// with the given fields replaced by the non-null parameter values.
 @override @JsonKey(includeFromJson: false, includeToJson: false)

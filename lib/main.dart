@@ -139,7 +139,7 @@ class IperonMessengerCupertino extends StatelessWidget {
       routerConfig: router,
       theme: const CupertinoThemeData(
         primaryColor: CupertinoDynamicColor.withBrightness(
-          color: Color(0xff72538d),
+          color: Color(0xff605fc5),
           darkColor: Color(0xff605fc5),
         ),
         barBackgroundColor: CupertinoDynamicColor.withBrightness(
