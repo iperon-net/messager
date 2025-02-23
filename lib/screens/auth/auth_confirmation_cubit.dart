@@ -16,6 +16,7 @@ import '../../contrib/logger.dart';
 import '../../contrib/utils.dart';
 import '../../protobuf/protos/auth.pb.dart';
 import '../../repositories/repositories.dart';
+import '../../services/services.dart';
 
 part 'auth_confirmation_state.dart';
 part 'auth_confirmation_cubit.freezed.dart';
@@ -34,6 +35,7 @@ class AuthConfirmationCubit extends Cubit<AuthConfirmationState> {
   final crypto = getIt.get<Crypto>();
   final repositories = getIt.get<Repositories>();
   final exceptions = getIt.get<Exceptions>();
+  final services = getIt.get<Services>();
 
   // Validator code
   String? validatorCode(BuildContext context, String? value) {
@@ -76,7 +78,7 @@ class AuthConfirmationCubit extends Cubit<AuthConfirmationState> {
     final sharedKey = await crypto.keyExchangeValidate(keyPair: keyExchange.keyPair, remotePublicKey: confirmationResponse.exchangeKey);
 
     // Save DB
-    await repositories.users.createOrUpdate(
+    await services.users.createOrUpdate(
       userId: confirmationResponse.userId,
       email: confirmationResponse.email,
       sessionToken: confirmationResponse.sessionToken,

@@ -8,6 +8,7 @@ class Users {
 
   Users({required this.logger, required this.settings, required this.database});
 
+  // Create or update user
   Future<void> createOrUpdate({
     required String userId,
     required String email,
@@ -53,6 +54,15 @@ class Users {
     });
 
     return;
+  }
+
+  // Get active user
+  Future<Map<String, dynamic>> getActive() async {
+    final user = await database.query("users", where: "is_active = 1", limit: 1);
+    if (user.isNotEmpty) {
+      return user.last;
+    }
+    throw Exception("Not found active user");
   }
 
 }

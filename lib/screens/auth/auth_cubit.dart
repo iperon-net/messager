@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:go_router/go_router.dart';
+import 'package:messenger/repositories/repositories.dart';
 
 import '../../api/api.dart';
 import '../../constants.dart';
@@ -14,6 +15,7 @@ import '../../contrib/logger.dart';
 import '../../contrib/utils.dart';
 import '../../contrib/exceptions.dart';
 import '../../protobuf/protos/auth.pb.dart';
+import '../../services/services.dart';
 
 part 'auth_state.dart';
 part 'auth_cubit.freezed.dart';
@@ -24,6 +26,8 @@ class AuthCubit extends Cubit<AuthState> {
   final utils = getIt.get<Utils>();
   final api = getIt.get<API>();
   final exceptions = getIt.get<Exceptions>();
+  final repositories = getIt.get<Repositories>();
+  final services = getIt.get<Services>();
 
   AuthCubit()
       : super(
@@ -63,7 +67,6 @@ class AuthCubit extends Cubit<AuthState> {
     await alerts.reset(context);
 
     if (!state.formKey.currentState!.validate()) return;
-
 
     emit(state.copyWith(statusState: StatusState.loading));
 
