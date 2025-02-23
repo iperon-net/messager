@@ -26,7 +26,6 @@ GoRouter get router {
         GoRoute(
           path: "/auth",
           name: "auth",
-          // redirect: middlewareAuth,
           builder: (BuildContext context, GoRouterState state) {
             return BlocProvider(
               create: (BuildContext context) => AuthCubit(),
