@@ -2,12 +2,10 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 import 'package:messenger/screens/auth/auth_confirmation_cubit.dart';
 
 import '../../contrib/di.dart';
 import '../../contrib/logger.dart';
-import '../../contrib/utils.dart';
 
 class AuthConfirmationScreen extends StatelessWidget {
   const AuthConfirmationScreen({super.key});
@@ -37,7 +35,7 @@ class AuthConfirmationAndroid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final logger = getIt.get<Logger>();
+    // final logger = getIt.get<Logger>();
 
     return BlocBuilder<AuthConfirmationCubit, AuthConfirmationState>(
       builder: (context, state) {
