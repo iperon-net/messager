@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../di.dart';
-import '../../logger.dart';
+// import '../../logger.dart';
 import '../../utils.dart';
 import 'auth_cubit.dart';
 
@@ -34,7 +34,7 @@ class AuthScreenAndroid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final logger = getIt.get<Logger>();
+    // final logger = getIt.get<Logger>();
 
     return BlocBuilder<AuthCubit, AuthState>(
       builder: (context, state) {
@@ -87,7 +87,7 @@ class AuthScreenIOS extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final logger = getIt.get<Logger>();
+    // final logger = getIt.get<Logger>();
 
     return CupertinoPageScaffold(
       child: BlocBuilder<AuthCubit, AuthState>(

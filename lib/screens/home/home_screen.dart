@@ -14,7 +14,7 @@ class HomeScreen extends StatelessWidget {
       DeviceOrientation.portraitUp,
     ]);
 
-    final utils = getIt.get<Utils>();
+    // final utils = getIt.get<Utils>();
     return NotImplementedComponent();
 
     // if (utils.platform == SysPlatform.ios) {

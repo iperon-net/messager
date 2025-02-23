@@ -3,7 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'di.dart';
-import 'logger.dart';
+// import 'logger.dart';
 import 'screens/auth/auth_confirmation_cubit.dart';
 import 'screens/auth/auth_confirmation_screen.dart';
 import 'screens/auth/auth_cubit.dart';
@@ -13,11 +13,11 @@ import 'screens/home/home_screen.dart';
 import 'services/services.dart';
 
 GoRouter get router {
-  final logger = getIt.get<Logger>();
+  // final logger = getIt.get<Logger>();
   final services = getIt.get<Services>();
 
   return GoRouter(
-      initialLocation: "/home",
+      initialLocation: "/auth",
       // observers: <NavigatorObserver>[
       //   TalkerRouteObserver(logger.talker),
       //   FirebaseAnalyticsObserver(analytics: FirebaseAnalytics.instance),
