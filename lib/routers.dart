@@ -51,7 +51,7 @@ GoRouter get router {
           redirect: (BuildContext context, GoRouterState state) async {
 
             final user = await services.users.getActive();
-            if(user.isActive == 0) return "/auth";
+            if (user.isActive == 0) return "/auth";
 
             return null;
           },
