@@ -1,17 +1,14 @@
-import 'package:bson/bson.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:easy_localization_loader/easy_localization_loader.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
-import 'crypto.dart';
 import 'di.dart';
-import 'logger.dart';
-import 'settings.dart';
-import 'utils.dart';
+// import 'logger.dart';
 import 'routers.dart';
 import 'themes.dart';
+import 'utils.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,7 +17,7 @@ Future<void> main() async {
   await configureDI();
 
   final utils = getIt.get<Utils>();
-  final logger = getIt.get<Logger>();
+  // final logger = getIt.get<Logger>();
   // final crypto = getIt.get<Crypto>();
   // final settings = getIt.get<Settings>();
 
