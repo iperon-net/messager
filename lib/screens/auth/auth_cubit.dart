@@ -69,13 +69,13 @@ class AuthCubit extends Cubit<AuthState> {
     // Send to API
     late AuthCreateByEmailResponse createByEmailResponse;
 
-    final error = await utils.exceptionGrpc(() async {
+    final resultExceptionGrpc = await utils.exceptionGrpc(() async {
       createByEmailResponse = await api.auth.createByEmail(state.textControllerEmail.text);
     });
 
-    if (error.isNotEmpty) {
+    if (resultExceptionGrpc.error.isNotEmpty) {
       emit(state.copyWith(statusState: StatusState.error));
-      if (context.mounted) alerts.show(context, Alert(context.tr("error"), context.tr(error)));
+      if (context.mounted) alerts.show(context, Alert(context.tr("error"), context.tr(resultExceptionGrpc.error)));
       return;
     }
 

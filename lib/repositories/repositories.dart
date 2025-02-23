@@ -10,12 +10,15 @@ import '../contrib/logger.dart';
 import '../contrib/settings.dart';
 import '../contrib/storage.dart';
 
+part 'users.dart';
+
 class Repositories {
   final logger = getIt.get<Logger>();
   final settings = getIt.get<Settings>();
   final storage = getIt.get<Storage>();
 
   late Database database;
+  late Users users;
 
   Future<void> initialization() async {
     String databasesPath = await getDatabasesPath();
@@ -39,17 +42,18 @@ class Repositories {
 
       batch.execute("""
         CREATE TABLE users (
-          email TEXT NOT NULL DEFAULT "",
-          username TEXT NOT NULL DEFAULT "",
-          session TEXT NOT NULL DEFAULT "",
+          user_id TEXT NOT NULL,
+          email TEXT NOT NULL,
+          session_token TEXT NOT NULL,
           is_active INTEGER NOT NULL DEFAULT 0,
-          crypto_key TEXT NOT NULL DEFAULT ""
+          shared_key BLOB NOT NULL,
+          server TEXT NOT NULL DEFAULT ''
         )
       """);
 
-      batch.execute("""
-        INSERT INTO users (email) VALUES("kostya@yandex.ru")
-      """);
+      // batch.execute("""
+      //   INSERT INTO users (email) VALUES ("kostya@yandex.ru")
+      // """);
 
       await batch.commit();
     }
@@ -85,6 +89,9 @@ class Repositories {
         onUpgrade: onUpgrade,
       );
     }
+
+    //
+    users = Users(logger: logger, settings: settings, database: database);
 
     final dbVersion = await database.getVersion();
     logger.info("Current DB version: $dbVersion");

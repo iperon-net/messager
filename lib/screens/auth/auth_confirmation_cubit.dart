@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:bloc/bloc.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/widgets.dart';
@@ -12,6 +14,7 @@ import '../../contrib/di.dart';
 import '../../contrib/logger.dart';
 import '../../contrib/utils.dart';
 import '../../protobuf/protos/auth.pb.dart';
+import '../../repositories/repositories.dart';
 
 part 'auth_confirmation_state.dart';
 part 'auth_confirmation_cubit.freezed.dart';
@@ -28,6 +31,7 @@ class AuthConfirmationCubit extends Cubit<AuthConfirmationState> {
   final utils = getIt.get<Utils>();
   final api = getIt.get<API>();
   final crypto = getIt.get<Crypto>();
+  final repositories = getIt.get<Repositories>();
 
   // Validator code
   String? validatorCode(BuildContext context, String? value) {
@@ -53,7 +57,7 @@ class AuthConfirmationCubit extends Cubit<AuthConfirmationState> {
     // Send to API
     late AuthConfirmationResponse confirmationResponse;
 
-    final error = await utils.exceptionGrpc(() async {
+    final resultExceptionGrpc = await utils.exceptionGrpc(() async {
       confirmationResponse = await api.auth.confirmation(
         signInToken: pathParameters["signInToken"].toString(),
         code: int.parse(state.textControllerCode.text),
@@ -61,13 +65,26 @@ class AuthConfirmationCubit extends Cubit<AuthConfirmationState> {
       );
     });
 
-    if (error.isNotEmpty) {
+    if (resultExceptionGrpc.error.isNotEmpty) {
       emit(state.copyWith(statusState: StatusState.error));
-      if (context.mounted) alerts.show(context, Alert(context.tr("error"), context.tr(error)));
+      if (context.mounted) alerts.show(context, Alert(context.tr("error"), context.tr(resultExceptionGrpc.error)));
       return;
     }
 
-    logger.debug(confirmationResponse.toString());
+    final sharedKey = await crypto.keyExchangeValidate(keyPair: keyExchange.keyPair, remotePublicKey: confirmationResponse.exchangeKey);
+
+    // Save DB
+    await repositories.users.createOrUpdate(
+      userId: confirmationResponse.userId,
+      email: confirmationResponse.email,
+      sessionToken: confirmationResponse.sessionToken,
+      isActive: 1,
+      sharedKey: Uint8List.fromList(sharedKey),
+      server: "",
+    );
+
+    logger.debug(confirmationResponse.toDebugString());
+    logger.debug(sharedKey.toString());
 
     emit(state.copyWith(statusState: StatusState.success));
 
