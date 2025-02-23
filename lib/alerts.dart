@@ -2,7 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../themes.dart';
+import 'themes.dart';
 import 'di.dart';
 import 'logger.dart';
 import 'utils.dart';

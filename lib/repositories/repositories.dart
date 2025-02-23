@@ -7,10 +7,10 @@ import "package:path/path.dart" as p;
 import 'package:sqflite/sqflite.dart';
 import 'package:sqflite_sqlcipher/sqflite.dart' as sqflite_sqlcipher;
 
-import '../contrib/di.dart';
-import '../contrib/logger.dart';
-import '../contrib/settings.dart';
-import '../contrib/storage.dart';
+import '../di.dart';
+import '../logger.dart';
+import '../settings.dart';
+import '../storage.dart';
 
 part 'users.dart';
 

@@ -2,8 +2,8 @@ import 'dart:io' show Platform;
 
 import 'package:package_info_plus/package_info_plus.dart';
 
-import 'di.dart';
-import 'logger.dart';
+import '../di.dart';
+import '../logger.dart';
 import 'settings.dart';
 
 enum SysPlatform { android, ios }

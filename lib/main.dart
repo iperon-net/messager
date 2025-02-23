@@ -5,11 +5,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
-import 'contrib/crypto.dart';
-import 'contrib/di.dart';
-import 'contrib/logger.dart';
-import 'contrib/settings.dart';
-import 'contrib/utils.dart';
+import 'crypto.dart';
+import 'di.dart';
+import 'logger.dart';
+import 'settings.dart';
+import 'utils.dart';
 import 'routers.dart';
 import 'themes.dart';
 

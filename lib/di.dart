@@ -1,16 +1,16 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get_it/get_it.dart';
 
-import '../api/api.dart';
-import '../services/services.dart';
+import 'api/api.dart';
+import 'services/services.dart';
 import 'alerts.dart';
 import 'connectivity.dart';
 import 'crypto.dart';
-import '../firebase_options.dart';
+import 'firebase_options.dart';
 import 'exceptions.dart';
 import 'logger.dart';
 import 'notifications.dart';
-import '../repositories/repositories.dart';
+import 'repositories/repositories.dart';
 import 'settings.dart';
 import 'storage.dart';
 import 'syncer.dart';

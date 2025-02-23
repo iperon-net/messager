@@ -8,12 +8,12 @@ import 'package:go_router/go_router.dart';
 
 import '../../api/api.dart';
 import '../../constants.dart';
-import '../../contrib/alerts.dart';
-import '../../contrib/crypto.dart';
-import '../../contrib/di.dart';
-import '../../contrib/exceptions.dart';
-import '../../contrib/logger.dart';
-import '../../contrib/utils.dart';
+import '../../alerts.dart';
+import '../../crypto.dart';
+import '../../di.dart';
+import '../../exceptions.dart';
+import '../../logger.dart';
+import '../../utils.dart';
 import '../../protobuf/protos/auth.pb.dart';
 import '../../repositories/repositories.dart';
 import '../../services/services.dart';

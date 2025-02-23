@@ -2,8 +2,8 @@ import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-import 'di.dart';
-import 'logger.dart';
+import '../di.dart';
+import '../logger.dart';
 
 class Settings {
   final logger = getIt.get<Logger>();

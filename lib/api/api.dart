@@ -1,8 +1,8 @@
 import 'package:grpc/grpc.dart';
 
-import '../contrib/di.dart';
-import '../contrib/logger.dart';
-import '../contrib/settings.dart';
+import '../di.dart';
+import '../logger.dart';
+import '../settings.dart';
 import '../protobuf/protos/auth.pbgrpc.dart';
 
 part 'auth.dart';

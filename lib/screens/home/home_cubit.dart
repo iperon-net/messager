@@ -2,8 +2,8 @@ import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../constants.dart';
-import '../../contrib/di.dart';
-import '../../contrib/logger.dart';
+import '../../di.dart';
+import '../../logger.dart';
 import '../../services/services.dart';
 
 part 'home_state.dart';

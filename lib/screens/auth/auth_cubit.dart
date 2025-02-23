@@ -9,11 +9,11 @@ import 'package:messenger/repositories/repositories.dart';
 
 import '../../api/api.dart';
 import '../../constants.dart';
-import '../../contrib/alerts.dart';
-import '../../contrib/di.dart';
-import '../../contrib/logger.dart';
-import '../../contrib/utils.dart';
-import '../../contrib/exceptions.dart';
+import '../../alerts.dart';
+import '../../di.dart';
+import '../../logger.dart';
+import '../../utils.dart';
+import '../../exceptions.dart';
 import '../../protobuf/protos/auth.pb.dart';
 import '../../services/services.dart';
 

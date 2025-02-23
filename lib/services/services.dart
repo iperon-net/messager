@@ -1,8 +1,8 @@
 import 'dart:typed_data';
 
-import '../contrib/di.dart';
-import '../contrib/logger.dart';
-import '../contrib/settings.dart';
+import '../di.dart';
+import '../logger.dart';
+import '../settings.dart';
 import '../models/users.dart';
 import '../repositories/repositories.dart';
 

@@ -3,8 +3,8 @@ import 'dart:io';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'di.dart';
-import 'logger.dart';
+import '../di.dart';
+import '../logger.dart';
 
 class Storage {
   final logger = getIt.get<Logger>();

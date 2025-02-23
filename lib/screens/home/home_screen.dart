@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../components/not_implemented/not_implemented_component.dart';
-import '../../contrib/di.dart';
-import '../../contrib/utils.dart';
+import '../../di.dart';
+import '../../utils.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});

@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../contrib/di.dart';
-import '../../contrib/logger.dart';
-import '../../contrib/utils.dart';
+import '../../di.dart';
+import '../../logger.dart';
+import '../../utils.dart';
 import 'auth_cubit.dart';
 
 class AuthScreen extends StatelessWidget {
