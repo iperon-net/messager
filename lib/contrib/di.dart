@@ -6,6 +6,7 @@ import 'alerts.dart';
 import 'connectivity.dart';
 import 'crypto.dart';
 import '../firebase_options.dart';
+import 'exceptions.dart';
 import 'logger.dart';
 import 'notifications.dart';
 import '../repositories/repositories.dart';
@@ -48,6 +49,12 @@ Future<void> configureDI() async {
     final crypto = Crypto();
     await crypto.initialization();
     return crypto;
+  }, dependsOn: [Logger, Settings]);
+
+  getIt.registerSingletonAsync<Exceptions>(() async {
+    final exceptions = Exceptions();
+    await exceptions.initialization();
+    return exceptions;
   }, dependsOn: [Logger, Settings]);
 
   getIt.registerSingletonAsync<Connectivity>(() async {

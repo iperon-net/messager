@@ -11,6 +11,7 @@ import '../../constants.dart';
 import '../../contrib/alerts.dart';
 import '../../contrib/crypto.dart';
 import '../../contrib/di.dart';
+import '../../contrib/exceptions.dart';
 import '../../contrib/logger.dart';
 import '../../contrib/utils.dart';
 import '../../protobuf/protos/auth.pb.dart';
@@ -32,6 +33,7 @@ class AuthConfirmationCubit extends Cubit<AuthConfirmationState> {
   final api = getIt.get<API>();
   final crypto = getIt.get<Crypto>();
   final repositories = getIt.get<Repositories>();
+  final exceptions = getIt.get<Exceptions>();
 
   // Validator code
   String? validatorCode(BuildContext context, String? value) {
@@ -57,7 +59,7 @@ class AuthConfirmationCubit extends Cubit<AuthConfirmationState> {
     // Send to API
     late AuthConfirmationResponse confirmationResponse;
 
-    final resultExceptionGrpc = await utils.exceptionGrpc(() async {
+    final resultExceptionGrpc = await exceptions.grpc(() async {
       confirmationResponse = await api.auth.confirmation(
         signInToken: pathParameters["signInToken"].toString(),
         code: int.parse(state.textControllerCode.text),

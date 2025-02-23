@@ -12,7 +12,7 @@ import '../../contrib/alerts.dart';
 import '../../contrib/di.dart';
 import '../../contrib/logger.dart';
 import '../../contrib/utils.dart';
-import '../../exceptions.dart';
+import '../../contrib/exceptions.dart';
 import '../../protobuf/protos/auth.pb.dart';
 
 part 'auth_state.dart';
@@ -23,6 +23,7 @@ class AuthCubit extends Cubit<AuthState> {
   final alerts = getIt.get<Alerts>();
   final utils = getIt.get<Utils>();
   final api = getIt.get<API>();
+  final exceptions = getIt.get<Exceptions>();
 
   AuthCubit()
       : super(
@@ -69,7 +70,7 @@ class AuthCubit extends Cubit<AuthState> {
     // Send to API
     late AuthCreateByEmailResponse createByEmailResponse;
 
-    final resultExceptionGrpc = await utils.exceptionGrpc(() async {
+    final resultExceptionGrpc = await exceptions.grpc(() async {
       createByEmailResponse = await api.auth.createByEmail(state.textControllerEmail.text);
     });
 
