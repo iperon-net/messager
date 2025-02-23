@@ -17,7 +17,7 @@ class Users {
     required String server,
   }) async {
 
-    database.transaction((txn) async {
+    await database.transaction((txn) async {
 
       final result = await txn.query("users", where: "user_id = ?", whereArgs: [userId], limit: 1);
       if (result.isNotEmpty) {

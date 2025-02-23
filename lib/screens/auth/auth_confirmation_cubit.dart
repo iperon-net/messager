@@ -85,11 +85,12 @@ class AuthConfirmationCubit extends Cubit<AuthConfirmationState> {
       server: "",
     );
 
-    logger.debug(confirmationResponse.toDebugString());
-    logger.debug(sharedKey.toString());
+    // logger.debug(confirmationResponse.toDebugString());
+    // logger.debug(sharedKey.toString());
 
     emit(state.copyWith(statusState: StatusState.success));
 
+    logger.debug("Redirect to home");
   }
 
 }

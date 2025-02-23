@@ -1,3 +1,4 @@
+import 'package:bson/bson.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:easy_localization_loader/easy_localization_loader.dart';
 import 'package:flutter/cupertino.dart';
@@ -20,8 +21,16 @@ Future<void> main() async {
 
   final utils = getIt.get<Utils>();
   final logger = getIt.get<Logger>();
-  final crypto = getIt.get<Crypto>();
-  final settings = getIt.get<Settings>();
+  // final crypto = getIt.get<Crypto>();
+  // final settings = getIt.get<Settings>();
+
+  // var bsonBinary = BsonCodec.serialize({
+  //   'version': 1,
+  //   'map': {
+  //     'a': 99,
+  //   },
+  // });
+  // logger.debug(bsonBinary.toString());
 
   // final status = await Permission.camera.status;
   // logger.debug(status.toString());

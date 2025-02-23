@@ -4,9 +4,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:messenger/screens/auth/auth_confirmation_cubit.dart';
 
-import '../../contrib/di.dart';
-import '../../contrib/logger.dart';
-
 class AuthConfirmationScreen extends StatelessWidget {
   const AuthConfirmationScreen({super.key});
 
