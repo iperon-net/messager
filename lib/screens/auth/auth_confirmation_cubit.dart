@@ -77,7 +77,7 @@ class AuthConfirmationCubit extends Cubit<AuthConfirmationState> {
 
     final sharedKey = await crypto.keyExchangeValidate(keyPair: keyExchange.keyPair, remotePublicKey: confirmationResponse.exchangeKey);
 
-    // Save DB
+    // Save user
     await services.users.createOrUpdate(
       userId: confirmationResponse.userId,
       email: confirmationResponse.email,
@@ -93,6 +93,7 @@ class AuthConfirmationCubit extends Cubit<AuthConfirmationState> {
     emit(state.copyWith(statusState: StatusState.success));
 
     logger.debug("Redirect to home");
+    if (context.mounted) context.goNamed("home");
   }
 
 }

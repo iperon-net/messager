@@ -17,10 +17,10 @@ final _privateConstructorUsedError = UnsupportedError('It seems like you constru
 /// @nodoc
 mixin _$User {
 
- String get userId => throw _privateConstructorUsedError; String get email => throw _privateConstructorUsedError; String get sessionToken => throw _privateConstructorUsedError;@ConverterBoolToInt() int get isActive => throw _privateConstructorUsedError; Uint8List get sharedKey => throw _privateConstructorUsedError; String get server => throw _privateConstructorUsedError;
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String userId,  String email,  String sessionToken, @ConverterBoolToInt()  int isActive,  Uint8List sharedKey,  String server)  $default,) => throw _privateConstructorUsedError;
+ String get userId => throw _privateConstructorUsedError; String get email => throw _privateConstructorUsedError; String get sessionToken => throw _privateConstructorUsedError; int get isActive => throw _privateConstructorUsedError; Uint8List get sharedKey => throw _privateConstructorUsedError; String get server => throw _privateConstructorUsedError;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String userId,  String email,  String sessionToken,  int isActive,  Uint8List sharedKey,  String server)  $default,) => throw _privateConstructorUsedError;
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String userId,  String email,  String sessionToken, @ConverterBoolToInt()  int isActive,  Uint8List sharedKey,  String server)?  $default,{required TResult orElse(),}) => throw _privateConstructorUsedError;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String userId,  String email,  String sessionToken,  int isActive,  Uint8List sharedKey,  String server)?  $default,{required TResult orElse(),}) => throw _privateConstructorUsedError;
 @optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _User value)  $default,) => throw _privateConstructorUsedError;
 @optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _User value)?  $default,) => throw _privateConstructorUsedError;
 @optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _User value)?  $default,{required TResult orElse(),}) => throw _privateConstructorUsedError;
@@ -37,7 +37,7 @@ abstract class $UserCopyWith<$Res>  {
   factory $UserCopyWith(User value, $Res Function(User) then) = _$UserCopyWithImpl<$Res, User>;
 @useResult
 $Res call({
- String userId, String email, String sessionToken,@ConverterBoolToInt() int isActive, Uint8List sharedKey, String server
+ String userId, String email, String sessionToken, int isActive, Uint8List sharedKey, String server
 });
 
 
@@ -75,7 +75,7 @@ abstract class _$$UserImplCopyWith<$Res> implements $UserCopyWith<$Res> {
   factory _$$UserImplCopyWith(_$UserImpl value, $Res Function(_$UserImpl) then) = __$$UserImplCopyWithImpl<$Res>;
 @override @useResult
 $Res call({
- String userId, String email, String sessionToken,@ConverterBoolToInt() int isActive, Uint8List sharedKey, String server
+ String userId, String email, String sessionToken, int isActive, Uint8List sharedKey, String server
 });
 
 
@@ -109,14 +109,14 @@ as String,
 
 
 class _$UserImpl extends _User  with DiagnosticableTreeMixin {
-  const _$UserImpl({required this.userId, required this.email, required this.sessionToken, @ConverterBoolToInt() required this.isActive, required this.sharedKey, required this.server}): super._();
+  const _$UserImpl({required this.userId, required this.email, required this.sessionToken, required this.isActive, required this.sharedKey, required this.server}): super._();
 
   
 
 @override final  String userId;
 @override final  String email;
 @override final  String sessionToken;
-@override@ConverterBoolToInt() final  int isActive;
+@override final  int isActive;
 @override final  Uint8List sharedKey;
 @override final  String server;
 
@@ -150,12 +150,12 @@ int get hashCode => Object.hash(runtimeType,userId,email,sessionToken,isActive,c
 _$$UserImplCopyWith<_$UserImpl> get copyWith => __$$UserImplCopyWithImpl<_$UserImpl>(this, _$identity);
 
 @override
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String userId,  String email,  String sessionToken, @ConverterBoolToInt()  int isActive,  Uint8List sharedKey,  String server)  $default,) {
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String userId,  String email,  String sessionToken,  int isActive,  Uint8List sharedKey,  String server)  $default,) {
   return $default(userId,email,sessionToken,isActive,sharedKey,server);
 }
 
 @override
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String userId,  String email,  String sessionToken, @ConverterBoolToInt()  int isActive,  Uint8List sharedKey,  String server)?  $default,{required TResult orElse(),}) {
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String userId,  String email,  String sessionToken,  int isActive,  Uint8List sharedKey,  String server)?  $default,{required TResult orElse(),}) {
   if ($default != null) {
     return $default(userId,email,sessionToken,isActive,sharedKey,server);
   }
@@ -181,12 +181,12 @@ _$$UserImplCopyWith<_$UserImpl> get copyWith => __$$UserImplCopyWithImpl<_$UserI
 
 
 abstract class _User extends User {
-  const factory _User({required final  String userId, required final  String email, required final  String sessionToken, @ConverterBoolToInt() required final  int isActive, required final  Uint8List sharedKey, required final  String server}) = _$UserImpl;
+  const factory _User({required final  String userId, required final  String email, required final  String sessionToken, required final  int isActive, required final  Uint8List sharedKey, required final  String server}) = _$UserImpl;
   const _User._(): super._();
 
   
 
-@override String get userId;@override String get email;@override String get sessionToken;@override@ConverterBoolToInt() int get isActive;@override Uint8List get sharedKey;@override String get server;
+@override String get userId;@override String get email;@override String get sessionToken;@override int get isActive;@override Uint8List get sharedKey;@override String get server;
 /// Create a copy of User
 /// with the given fields replaced by the non-null parameter values.
 @override @JsonKey(includeFromJson: false, includeToJson: false)

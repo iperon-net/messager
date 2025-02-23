@@ -8,6 +8,7 @@ class Users {
 
   Users({required this.logger, required this.settings, required this.repositories});
 
+  // Create or update
   Future<void> createOrUpdate({
     required String userId,
     required String email,
@@ -17,6 +18,7 @@ class Users {
     required String server,
   }) async {
 
+    await resetActive();
     await repositories.users.createOrUpdate(
       userId: userId,
       email: email,
@@ -28,7 +30,12 @@ class Users {
 
   }
 
-  // getActive
+  // Reset active
+  Future<void> resetActive() async {
+    await repositories.users.resetActive();
+  }
+
+  // Get active
   Future<User> getActive() async {
     final user = await repositories.users.getActive();
     return User(

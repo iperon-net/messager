@@ -19,7 +19,6 @@ class Users {
   }) async {
 
     await database.transaction((txn) async {
-
       final result = await txn.query("users", where: "user_id = ?", whereArgs: [userId], limit: 1);
       if (result.isNotEmpty) {
 
@@ -54,6 +53,13 @@ class Users {
     });
 
     return;
+  }
+
+  // Reset active
+  Future<void> resetActive() async {
+    await database.transaction((txn) async {
+      await txn.update("users", {"is_active": 0});
+    });
   }
 
   // Get active user
